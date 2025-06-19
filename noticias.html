@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEPERG - Notícias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">NEPERG</a>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="rede-tematica.html">Rede Temática em Extensão</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="equipamentos.html">Equipamentos</a></li>
+                    <li><a href="publicacoes/">Publicações</a></li>
+                    <li><a href="noticias.html" class="active">Notícias</a></li>
+                    <li><a href="eventos/">Eventos</a></li>
+                    <li><a href="#" class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Notícias</h1>
+            </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="news-section">
+                <div class="news-filters">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="pesquisa">Pesquisa</button>
+                    <button class="filter-btn" data-filter="eventos">Eventos</button>
+                    <button class="filter-btn" data-filter="noticias">Notícias</button>
+                    <button class="filter-btn" data-filter="editais">Editais</button>
+                </div>
+
+                <div class="news-grid">
+                    <!-- Notícia 1 -->
+                    <article class="news-card" data-category="pesquisa">
+                        <div class="news-image">
+                            <img src="img/news/pesquisa1.jpg" alt="Pesquisa em Destaque">
+                            <span class="news-category">Pesquisa</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">15 de Junho, 2025</span>
+                            <h3><a href="noticia-detalhe.html">Pesquisa do NEPERG é destaque em congresso internacional</a></h3>
+                            <p>Estudo sobre ergonomia no trabalho remoto foi apresentado no Congresso Internacional de Ergonomia em Tóquio.</p>
+                            <a href="noticia-detalhe.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Notícia 2 -->
+                    <article class="news-card" data-category="eventos">
+                        <div class="news-image">
+                            <img src="img/news/evento1.jpg" alt="Próximo Evento">
+                            <span class="news-category">Evento</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">10 de Junho, 2025</span>
+                            <h3><a href="noticia-detalhe.html">Workshop sobre Ergonomia Aplicada</a></h3>
+                            <p>Inscrições abertas para o workshop que acontecerá no dia 30 de julho. Vagas limitadas!</p>
+                            <a href="noticia-detalhe.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Notícia 3 -->
+                    <article class="news-card" data-category="noticias">
+                        <div class="news-image">
+                            <img src="img/news/noticia1.jpg" alt="Novo Projeto">
+                            <span class="news-category">Notícia</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">5 de Junho, 2025</span>
+                            <h3><a href="noticia-detalhe.html">NEPERG inicia projeto em parceria com empresa do setor de saúde</a></h3>
+                            <p>Projeto visa melhorar as condições de trabalho dos profissionais da saúde em hospitais públicos.</p>
+                            <a href="noticia-detalhe.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Notícia 4 -->
+                    <article class="news-card" data-category="editais">
+                        <div class="news-image">
+                            <img src="img/news/edital1.jpg" alt="Edital">
+                            <span class="news-category">Edital</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">1 de Junho, 2025</span>
+                            <h3><a href="noticia-detalhe.html">Abertas as inscrições para bolsas de iniciação científica</a></h3>
+                            <p>Estudantes de graduação podem se inscrever até o dia 20 de junho. Confira o edital completo.</p>
+                            <a href="noticia-detalhe.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Notícia 5 -->
+                    <article class="news-card" data-category="pesquisa">
+                        <div class="news-image">
+                            <img src="img/news/pesquisa2.jpg" alt="Nova Publicação">
+                            <span class="news-category">Pesquisa</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">25 de Maio, 2025</span>
+                            <h3><a href="noticia-detalhe.html">Artigo do NEPERG é publicado em revista internacional</a></h3>
+                            <p>Pesquisa sobre ergonomia cognitiva em ambientes de trabalho digitais ganha destaque na publicação.</p>
+                            <a href="noticia-detalhe.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Notícia 6 -->
+                    <article class="news-card" data-category="eventos">
+                        <div class="news-image">
+                            <img src="img/news/evento2.jpg" alt="Evento Passado">
+                            <span class="news-category">Evento</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">15 de Maio, 2025</span>
+                            <h3><a href="noticia-detalhe.html">Confira como foi o I Seminário de Ergonomia do NEPERG</a></h3>
+                            <p>Evento reuniu especialistas e estudantes para debater os desafios da ergonomia no século XXI.</p>
+                            <a href="noticia-detalhe.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="pagination">
+                    <a href="#" class="page-nav disabled"><i class="fas fa-chevron-left"></i> Anterior</a>
+                    <div class="page-numbers">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <span>...</span>
+                        <a href="#">10</a>
+                    </div>
+                    <a href="#" class="page-nav">Próxima <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+                <div class="newsletter-cta">
+                    <div class="newsletter-content">
+                        <h3>Receba nossas notícias por e-mail</h3>
+                        <p>Cadastre-se para receber as últimas notícias, eventos e oportunidades do NEPERG diretamente em sua caixa de entrada.</p>
+                    </div>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Seu melhor e-mail" required>
+                        <button type="submit" class="btn-primary">Assinar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>NEPERG</h3>
+                    <p>Núcleo de Pesquisa e Extensão em Ergonomia</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="publicacoes/">Publicações</a></li>
+                        <li><a href="eventos/">Eventos</a></li>
+                        </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Endereço da Instituição, Cidade - Estado</p>
+                    <p><i class="fas fa-phone"></i> (XX) XXXX-XXXX</p>
+                    <p><i class="fas fa-envelope"></i> contato@neperg.com.br</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> NEPERG - Núcleo de Pesquisa e Extensão em Ergonomia. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember"> Lembrar de mim
+                    </label>
+                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+                <p class="register-link">Não tem uma conta? <a href="#">Cadastre-se</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // News filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const newsCards = document.querySelectorAll('.news-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    newsCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <!-- Bot�o Voltar ao Topo -->
+    <button class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEPERG - Contato</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">NEPERG</a>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="rede-tematica.html">Rede Temática em Extensão</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="equipamentos.html">Equipamentos</a></li>
+                    <li><a href="publicacoes/">Publicações</a></li>
+                    <li><a href="noticias.html">Notícias</a></li>
+                    <li><a href="eventos/">Eventos</a></li>
+                    <li><a href="contato.html" class="active">Contato</a></li>
+                    <li><a href="#" class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contato</h1>
+            </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="contact-section">
+                <div class="contact-info">
+                    <h2>Entre em Contato Conosco</h2>
+                    <p>Estamos à disposição para tirar suas dúvidas, receber sugestões ou agendar visitas ao nosso laboratório.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Endereço</h3>
+                                <p>Rua Exemplo, 1234<br>Bairro Universitário<br>Cidade - Estado, CEP 12345-678</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Telefones</h3>
+                                <p>+55 (XX) 1234-5678<br>+55 (XX) 98765-4321</p>
+                                <p class="opening-hours">Segunda a Sexta, das 8h às 18h</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>E-mail</h3>
+                                <p><a href="mailto:contato@neperg.com.br">contato@neperg.com.br</a></p>
+                                <p><a href="mailto:pesquisa@neperg.com.br">pesquisa@neperg.com.br</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-media">
+                        <h3>Redes Sociais</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <h2>Envie-nos uma mensagem</h2>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nome Completo <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">E-mail <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Telefone</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Assunto <span class="required">*</span></label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Selecione um assunto</option>
+                                <option value="duvida">Dúvida</option>
+                                <option value="sugestao">Sugestão</option>
+                                <option value="orcamento">Orçamento</option>
+                                <option value="parceria">Parceria</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensagem <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+                        </div>
+                        
+                        <div class="form-group form-actions">
+                            <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                            <button type="reset" class="btn-secondary">Limpar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <h2>Como Chegar</h2>
+                <div class="map-wrapper">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975844558826!2d-46.65867588440769!3d-23.56140946735793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59ceb1eb771f%3A0xe904f6a669744da1!2sMuseu%20de%20Arte%20de%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1625070000000!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>Perguntas Frequentes</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">Como posso agendar uma visita ao laboratório?<i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Para agendar uma visita ao nosso laboratório, entre em contato pelo telefone (XX) XXXX-XXXX ou envie um e-mail para visitas@neperg.com.br com seu nome, instituição e objetivo da visita.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">Como posso me tornar um pesquisador colaborador?<i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Interessados em se tornar pesquisadores colaboradores devem enviar currículo Lattes e carta de intenção para pesquisa@neperg.com.br. Nossa equipe avaliará o perfil e entrará em contato.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">Vocês oferecem estágios?<i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Sim, oferecemos oportunidades de estágio para estudantes de graduação e pós-graduação. As vagas são divulgadas em nosso site e nas redes sociais quando disponíveis.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">Como posso acessar as publicações do NEPERG?<i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Nossas publicações estão disponíveis na seção "Publicações" do site. Alguns materiais podem exigir login para acesso completo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>NEPERG</h3>
+                    <p>Núcleo de Pesquisa e Extensão em Ergonomia</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="publicacoes/">Publicações</a></li>
+                        <li><a href="eventos/">Eventos</a></li>
+                        </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Endereço da Instituição, Cidade - Estado</p>
+                    <p><i class="fas fa-phone"></i> (XX) XXXX-XXXX</p>
+                    <p><i class="fas fa-envelope"></i> contato@neperg.com.br</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> NEPERG - Núcleo de Pesquisa e Extensão em Ergonomia. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember"> Lembrar de mim
+                    </label>
+                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+                <p class="register-link">Não tem uma conta? <a href="#">Cadastre-se</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // FAQ Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentNode;
+                    const isOpen = item.classList.contains('active');
+                    
+                    // Close all items
+                    document.querySelectorAll('.faq-item').forEach(faqItem => {
+                        faqItem.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it was closed
+                    if (!isOpen) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Add form submission logic here
+                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+    <!-- Bot�o Voltar ao Topo -->
+    <button class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+</body>
+</html>

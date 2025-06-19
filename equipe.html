@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEPERG - Nossa Equipe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">NEPERG</a>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="rede-tematica.html">Rede Temática em Extensão</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="equipe.html" class="active">Nossa equipe</a></li>
+                    <li><a href="equipamentos.html">Equipamentos</a></li>
+                    <li><a href="publicacoes/">Publicações</a></li>
+                    <li><a href="noticias.html">Notícias</a></li>
+                    <li><a href="eventos/">Eventos</a></li>
+                    <li><a href="#" class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Nossa Equipe</h1>
+            </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="team-section">
+                <div class="section-intro">
+                    <h2>Conheça nossa equipe</h2>
+                    <p>Nossa equipe é composta por pesquisadores, professores e estudantes dedicados ao estudo e aplicação da ergonomia em diversos contextos.</p>
+                </div>
+
+                <div class="team-filters">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="coordenacao">Coordenação</button>
+                    <button class="filter-btn" data-filter="pesquisadores">Pesquisadores</button>
+                    <button class="filter-btn" data-filter="alunos">Alunos</button>
+                    <button class="filter-btn" data-filter="egressos">Egressos</button>
+                </div>
+
+                <div class="team-grid">
+                    <!-- Coordenação -->
+                    <div class="team-member" data-category="coordenacao">
+                        <div class="member-photo">
+                            <img src="img/team/coordenador.jpg" alt="Coordenador">
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-lattes"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Prof. Dr. Nome do Coordenador</h3>
+                            <p class="position">Coordenador do NEPERG</p>
+                            <p class="bio">Doutor em Engenharia de Produção com ênfase em Ergonomia pela USP. Atua na área desde 2005.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pesquisadores -->
+                    <div class="team-member" data-category="pesquisadores">
+                        <div class="member-photo">
+                            <img src="img/team/pesquisador1.jpg" alt="Pesquisador 1">
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-lattes"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Dr. Nome do Pesquisador</h3>
+                            <p class="position">Pesquisador Sênior</p>
+                            <p class="bio">Doutor em Engenharia de Produção com experiência em Ergonomia Organizacional.</p>
+                        </div>
+                    </div>
+
+                    <!-- Alunos -->
+                    <div class="team-member" data-category="alunos">
+                        <div class="member-photo">
+                            <img src="img/team/aluno1.jpg" alt="Aluno 1">
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-lattes"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Nome do Aluno</h3>
+                            <p class="position">Doutorando em Engenharia de Produção</p>
+                            <p class="bio">Pesquisa em Ergonomia Aplicada ao Trabalho Remoto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Mais membros podem ser adicionados aqui -->
+                </div>
+
+                <div class="join-team">
+                    <h3>Quer fazer parte da nossa equipe?</h3>
+                    <p>Estamos sempre em busca de novos talentos e parcerias. Entre em contato conosco para mais informações sobre oportunidades de pesquisa e estágios.</p>
+                    <a href="contato.html" class="btn-primary">Entre em contato</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>NEPERG</h3>
+                    <p>Núcleo de Pesquisa e Extensão em Ergonomia</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="publicacoes/">Publicações</a></li>
+                        <li><a href="eventos/">Eventos</a></li>
+                        </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Endereço da Instituição, Cidade - Estado</p>
+                    <p><i class="fas fa-phone"></i> (XX) XXXX-XXXX</p>
+                    <p><i class="fas fa-envelope"></i> contato@neperg.com.br</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> NEPERG - Núcleo de Pesquisa e Extensão em Ergonomia. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember"> Lembrar de mim
+                    </label>
+                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+                <p class="register-link">Não tem uma conta? <a href="#">Cadastre-se</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Team filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const teamMembers = document.querySelectorAll('.team-member');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    teamMembers.forEach(member => {
+                        if (filter === 'all' || member.getAttribute('data-category') === filter) {
+                            member.style.display = 'block';
+                        } else {
+                            member.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <!-- Bot�o Voltar ao Topo -->
+    <button class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+</body>
+</html>
