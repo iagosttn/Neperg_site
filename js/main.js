@@ -1,334 +1,434 @@
-// Menu Mobile
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    let navItems = [];
-    
-    // Verificar se os elementos existem
-    if (menuToggle && navLinks) {
-        // Atualizar a lista de itens do menu após o carregamento do DOM
-        navItems = document.querySelectorAll('.nav-links a');
-        
-        // Função para abrir o menu
-        function openMenu() {
-            menuToggle.setAttribute('aria-expanded', 'true');
-            menuToggle.setAttribute('aria-label', 'Fechar menu');
-            document.body.style.overflow = 'hidden';
-            menuToggle.classList.add('active');
-            navLinks.classList.add('active');
-            document.documentElement.classList.add('menu-open');
-            // Focar no primeiro item do menu quando aberto
-            if (navItems.length > 0) {
-                navItems[0].focus();
-            }
-        }
-        
-        // Função para fechar o menu
-        function closeMenu() {
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.setAttribute('aria-label', 'Abrir menu');
-            document.body.style.overflow = '';
-            menuToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-            document.documentElement.classList.remove('menu-open');
-            // Retornar o foco para o botão do menu
-            menuToggle.focus();
-        }
-        
-        // Alternar menu mobile
-        menuToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            
-            if (isExpanded) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        });
-        
-        // Fechar menu ao clicar em um item
-        navItems.forEach(item => {
-            item.addEventListener('click', closeMenu);
-            
-            // Adicionar gerenciamento de teclado para os itens do menu
-            item.addEventListener('keydown', function(e) {
-                // Fechar o menu ao pressionar Esc
-                if (e.key === 'Escape') {
-                    closeMenu();
-                }
-                
-                // Navegação por teclado no menu
-                if (e.key === 'Tab') {
-                    const currentIndex = Array.from(navItems).indexOf(e.target);
-                    
-                    // Se estiver no último item e pressionar Tab, voltar para o primeiro
-                    if (!e.shiftKey && currentIndex === navItems.length - 1) {
-                        e.preventDefault();
-                        navItems[0].focus();
-                    }
-                    // Se estiver no primeiro item e pressionar Shift+Tab, ir para o último
-                    else if (e.shiftKey && currentIndex === 0) {
-                        e.preventDefault();
-                        navItems[navItems.length - 1].focus();
-                    }
-                }
-            });
-        });
-        
-        // Fechar menu ao pressionar Esc
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-        
-        // Fechar menu ao clicar fora
-        document.addEventListener('click', function(e) {
-            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-                closeMenu();
-            }
-        });
-        
-        // Prevenir que o clique no menu feche imediatamente
-        navLinks.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    applyBrandLogo();
+    normalizeLocalizedText();
+    setupNavigation();
+    setupBackToTop();
+    setupCurrentYear();
+    setupFilterBars();
+    setupPublicationSearch();
+    setupFaq();
+    setupForms();
 });
 
-// Scroll suave para links internos
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Header fixo e mudança de cor no scroll
-const header = document.querySelector('.header');
-let lastScroll = 0;
-
-// Função para atualizar o menu ativo com base na posição de rolagem
-function updateActiveMenu() {
-    const scrollPosition = window.scrollY + 100;
-    const sections = document.querySelectorAll('section[id]');
-    let foundActive = false;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            // Remover a classe 'active' de todos os links
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Adicionar a classe 'active' ao link correspondente
-            const activeLink = document.querySelector(`.nav-links a[href*="${sectionId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-                foundActive = true;
-            }
-        }
-    });
-    
-    // Se nenhuma seção estiver ativa, manter o link da página atual ativo
-    if (!foundActive) {
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active');
-            }
-        });
-    }
-}
-
-// Atualizar o menu ativo ao carregar a página
-document.addEventListener('DOMContentLoaded', updateActiveMenu);
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    // Adicionar sombra ao header quando rolar a página
-    if (currentScroll > 50) {
-        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
-    } else {
-        header.style.boxShadow = 'none';
-        header.style.background = 'var(--white)';
-    }
-    
-    // Atualizar o menu ativo
-    updateActiveMenu();
-    
-    lastScroll = currentScroll;
-    
-    // Esconder/mostrar header ao rolar
-    if (currentScroll <= 0) {
-        header.style.top = '0';
+function applyBrandLogo() {
+    const logoContainers = document.querySelectorAll(".brand-mark");
+    if (!logoContainers.length) {
         return;
     }
-    
-    if (currentScroll > lastScroll && currentScroll > 100) {
-        // Rolar para baixo
-        header.style.top = '-100px';
-    } else {
-        // Rolar para cima
-        header.style.top = '0';
-    }
-    
-    lastScroll = currentScroll;
-});
 
-// Animar elementos ao rolar a página
-const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.feature, .highlight-card');
-    
-    elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
-        
-        if (elementPosition < screenPosition) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
+    const mainScript = Array.from(document.scripts).find((script) =>
+        script.src.includes("/js/main.js")
+    );
+    const logoSrc = mainScript
+        ? mainScript.src.replace(/\/js\/main\.js(?:\?.*)?$/, "/img/logo/logo.png")
+        : "img/logo/logo.png";
+
+    logoContainers.forEach((container) => {
+        if (container.querySelector("img")) {
+            return;
         }
-    });
-};
 
-// Botão Voltar ao Topo
-const backToTopButton = document.querySelector('.back-to-top');
-if (backToTopButton) {
-    // Mostrar/ocultar botão ao rolar a página
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
-        }
+        container.innerHTML = `<img src="${logoSrc}" alt="Logo do NEPERG">`;
     });
+}
 
-    // Rolar suavemente para o topo
-    backToTopButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+function normalizeLocalizedText() {
+    const replacements = [
+        ["Nucleo", "N\u00facleo"],
+        ["nucleo", "n\u00facleo"],
+        ["Extensao", "Extens\u00e3o"],
+        ["extensao", "extens\u00e3o"],
+        ["Inicio", "In\u00edcio"],
+        ["inicio", "in\u00edcio"],
+        ["Publicacoes", "Publica\u00e7\u00f5es"],
+        ["publicacoes", "publica\u00e7\u00f5es"],
+        ["Noticias", "Not\u00edcias"],
+        ["noticias", "not\u00edcias"],
+        ["Tematica", "Tem\u00e1tica"],
+        ["tematica", "tem\u00e1tica"],
+        ["cientifico", "cient\u00edfico"],
+        ["cientifica", "cient\u00edfica"],
+        ["rapida", "r\u00e1pida"],
+        ["rapido", "r\u00e1pido"],
+        ["pagina", "p\u00e1gina"],
+        ["paginas", "p\u00e1ginas"],
+        ["producao", "produ\u00e7\u00e3o"],
+        ["protecao", "prote\u00e7\u00e3o"],
+        ["simulacao", "simula\u00e7\u00e3o"],
+        ["laboratorio", "laborat\u00f3rio"],
+        ["laboratrio", "laborat\u00f3rio"],
+        ["lesoes", "les\u00f5es"],
+        ["acucar", "a\u00e7\u00facar"],
+        ["rodizios", "rod\u00edzios"],
+        ["rodizio", "rod\u00edzio"],
+        ["alem", "al\u00e9m"],
+        ["dimensoes", "dimens\u00f5es"],
+        ["pedagogicas", "pedag\u00f3gicas"],
+        ["frigorifico", "frigor\u00edfico"],
+        ["regiao", "regi\u00e3o"],
+        ["doencas", "doen\u00e7as"],
+        ["comunicacao", "comunica\u00e7\u00e3o"],
+        ["gestao", "gest\u00e3o"],
+        ["prevencao", "preven\u00e7\u00e3o"],
+        ["preveno", "preven\u00e7\u00e3o"],
+        ["reciclavel", "recicl\u00e1vel"],
+        ["iniciacao", "inicia\u00e7\u00e3o"],
+        ["academicos", "acad\u00eamicos"],
+        ["academico", "acad\u00eamico"],
+        ["academica", "acad\u00eamica"],
+        ["historico", "hist\u00f3rico"],
+        ["historica", "hist\u00f3rica"],
+        ["histrica", "hist\u00f3rica"],
+        ["referencia", "refer\u00eancia"],
+        ["referencias", "refer\u00eancias"],
+        ["dimensao", "dimens\u00e3o"],
+        ["tecnica", "t\u00e9cnica"],
+        ["tecnico", "t\u00e9cnico"],
+        ["termico", "t\u00e9rmico"],
+        ["termicas", "t\u00e9rmicas"],
+        ["acustico", "ac\u00fastico"],
+        ["acstica", "ac\u00fastica"],
+        ["acusticas", "ac\u00fasticas"],
+        ["luminico", "lum\u00ednico"],
+        ["instituicoes", "institui\u00e7\u00f5es"],
+        ["computacao", "computa\u00e7\u00e3o"],
+        ["edicoes", "edi\u00e7\u00f5es"],
+        ["reune", "re\u00fane"],
+        ["Rene", "Re\u00fane"],
+        ["resiliencia", "resili\u00eancia"],
+        ["reabilitacao", "reabilita\u00e7\u00e3o"],
+        ["missao", "miss\u00e3o"],
+        ["Missao", "Miss\u00e3o"],
+        ["visao", "vis\u00e3o"],
+        ["Visao", "Vis\u00e3o"],
+        ["condicoes", "condi\u00e7\u00f5es"],
+        ["Condies", "Condi\u00e7\u00f5es"],
+        ["solicitacoes", "solicita\u00e7\u00f5es"],
+        ["avaliacao", "avalia\u00e7\u00e3o"],
+        ["situacoes", "situa\u00e7\u00f5es"],
+        ["ciencia", "ci\u00eancia"],
+        ["Fisica", "F\u00edsica"],
+        ["fisica", "f\u00edsica"],
+        ["Antonio", "Ant\u00f4nio"],
+        ["Luis", "Lu\u00eds"],
+        ["Liria", "L\u00edria"],
+        ["Nobrega", "N\u00f3brega"],
+        ["varias", "v\u00e1rias"],
+        ["etica", "\u00e9tica"],
+        ["areas", "\u00e1reas"],
+        ["uteis", "\u00fateis"],
+        ["trajetoria", "trajet\u00f3ria"],
+        ["dialogo", "di\u00e1logo"],
+        ["intervencao", "interven\u00e7\u00e3o"],
+        ["acoes", "a\u00e7\u00f5es"],
+        ["articulacao", "articula\u00e7\u00e3o"],
+        ["acessivel", "acess\u00edvel"],
+        ["legivel", "leg\u00edvel"],
+        ["horarios", "hor\u00e1rios"],
+        ["disponiveis", "dispon\u00edveis"],
+        ["Ministerio", "Minist\u00e9rio"],
+        ["equilibrio", "equil\u00edbrio"],
+        ["funcao", "fun\u00e7\u00e3o"],
+        ["organizacao", "organiza\u00e7\u00e3o"],
+        ["apresentacoes", "apresenta\u00e7\u00f5es"],
+        ["apresentacao", "apresenta\u00e7\u00e3o"],
+        ["localizacao", "localiza\u00e7\u00e3o"],
+        ["implantacao", "implanta\u00e7\u00e3o"],
+        ["Implantao", "Implanta\u00e7\u00e3o"],
+        ["Endereco", "Endere\u00e7o"],
+        ["conteudo", "conte\u00fado"],
+        ["Conteudo", "Conte\u00fado"],
+        ["faceis", "f\u00e1ceis"],
+        ["Nao", "N\u00e3o"],
+        ["nao", "n\u00e3o"],
+        ["graduacao", "gradua\u00e7\u00e3o"],
+        ["exposicoes", "exposi\u00e7\u00f5es"],
+        ["distribuicao", "distribui\u00e7\u00e3o"],
+        ["comite", "comit\u00ea"],
+        ["saude", "sa\u00fade"],
+        ["Saude", "Sa\u00fade"],
+        ["formacao", "forma\u00e7\u00e3o"],
+        ["Formacao", "Forma\u00e7\u00e3o"],
+        ["criterios", "crit\u00e9rios"],
+        ["multiusuario", "multiusu\u00e1rio"],
+        ["multiusuaria", "multiusu\u00e1ria"],
+        ["multiusuria", "multiusu\u00e1ria"],
+        ["vinculo", "v\u00ednculo"],
+        ["sintese", "s\u00edntese"],
+        ["Sntese", "S\u00edntese"],
+        ["critica", "cr\u00edtica"],
+        ["cretica", "cr\u00edtica"],
+        ["generico", "gen\u00e9rico"],
+        ["genrico", "gen\u00e9rico"],
+        ["consistencia", "consist\u00eancia"],
+        ["Navegao", "Navega\u00e7\u00e3o"],
+        ["navegacao", "navega\u00e7\u00e3o"],
+        ["Atuao", "Atua\u00e7\u00e3o"],
+        ["atuao", "atua\u00e7\u00e3o"],
+        ["Frentes prioritrias", "Frentes priorit\u00e1rias"],
+        ["adequao", "adequa\u00e7\u00e3o"],
+        ["Seminrio", "Semin\u00e1rio"],
+        ["mantm", "mant\u00e9m"],
+        ["verso", "vers\u00e3o"],
+        ["rudo", "ru\u00eddo"],
+        ["temtico", "tem\u00e1tico"],
+        ["temtica", "tem\u00e1tica"],
+        ["biomecnica", "biomec\u00e2nica"],
+        ["analise", "an\u00e1lise"],
+        ["Analise", "An\u00e1lise"],
+        ["Nunez", "N\u00fa\u00f1ez"],
+        ["Ue", "U\u00ea"],
+        ["Coordenao", "Coordena\u00e7\u00e3o"],
+        ["coordenao", "coordena\u00e7\u00e3o"],
+        ["Educao", "Educa\u00e7\u00e3o"],
+        ["educao", "educa\u00e7\u00e3o"],
+        ["iluminao", "ilumina\u00e7\u00e3o"],
+        ["estatstica", "estat\u00edstica"],
+        ["cartogrfica", "cartogr\u00e1fica"],
+        ["filtrvel", "filtr\u00e1vel"],
+        ["Acesso rapido", "Acesso r\u00e1pido"],
+        ["Pessoas do nucleo", "Pessoas do n\u00facleo"],
+        ["Navegao rapida", "Navega\u00e7\u00e3o r\u00e1pida"]
+    ];
+
+    const replaceText = (text) => {
+        let normalized = text;
+
+        replacements.forEach(([from, to]) => {
+            normalized = normalized.replace(new RegExp(`\\b${escapeRegExp(from)}\\b`, "g"), to);
         });
-        // Focar no cabeçalho para acessibilidade
-        const header = document.querySelector('header');
-        if (header) {
-            header.setAttribute('tabindex', '-1');
-            header.focus();
+
+        normalized = normalized
+            .replace(/FCT\/UNESP  Presidente Prudente/g, "FCT/UNESP \u2022 Presidente Prudente")
+            .replace(/8h-17h/g, "8h\u201317h");
+
+        return normalized;
+    };
+
+    document.title = replaceText(document.title);
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription?.content) {
+        metaDescription.content = replaceText(metaDescription.content);
+    }
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+            if (!node.nodeValue.trim()) {
+                return NodeFilter.FILTER_REJECT;
+            }
+
+            const parent = node.parentElement;
+            if (!parent || ["SCRIPT", "STYLE", "NOSCRIPT"].includes(parent.tagName)) {
+                return NodeFilter.FILTER_REJECT;
+            }
+
+            return NodeFilter.FILTER_ACCEPT;
+        }
+    });
+
+    const textNodes = [];
+    while (walker.nextNode()) {
+        textNodes.push(walker.currentNode);
+    }
+
+    textNodes.forEach((node) => {
+        node.nodeValue = replaceText(node.nodeValue);
+    });
+
+    document.querySelectorAll("[placeholder], [aria-label]").forEach((element) => {
+        if (element.hasAttribute("placeholder")) {
+            element.setAttribute("placeholder", replaceText(element.getAttribute("placeholder")));
+        }
+
+        if (element.hasAttribute("aria-label")) {
+            element.setAttribute("aria-label", replaceText(element.getAttribute("aria-label")));
         }
     });
 }
 
-// Login Modal
-const loginModal = document.getElementById('loginModal');
-const loginBtn = document.getElementById('loginBtn');
-const closeModal = document.querySelector('.close-modal');
-const loginForm = document.getElementById('loginForm');
-
-// Open modal when login button is clicked
-if (loginBtn) {
-    loginBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginModal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-    });
+function escapeRegExp(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-// Close modal when X is clicked
-if (closeModal) {
-    closeModal.addEventListener('click', () => {
-        loginModal.classList.remove('active');
-        document.body.style.overflow = ''; // Re-enable scrolling
-    });
-}
+function setupNavigation() {
+    const toggle = document.querySelector("[data-menu-toggle]");
+    const menu = document.querySelector("[data-menu]");
 
-// Close modal when clicking outside the modal content
-window.addEventListener('click', (e) => {
-    if (e.target === loginModal) {
-        loginModal.classList.remove('active');
-        document.body.style.overflow = ''; // Re-enable scrolling
+    if (!toggle || !menu) {
+        return;
     }
-});
 
-// Handle form submission
-if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const remember = document.querySelector('input[name="remember"]').checked;
-        
-        // Here you would typically send this data to your server
-        console.log('Login attempt with:', { email, remember });
-        
-        // For demo purposes, just close the modal after a short delay
-        setTimeout(() => {
-            loginModal.classList.remove('active');
-            document.body.style.overflow = ''; // Re-enable scrolling
-            alert('Login functionality will be implemented here.');
-            loginForm.reset();
-        }, 500);
+    const setMenuState = (open) => {
+        toggle.setAttribute("aria-expanded", String(open));
+        menu.classList.toggle("is-open", open);
+        document.body.classList.toggle("menu-open", open);
+    };
+
+    toggle.addEventListener("click", () => {
+        const open = toggle.getAttribute("aria-expanded") !== "true";
+        setMenuState(open);
+    });
+
+    menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMenuState(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            setMenuState(false);
+        }
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+            setMenuState(false);
+        }
     });
 }
 
-// Adicionar estilos iniciais
-window.addEventListener('DOMContentLoaded', () => {
-    const features = document.querySelectorAll('.feature');
-    const highlightCards = document.querySelectorAll('.highlight-card');
-    
-    features.forEach((feature, index) => {
-        feature.style.opacity = '0';
-        feature.style.transform = 'translateY(30px)';
-        feature.style.transition = `opacity 0.5s ease ${index * 0.2}s, transform 0.5s ease ${index * 0.2}s`;
-    });
-    
-    highlightCards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `opacity 0.5s ease ${index * 0.2}s, transform 0.5s ease ${index * 0.2}s`;
-    });
-    
-    // Iniciar animação
-    setTimeout(animateOnScroll, 500);
-});
+function setupBackToTop() {
+    const button = document.querySelector("[data-back-to-top]");
 
-// Adicionar evento de scroll para animação
-window.addEventListener('scroll', animateOnScroll);
+    if (!button) {
+        return;
+    }
 
-// Carregar mais publicações (exemplo)
-const loadMoreBtn = document.querySelector('.load-more');
-if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', () => {
-        // Simular carregamento de mais publicações
-        const loading = document.createElement('div');
-        loading.className = 'loading';
-        loading.textContent = 'Carregando...';
-        loadMoreBtn.parentNode.replaceChild(loading, loadMoreBtn);
-        
-        // Simular atraso de carregamento
-        setTimeout(() => {
-            // Aqui você pode adicionar a lógica para carregar mais publicações
-            loading.remove();
-            alert('Mais publicações carregadas!');
-        }, 1000);
+    const updateVisibility = () => {
+        button.classList.toggle("visible", window.scrollY > 420);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility);
+    button.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
+
+function setupCurrentYear() {
+    document.querySelectorAll("[data-current-year]").forEach((node) => {
+        node.textContent = new Date().getFullYear();
+    });
+}
+
+function setupFilterBars() {
+    document.querySelectorAll("[data-filter-scope]").forEach((scope) => {
+        const filterButtons = scope.querySelectorAll("[data-filter]");
+        const cards = scope.querySelectorAll("[data-filter-item]");
+
+        if (!filterButtons.length || !cards.length) {
+            return;
+        }
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const selected = button.dataset.filter;
+
+                filterButtons.forEach((item) => item.classList.remove("active"));
+                button.classList.add("active");
+
+                cards.forEach((card) => {
+                    const categories = (card.dataset.category || "")
+                        .split(" ")
+                        .filter(Boolean);
+                    const shouldShow = selected === "all" || categories.includes(selected);
+                    card.classList.toggle("hidden", !shouldShow);
+                });
+            });
+        });
+    });
+}
+
+function setupPublicationSearch() {
+    document.querySelectorAll("[data-publication-search]").forEach((input) => {
+        const scopeSelector = input.dataset.publicationSearch;
+        const scope = document.querySelector(scopeSelector);
+
+        if (!scope) {
+            return;
+        }
+
+        const cards = scope.querySelectorAll("[data-publication-item]");
+        const emptyState = scope.querySelector("[data-empty-state]");
+        const categoryButtons = document.querySelectorAll(
+            `${scopeSelector} [data-filter], [data-publication-filters] [data-filter]`
+        );
+
+        const runFilter = () => {
+            const term = input.value.trim().toLowerCase();
+            const activeButton = Array.from(categoryButtons).find((button) =>
+                button.classList.contains("active")
+            );
+            const activeCategory = activeButton ? activeButton.dataset.filter : "all";
+
+            let visibleCount = 0;
+
+            cards.forEach((card) => {
+                const text = card.textContent.toLowerCase();
+                const categories = (card.dataset.category || "").split(" ").filter(Boolean);
+                const matchesTerm = !term || text.includes(term);
+                const matchesCategory =
+                    activeCategory === "all" || categories.includes(activeCategory);
+                const visible = matchesTerm && matchesCategory;
+
+                card.classList.toggle("hidden", !visible);
+
+                if (visible) {
+                    visibleCount += 1;
+                }
+            });
+
+            if (emptyState) {
+                emptyState.classList.toggle("hidden", visibleCount !== 0);
+            }
+        };
+
+        input.addEventListener("input", runFilter);
+        categoryButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                requestAnimationFrame(runFilter);
+            });
+        });
+
+        runFilter();
+    });
+}
+
+function setupFaq() {
+    document.querySelectorAll("[data-faq-item]").forEach((item) => {
+        const trigger = item.querySelector("[data-faq-trigger]");
+
+        if (!trigger) {
+            return;
+        }
+
+        trigger.addEventListener("click", () => {
+            const isOpen = item.classList.contains("active");
+
+            item
+                .closest("[data-faq-list]")
+                ?.querySelectorAll("[data-faq-item]")
+                .forEach((entry) => entry.classList.remove("active"));
+
+            item.classList.toggle("active", !isOpen);
+        });
+    });
+}
+
+function setupForms() {
+    document.querySelectorAll("[data-demo-form]").forEach((form) => {
+        const messageTarget = form.querySelector("[data-form-message]");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if (messageTarget) {
+                messageTarget.classList.remove("hidden");
+                messageTarget.textContent =
+                    "Mensagem recebida com sucesso. O conteudo foi preparado para integracao futura com o canal oficial do NEPERG.";
+            }
+
+            form.reset();
+        });
     });
 }

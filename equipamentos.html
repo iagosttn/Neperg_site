@@ -1,268 +1,91 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEPERG - Equipamentos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lightgallery-bundle.min.css">
+    <meta name="description" content="Infraestrutura e regras de uso dos equipamentos do NEPERG.">
+    <title>Equipamentos | NEPERG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">NEPERG</a>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="rede-tematica.html">Rede Temática em Extensão</a></li>
-                    <li><a href="sobre.html">Sobre Nós</a></li>
-                    <li><a href="equipamentos.html" class="active">Equipamentos</a></li>
-                    <li><a href="publicacoes/">Publicações</a></li>
-                    <li><a href="noticias.html">Notícias</a></li>
-                    <li><a href="eventos/">Eventos</a></li>
-                    <li><a href="#" class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Login</a></li>
-                </ul>
+    <header class="site-header">
+        <div class="container header-shell">
+            <a class="brand" href="index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Nucleo de Pesquisa e Extensao em Ergonomia</span></span></a>
+            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegacao"><span></span></button>
+            <nav class="site-nav" id="site-nav" data-menu>
+                <a href="index.html">Inicio</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="equipe.html">Equipe</a>
+                <a href="rede-tematica.html">Rede tematica</a>
+                <a class="active" href="equipamentos.html">Equipamentos</a>
+                <a href="publicacoes/index.html">Publicacoes</a>
+                <a href="noticias.html">Noticias</a>
+                <a href="eventos/index.html">Eventos</a>
+                <a class="nav-cta" href="contato.html">Contato</a>
             </nav>
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Equipamentos</h1>
-            </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <div class="equipment-section">
-                <div class="section-intro">
-                    <h2>Nossa Infraestrutura</h2>
-                    <p>O NEPERG conta com uma infraestrutura completa para desenvolvimento de pesquisas em ergonomia, incluindo equipamentos de última geração para análise biomecânica, avaliação postural, análise de movimento e conforto térmico.</p>
-                </div>
-
-                <div class="equipment-filters">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="biomecanica">Biomecânica</button>
-                    <button class="filter-btn" data-filter="conforto">Conforto</button>
-                    <button class="filter-btn" data-filter="analise">Análise de Movimento</button>
-                    <button class="filter-btn" data-filter="outros">Outros</button>
-                </div>
-
-                <div class="equipment-grid" id="equipmentGallery">
-                    <!-- Item 1 -->
-                    <div class="equipment-item" data-category="biomecanica" data-src="img/equipment/emg.jpg">
-                        <div class="equipment-img">
-                            <img src="img/equipment/emg.jpg" alt="Eletromiógrafo">
-                            <div class="equipment-overlay">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        <div class="equipment-info">
-                            <h3>Eletromiógrafo</h3>
-                            <p>Utilizado para avaliação da atividade muscular durante diferentes tarefas.</p>
-                            <span class="equipment-category">Biomecânica</span>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="equipment-item" data-category="analise" data-src="img/equipment/motion-capture.jpg">
-                        <div class="equipment-img">
-                            <img src="img/equipment/motion-capture.jpg" alt="Sistema de Captura de Movimento">
-                            <div class="equipment-overlay">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        <div class="equipment-info">
-                            <h3>Sistema de Captura de Movimento</h3>
-                            <p>Análise tridimensional do movimento humano com alta precisão.</p>
-                            <span class="equipment-category">Análise de Movimento</span>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="equipment-item" data-category="conforto" data-src="img/equipment/termometro.jpg">
-                        <div class="equipment-img">
-                            <img src="img/equipment/termometro.jpg" alt="Termômetro de Globo">
-                            <div class="equipment-overlay">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        <div class="equipment-info">
-                            <h3>Termômetro de Globo</h3>
-                            <p>Medição de temperatura radiante para avaliação do conforto térmico.</p>
-                            <span class="equipment-category">Conforto</span>
-                        </div>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="equipment-item" data-category="outros" data-src="img/equipment/oculus.jpg">
-                        <div class="equipment-img">
-                            <img src="img/equipment/oculus.jpg" alt="Óculos de Realidade Virtual">
-                            <div class="equipment-overlay">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        <div class="equipment-info">
-                            <h3>Óculos de Realidade Virtual</h3>
-                            <p>Utilizado para simulações de ambientes e treinamentos em realidade virtual.</p>
-                            <span class="equipment-category">Outros</span>
-                        </div>
-                    </div>
-
-                    <!-- Item 5 -->
-                    <div class="equipment-item" data-category="biomecanica" data-src="img/equipment/dinamometro.jpg">
-                        <div class="equipment-img">
-                            <img src="img/equipment/dinamometro.jpg" alt="Dinamômetro">
-                            <div class="equipment-overlay">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        <div class="equipment-info">
-                            <h3>Dinamômetro</h3>
-                            <p>Medição de forças de preensão e pinça em diferentes tarefas manuais.</p>
-                            <span class="equipment-category">Biomecânica</span>
-                        </div>
-                    </div>
-
-                    <!-- Item 6 -->
-                    <div class="equipment-item" data-category="analise" data-src="img/equipment/eeg.jpg">
-                        <div class="equipment-img">
-                            <img src="img/equipment/eeg.jpg" alt="Sistema de Eletroencefalografia">
-                            <div class="equipment-overlay">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        <div class="equipment-info">
-                            <h3>Sistema de Eletroencefalografia</h3>
-                            <p>Avaliação da atividade cerebral durante a realização de tarefas cognitivas.</p>
-                            <span class="equipment-category">Análise de Movimento</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="equipment-request">
-                    <h3>Solicitação de Uso dos Equipamentos</h3>
-                    <p>Pesquisadores e estudantes de pós-graduação podem solicitar o uso dos equipamentos para fins de pesquisa. Entre em contato para mais informações sobre disponibilidade e condições de uso.</p>
-                    <a href="contato.html" class="btn-primary">Solicitar Uso</a>
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-shell">
+                    <span class="eyebrow">Infraestrutura do nucleo</span>
+                    <h1>Equipamentos organizados para ensino, pesquisa e uso compartilhado.</h1>
+                    <p>Esta pagina resume o acervo tecnico citado no projeto e nas referencias institucionais da FCT/UNESP, com foco na clareza de uso e agendamento.</p>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section class="section">
+            <div class="container equipment-grid">
+                <article class="equipment-card"><div class="equipment-top"><span class="icon-badge"><i class="fa-solid fa-video"></i></span><span class="tag">EMU</span></div><h3>Vicon / Equipamento multiusuario</h3><p>Base para analise de movimento e coletas ligadas  saude do trabalhador e ergonomia.</p></article>
+                <article class="equipment-card"><div class="equipment-top"><span class="icon-badge"><i class="fa-solid fa-scale-balanced"></i></span><span class="tag">Biomecnica</span></div><h3>Plataforma de forca</h3><p>Apoio a estudos de equilibrio, postura, marcha e distribuicao de cargas.</p></article>
+                <article class="equipment-card"><div class="equipment-top"><span class="icon-badge"><i class="fa-solid fa-temperature-half"></i></span><span class="tag">Ambiente</span></div><h3>Conforto termico</h3><p>Instrumentos para medicoes termicas e avaliacao de condicoes ambientais.</p></article>
+                <article class="equipment-card"><div class="equipment-top"><span class="icon-badge"><i class="fa-solid fa-volume-high"></i></span><span class="tag">Ambiente</span></div><h3>Conforto acustico</h3><p>Equipamentos para leitura e analise de nveis de rudo e qualidade acstica.</p></article>
+            </div>
+        </section>
+
+        <section class="section section-muted">
+            <div class="container split-layout">
+                <div class="content-card">
+                    <span class="eyebrow">Regras de uso</span>
+                    <h2>Resumo do plano de gestao do EMU/Vicon.</h2>
+                    <ul class="rule-list">
+                        <li>Solicitacoes devem ser enviadas por pesquisador responsvel com proposta de pesquisa.</li>
+                        <li>O uso informado no documento institucional ocorre, em regra, de segunda a sexta-feira, das 8h s 17h.</li>
+                        <li> necessario acompanhamento tecnico e cumprimento das regras definidas pelo comite gestor.</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <span class="eyebrow">Contato para uso</span>
+                    <p>Para solicitao de uso da infraestrutura, a pagina prioriza o contato academico do nucleo e da FCT/UNESP.</p>
+                    <ul class="footer-links">
+                        <li><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li>
+                        <li><a href="mailto:depplanejamento@prudente.unesp.br">depplanejamento@prudente.unesp.br</a></li>
+                        <li>Rua Roberto Simonsen, 305  Presidente Prudente/SP</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <h3>NEPERG</h3>
-                    <p>Núcleo de Pesquisa e Extensão em Ergonomia</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3>Links Rápidos</h3>
-                    <ul>
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="sobre.html">Sobre Nós</a></li>
-                        <li><a href="publicacoes/">Publicações</a></li>
-                        <li><a href="eventos/">Eventos</a></li>
-                        </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Contato</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Endereço da Instituição, Cidade - Estado</p>
-                    <p><i class="fas fa-phone"></i> (XX) XXXX-XXXX</p>
-                    <p><i class="fas fa-envelope"></i> contato@neperg.com.br</p>
-                </div>
+            <div class="footer-grid">
+                <section><h3>Equipamentos</h3><p>Pagina reconstruda para mostrar infraestrutura real sem depender de imagens quebradas.</p></section>
+                <section><h3>Links uteis</h3><ul class="footer-links"><li><a href="contato.html">Solicitar uso</a></li><li><a href="equipe.html">Equipe</a></li><li><a href="https://www.fct.unesp.br/Home/Departamentos/PlanejamentoUrbanismoeAmbiente/neperg-nucleodeestudosepesquisaemergonomia/emuviconneperg.pdf" target="_blank" rel="noopener noreferrer">Plano de gestao do EMU</a></li></ul></section>
+                <section><h3>Contato</h3><ul class="footer-links"><li><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li><li><a href="mailto:depplanejamento@prudente.unesp.br">depplanejamento@prudente.unesp.br</a></li></ul></section>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> NEPERG - Núcleo de Pesquisa e Extensão em Ergonomia. Todos os direitos reservados.</p>
-            </div>
+            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Infraestrutura apresentada de forma objetiva e responsiva.</p></div>
         </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" name="remember"> Lembrar de mim
-                    </label>
-                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
-                </div>
-                <button type="submit" class="btn-primary">Entrar</button>
-                <p class="register-link">Não tem uma conta? <a href="#">Cadastre-se</a></p>
-            </form>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/lightgallery.umd.min.js"></script>
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
     <script src="js/main.js"></script>
-    <script>
-        // Update current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Equipment filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const equipmentItems = document.querySelectorAll('.equipment-item');
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    const filter = this.getAttribute('data-filter');
-                    
-                    equipmentItems.forEach(item => {
-                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-
-            // Initialize lightGallery
-            lightGallery(document.getElementById('equipmentGallery'), {
-                selector: '.equipment-item',
-                download: false,
-                thumbnail: true,
-                animateThumb: true,
-                showThumbByDefault: false
-            });
-        });
-    </script>
-    <!-- Bot�o Voltar ao Topo -->
-    <button class="back-to-top" aria-label="Voltar ao topo">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
 </body>
 </html>

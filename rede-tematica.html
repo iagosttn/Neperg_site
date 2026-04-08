@@ -1,300 +1,106 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEPERG - Rede Temática em Extensão</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Rede Tematica em Extensao do NEPERG.">
+    <title>Rede Tematica | NEPERG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">NEPERG</a>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="rede-tematica.html" class="active">Rede Temática em Extensão</a></li>
-                    <li><a href="sobre.html">Sobre Nós</a></li>
-                    <li><a href="equipamentos.html">Equipamentos</a></li>
-                    <li><a href="publicacoes/">Publicações</a></li>
-                    <li><a href="noticias.html">Notícias</a></li>
-                    <li><a href="eventos/">Eventos</a></li>
-                    <li><a href="#" class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Login</a></li>
-                </ul>
+    <header class="site-header">
+        <div class="container header-shell">
+            <a class="brand" href="index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Nucleo de Pesquisa e Extensao em Ergonomia</span></span></a>
+            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegacao"><span></span></button>
+            <nav class="site-nav" id="site-nav" data-menu>
+                <a href="index.html">Inicio</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="equipe.html">Equipe</a>
+                <a class="active" href="rede-tematica.html">Rede tematica</a>
+                <a href="equipamentos.html">Equipamentos</a>
+                <a href="publicacoes/index.html">Publicacoes</a>
+                <a href="noticias.html">Noticias</a>
+                <a href="eventos/index.html">Eventos</a>
+                <a class="nav-cta" href="contato.html">Contato</a>
             </nav>
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Rede Temática em Extensão</h1>
-            </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <div class="content-wrapper">
-                <section class="section-padding">
-                    <h2>Sobre a Rede Temática em Extensão</h2>
-                    <p class="lead">A Rede Temática em Extensão do NEPERG tem como objetivo principal integrar conhecimentos e práticas em ergonomia para promover melhorias nas condições de trabalho, saúde e qualidade de vida dos trabalhadores e da sociedade como um todo.</p>
-                    
-                    <div class="image-placeholder">
-                        <!-- Espaço para imagem ilustrativa da rede -->
-                        <img src="../img/placeholder-rede.jpg" alt="Rede Temática em Extensão" class="img-fluid">
-                        <div class="image-caption">Atividades de extensão realizadas pelo NEPERG</div>
-                    </div>
-                </section>
-                
-                <section class="section-padding bg-light">
-                    <div class="container-sm">
-                        <h3 class="text-center mb-5">Nossos Objetivos</h3>
-                        <div class="objectives-grid">
-                            <div class="objective-card">
-                                <div class="objective-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <h4>Integração</h4>
-                                <p>Promover a integração entre ensino, pesquisa e extensão na área de ergonomia, criando um ambiente de aprendizado contínuo.</p>
-                            </div>
-                            
-                            <div class="objective-card">
-                                <div class="objective-icon">
-                                    <i class="fas fa-project-diagram"></i>
-                                </div>
-                                <h4>Projetos</h4>
-                                <p>Desenvolver projetos de extensão que atendam às demandas reais da sociedade, com foco em soluções práticas e aplicáveis.</p>
-                            </div>
-                            
-                            <div class="objective-card">
-                                <div class="objective-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <h4>Formação</h4>
-                                <p>Fomentar a formação continuada de profissionais e estudantes, promovendo a atualização constante de conhecimentos.</p>
-                            </div>
-                            
-                            <div class="objective-card">
-                                <div class="objective-icon">
-                                    <i class="fas fa-handshake"></i>
-                                </div>
-                                <h4>Parcerias</h4>
-                                <p>Estabelecer parcerias estratégicas com instituições públicas e privadas para ampliar o alcance das ações de extensão.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section-padding">
-                    <h3 class="text-center mb-5">Linhas de Atuação</h3>
-                    <div class="features">
-                        <div class="feature">
-                            <div class="feature-image">
-                                <img src="../img/ergonomia-ocupacional.jpg" alt="Ergonomia Ocupacional" class="img-fluid">
-                            </div>
-                            <div class="feature-content">
-                                <h4>Ergonomia Ocupacional</h4>
-                                <p>Análise e melhoria das condições de trabalho em diversos ambientes profissionais, visando a saúde e segurança dos trabalhadores.</p>
-                                <ul class="feature-list">
-                                    <li>Análise ergonômica do trabalho</li>
-                                    <li>Avaliação postural</li>
-                                    <li>Ginástica laboral</li>
-                                    <li>Prevenção de LER/DORT</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="feature reverse">
-                            <div class="feature-image">
-                                <img src="../img/ergonomia-produto.jpg" alt="Ergonomia de Produto" class="img-fluid">
-                            </div>
-                            <div class="feature-content">
-                                <h4>Ergonomia de Produto</h4>
-                                <p>Desenvolvimento e avaliação de produtos com foco na usabilidade, conforto e segurança dos usuários finais.</p>
-                                <ul class="feature-list">
-                                    <li>Design centrado no usuário</li>
-                                    <li>Avaliação de usabilidade</li>
-                                    <li>Projeto de mobiliário ergonômico</li>
-                                    <li>Análise biomecânica</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="feature">
-                            <div class="feature-image">
-                                <img src="../img/ergonomia-cognitiva.jpg" alt="Ergonomia Cognitiva" class="img-fluid">
-                            </div>
-                            <div class="feature-content">
-                                <h4>Ergonomia Cognitiva</h4>
-                                <p>Estudo da interação entre seres humanos e sistemas, com foco nos processos mentais envolvidos nessa relação.</p>
-                                <ul class="feature-list">
-                                    <li>Análise de tarefas cognitivas</li>
-                                    <li>Design de interfaces</li>
-                                    <li>Avaliação de carga mental</li>
-                                    <li>Ergonomia de sistemas</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section-padding bg-light">
-                    <div class="container-sm">
-                        <h3 class="text-center mb-5">Projetos em Andamento</h3>
-                        <div class="projects-grid">
-                            <div class="project-card">
-                                <div class="project-image">
-                                    <img src="../img/projeto1.jpg" alt="Projeto 1" class="img-fluid">
-                                </div>
-                                <div class="project-content">
-                                    <h4>Ergonomia na Indústria Têxtil</h4>
-                                    <p>Projeto de melhoria das condições de trabalho em fábricas têxteis da região, com foco na prevenção de LER/DORT.</p>
-                                    <a href="#" class="btn btn-outline">Saiba mais</a>
-                                </div>
-                            </div>
-                            
-                            <div class="project-card">
-                                <div class="project-image">
-                                    <img src="../img/projeto2.jpg" alt="Projeto 2" class="img-fluid">
-                                </div>
-                                <div class="project-content">
-                                    <h4>Escola Saudável</h4>
-                                    <p>Adequação ergonômica de mobiliário escolar para promoção da saúde postural de crianças e adolescentes.</p>
-                                    <a href="#" class="btn btn-outline">Saiba mais</a>
-                                </div>
-                            </div>
-                            
-                            <div class="project-card">
-                                <div class="project-image">
-                                    <img src="../img/projeto3.jpg" alt="Projeto 3" class="img-fluid">
-                                </div>
-                                <div class="project-content">
-                                    <h4>Home Office Saudável</h4>
-                                    <p>Orientações e diretrizes para a adequação ergonômica de postos de trabalho em home office.</p>
-                                    <a href="#" class="btn btn-outline">Saiba mais</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="section-padding">
-                    <div class="text-center">
-                        <h3>Faça parte da nossa rede</h3>
-                        <p class="lead mb-4">Interessado em nossos projetos ou quer propor uma parceria? Entre em contato conosco!</p>
-                        <a href="contato.html" class="btn btn-primary">Entre em Contato</a>
-                    </div>
-                </section>
-                        <h4>Ergonomia do Trabalho</h4>
-                        <p>Análise e melhoria das condições de trabalho visando saúde e produtividade.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-user-md"></i>
-                        <h4>Saúde Ocupacional</h4>
-                        <p>Prevenção de doenças ocupacionais e promoção da saúde no trabalho.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-cogs"></i>
-                        <h4>Projeto de Produtos</h4>
-                        <p>Desenvolvimento de produtos ergonômicos e acessíveis.</p>
-                    </div>
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-shell">
+                    <span class="eyebrow">Extensao universitria</span>
+                    <h1>Uma rede tematica para aproximar ergonomia, territrio e trabalho.</h1>
+                    <p>A rede organiza acoes de formacao, diagnstico, articulacao institucional e devolutiva publica a partir das demandas observadas pelo NEPERG.</p>
                 </div>
+            </div>
+        </section>
 
-                <h3>Projetos em Andamento</h3>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h4>Ergonomia no Setor de Saúde</h4>
-                        <p>Projeto voltado para a melhoria das condições de trabalho de profissionais da saúde.</p>
-                        <a href="#" class="btn-secondary">Saiba mais</a>
+        <section class="section">
+            <div class="container split-layout">
+                <div class="content-card">
+                    <div class="section-heading">
+                        <span class="eyebrow">Propsito</span>
+                        <h2>Conectar ensino, pesquisa e intervencao.</h2>
                     </div>
-                    <div class="project-card">
-                        <h4>Escola Ergonômica</h4>
-                        <p>Adequação de mobiliário escolar às características antropométricas dos alunos.</p>
-                        <a href="#" class="btn-secondary">Saiba mais</a>
+                    <p>A Rede Tematica em Extensao permite que o conhecimento produzido pelo nucleo circule entre universidade, instituicoes publicas, coletivos profissionais e comunidade, sempre com foco em situacoes concretas de atividade.</p>
+                </div>
+                <div class="content-card">
+                    <p class="mini-label">Objetivos</p>
+                    <ul class="bullet-list">
+                        <li><i class="fa-solid fa-check"></i><span>Integrar extensao, ensino e pesquisa em ergonomia.</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Responder a demandas reais com base tecnica e escuta qualificada.</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Fortalecer formacao continuada e parcerias.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-muted">
+            <div class="container">
+                <div class="card-grid four">
+                    <article class="card"><div class="card-top"><span class="icon-badge"><i class="fa-solid fa-chalkboard-user"></i></span><h3>Formacao</h3></div><p>Oficinas, seminrios e atividades de iniciao  ergonomia da atividade.</p></article>
+                    <article class="card"><div class="card-top"><span class="icon-badge"><i class="fa-solid fa-magnifying-glass-chart"></i></span><h3>Diagnstico</h3></div><p>Observao do trabalho e escuta de demandas institucionais e sociais.</p></article>
+                    <article class="card"><div class="card-top"><span class="icon-badge"><i class="fa-solid fa-diagram-project"></i></span><h3>Articulao</h3></div><p>Parcerias entre laboratrios, departamentos e pesquisadores.</p></article>
+                    <article class="card"><div class="card-top"><span class="icon-badge"><i class="fa-solid fa-file-circle-check"></i></span><h3>Devolutiva</h3></div><p>Relatrios, apresentacoes e circulao dos resultados em linguagem acessivel.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section compact">
+            <div class="container">
+                <div class="cta-band">
+                    <div>
+                        <span class="eyebrow">Parcerias</span>
+                        <h2>Quer propor uma ao extensionista ou visita tecnica?</h2>
+                        <p>O site agora orienta melhor os caminhos para contato, uso do laboratrio e aproximao com os projetos do nucleo.</p>
+                    </div>
+                    <div class="btn-row">
+                        <a class="btn btn-accent" href="contato.html">Iniciar contato</a>
+                        <a class="btn btn-secondary" href="equipamentos.html">Ver infraestrutura</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <h3>NEPERG</h3>
-                    <p>Núcleo de Pesquisa e Extensão em Ergonomia</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3>Links Rápidos</h3>
-                    <ul>
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="sobre.html">Sobre Nós</a></li>
-                        <li><a href="publicacoes/">Publicações</a></li>
-                        <li><a href="eventos/">Eventos</a></li>
-                        </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Contato</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Endereço da Instituição, Cidade - Estado</p>
-                    <p><i class="fas fa-phone"></i> (XX) XXXX-XXXX</p>
-                    <p><i class="fas fa-envelope"></i> contato@neperg.com.br</p>
-                </div>
+            <div class="footer-grid">
+                <section><h3>Rede tematica</h3><p>Pagina reorganizada para explicar melhor objetivos, eixos e possibilidades de parceria.</p></section>
+                <section><h3>Explorar</h3><ul class="footer-links"><li><a href="sobre.html">Sobre</a></li><li><a href="equipe.html">Equipe</a></li><li><a href="noticias.html">Noticias</a></li></ul></section>
+                <section><h3>Contato</h3><ul class="footer-links"><li><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li><li>Rua Roberto Simonsen, 305  Presidente Prudente/SP</li></ul></section>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> NEPERG - Núcleo de Pesquisa e Extensão em Ergonomia. Todos os direitos reservados.</p>
-            </div>
+            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Rede tematica apresentada com foco em extensao e parceria.</p></div>
         </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" name="remember"> Lembrar de mim
-                    </label>
-                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
-                </div>
-                <button type="submit" class="btn-primary">Entrar</button>
-                <p class="register-link">Não tem uma conta? <a href="#">Cadastre-se</a></p>
-            </form>
-        </div>
-    </div>
-
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
     <script src="js/main.js"></script>
-    <script>
-        // Update current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
-    <!-- Bot�o Voltar ao Topo -->
-    <button class="back-to-top" aria-label="Voltar ao topo">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
 </body>
 </html>

@@ -1,179 +1,116 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>NEPERG - Núcleo de Pesquisa em Ergonomia</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NEPERG - Nucleo de Pesquisa e Extensao em Ergonomia da FCT/UNESP.">
+    <title>NEPERG | Ergonomia da Atividade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">NEPERG</a>
-                <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
-                    <i class="fas fa-bars"></i>
-                    <i class="fas fa-times"></i>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Início</a></li>
-                    <li><a href="rede-tematica.html">Rede Temática em Extensão</a></li>
-                    <li><a href="sobre.html">Sobre Nós</a></li>
-                    <li><a href="equipamentos.html">Equipamentos</a></li>
-                    <li><a href="publicacoes/">Publicações</a></li>
-                    <li><a href="noticias.html">Notícias</a></li>
-                    <li><a href="eventos/">Eventos</a></li>
-                    <li><a href="#" class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Login</a></li>
-                </ul>
+    <header class="site-header">
+        <div class="container header-shell">
+            <a class="brand" href="index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Nucleo de Pesquisa e Extensao em Ergonomia</span></span></a>
+            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegacao"><span></span></button>
+            <nav class="site-nav" id="site-nav" data-menu>
+                <a class="active" href="index.html">Inicio</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="equipe.html">Equipe</a>
+                <a href="rede-tematica.html">Rede tematica</a>
+                <a href="equipamentos.html">Equipamentos</a>
+                <a href="publicacoes/index.html">Publicacoes</a>
+                <a href="noticias.html">Noticias</a>
+                <a href="eventos/index.html">Eventos</a>
+                <a class="nav-cta" href="contato.html">Contato</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>NEPERG</h1>
-                <h2>Núcleo de Pesquisa e Extensão em Ergonomia</h2>
-                <p>Excelência em pesquisa e inovação em Ergonomia da Atividade</p>
-                <a href="#sobre" class="btn-primary">Conheça nosso trabalho</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sobre Nós -->
-    <section id="sobre" class="section">
-        <div class="container">
-            <h2 class="section-title">Sobre o NEPERG</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>O NEPERG é um núcleo de pesquisa da UNESP dedicado ao estudo da Ergonomia da Atividade, promovendo pesquisas inovadoras e soluções práticas para melhorar as condições de trabalho.</p>
-                    <div class="features">
-                        <div class="feature">
-                            <i class="fas fa-flask"></i>
-                            <h3>Pesquisa</h3>
-                            <p>Desenvolvimento de pesquisas científicas de ponta em ergonomia.</p>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-graduation-cap"></i>
-                            <h3>Extensão</h3>
-                            <p>Atividades de extensão universitária para a comunidade.</p>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-handshake"></i>
-                            <h3>Parcerias</h3>
-                            <p>Colaboração com empresas e instituições.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="img/lab-ergonomia.jpg" alt="Laboratório de Ergonomia">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Destaques -->
-    <section class="highlights">
-        <div class="container">
-            <div class="highlight-card">
-                <i class="fas fa-book"></i>
-                <h3>+50</h3>
-                <p>Publicações Científicas</p>
-            </div>
-            <div class="highlight-card">
-                <i class="fas fa-users"></i>
-                <h3>20+</h3>
-                <p>Pesquisadores</p>
-            </div>
-            <div class="highlight-card">
-                <i class="fas fa-calendar-alt"></i>
-                <h3>10+</h3>
-                <p>Anos de Atuação</p>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Rodapé -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <h3>NEPERG</h3>
-                    <p>Núcleo de Pesquisa e Extensão em Ergonomia da FCT/UNESP</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3>Links Rápidos</h3>
-                    <ul>
-                        <li><a href="#inicio">Início</a></li>
-                        <li><a href="#sobre">Sobre Nós</a></li>
-                        <li><a href="#equipe">Equipe</a></li>
-                        <li><a href="eventos/">Eventos</a></li>
-                        <li><a href="publicacoes/">Publicações</a></li>
+    <main>
+        <section class="hero">
+            <div class="container hero-layout">
+                <div class="hero-panel">
+                    <span class="eyebrow">FCT/UNESP  Presidente Prudente</span>
+                    <h1>Ergonomia da atividade para transformar trabalho, saude e formacao.</h1>
+                    <p>O NEPERG articula pesquisa, extensao e infraestrutura multiusuria em saude do trabalhador, biomecnica, conforto ambiental e analise da atividade.</p>
+                    <ul class="hero-points">
+                        <li>Atuao desde 2011</li>
+                        <li>Base interdisciplinar</li>
+                        <li>Pesquisa aplicada</li>
                     </ul>
+                    <div class="btn-row">
+                        <a class="btn btn-primary" href="sobre.html">Conhecer o nucleo</a>
+                        <a class="btn btn-secondary" href="publicacoes/index.html">Ver publicacoes</a>
+                    </div>
                 </div>
-                <div class="footer-contact" id="contato">
-                    <h3>Contato</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> UNESP - Campus de Presidente Prudente</p>
-                    <p><i class="fas fa-phone"></i> (18) 3229-5300</p>
-                    <p><i class="fas fa-envelope"></i> neperg@fct.unesp.br</p>
+                <aside class="hero-aside">
+                    <p class="mini-label">Frentes prioritrias</p>
+                    <ul class="stack-list">
+                        <li><span class="icon-badge"><i class="fa-solid fa-briefcase"></i></span><div><strong>Saude do trabalhador</strong><p>Preveno de agravos e analise de riscos profissionais.</p></div></li>
+                        <li><span class="icon-badge"><i class="fa-solid fa-person-walking"></i></span><div><strong>Biomecnica</strong><p>Postura, marcha, equilibrio, forca e atividade muscular.</p></div></li>
+                        <li><span class="icon-badge"><i class="fa-solid fa-temperature-half"></i></span><div><strong>Conforto ambiental</strong><p>Condies termicas, acusticas e adequao dos ambientes.</p></div></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section compact">
+            <div class="container metrics-grid">
+                <article class="metric-card"><strong>2011</strong><span>Implantao do nucleo.</span></article>
+                <article class="metric-card"><strong>2018</strong><span>II Seminrio Internacional de Ergonomia.</span></article>
+                <article class="metric-card"><strong>2024</strong><span>Plano de gestao do EMU/Vicon.</span></article>
+                <article class="metric-card"><strong>8h-17h</strong><span>Faixa de uso informada para o laboratrio.</span></article>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-heading centered">
+                    <span class="eyebrow">Sntese</span>
+                    <h2>Pesquisa aplicada, formacao cretica e extensao conectada ao trabalho real.</h2>
+                    <p>O site foi reorganizado para apresentar melhor a trajetoria do nucleo, sua equipe, os equipamentos disponiveis e o acervo de noticias, eventos e publicacoes.</p>
+                </div>
+                <div class="card-grid three">
+                    <article class="card"><div class="card-top"><span class="icon-badge"><i class="fa-solid fa-flask"></i></span><h3>Pesquisa</h3></div><p>Estudos em ergonomia, saude ocupacional, riscos emergentes e analise da atividade.</p></article>
+                    <article class="card"><div class="card-top"><span class="icon-badge"><i class="fa-solid fa-people-group"></i></span><h3>Extensao</h3></div><p>Oficinas, devolutivas, visitas e acoes ligadas a demandas concretas de instituicoes e coletivos.</p></article>
+                    <article class="card"><div class="card-top"><span class="icon-badge"><i class="fa-solid fa-microscope"></i></span><h3>Infraestrutura</h3></div><p>Equipamento multiusuario, analise de movimento e recursos para conforto termico e acustico.</p></article>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 NEPERG - Todos os direitos reservados</p>
+        </section>
+
+        <section class="section compact">
+            <div class="container">
+                <div class="cta-band">
+                    <div>
+                        <span class="eyebrow">Navegao rapida</span>
+                        <h2>Explore equipe, rede tematica, infraestrutura e canais de contato.</h2>
+                        <p>Agora o projeto est estruturado para desktop e celular, com paginas mais consistentes e sem conteudo genrico quebrado.</p>
+                    </div>
+                    <div class="btn-row">
+                        <a class="btn btn-accent" href="equipe.html">Ver equipe</a>
+                        <a class="btn btn-secondary" href="contato.html">Entrar em contato</a>
+                    </div>
+                </div>
             </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <section><h3>NEPERG</h3><p>Nucleo de Pesquisa e Extensao em Ergonomia da FCT/UNESP em Presidente Prudente.</p></section>
+                <section><h3>Navegao</h3><ul class="footer-links"><li><a href="sobre.html">Sobre</a></li><li><a href="equipamentos.html">Equipamentos</a></li><li><a href="publicacoes/index.html">Publicacoes</a></li><li><a href="eventos/index.html">Eventos</a></li></ul></section>
+                <section><h3>Contato</h3><ul class="footer-links"><li><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li><li><a href="mailto:nikele.milani@unesp.br">nikele.milani@unesp.br</a></li><li>Rua Roberto Simonsen, 305  Presidente Prudente/SP</li></ul></section>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Site reorganizado para navegacao em celular e computador.</p></div>
         </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" name="remember"> Lembrar de mim
-                    </label>
-                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
-                </div>
-                <button type="submit" class="btn-primary">Entrar</button>
-                <p class="register-link">Não tem uma conta? <a href="#">Cadastre-se</a></p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Botão Voltar ao Topo -->
-    <button class="back-to-top" aria-label="Voltar ao topo">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
     <script src="js/main.js"></script>
-    <script>
-        // Inicializar tooltips do Bootstrap
-        $(document).ready(function() {
-            $('[data-bs-toggle="tooltip"]').tooltip();
-        });
-    </script>
 </body>
 </html>

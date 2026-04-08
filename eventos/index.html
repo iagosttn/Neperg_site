@@ -1,361 +1,83 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos - NEPERG</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <meta name="description" content="Eventos e historico de participacoes do NEPERG.">
+    <title>Eventos | NEPERG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/events.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <style>
-        /* Estilos para os placeholders */
-        .event-image {
-            position: relative;
-            overflow: hidden;
-            background: #f0f0f0;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-weight: bold;
-            text-align: center;
-        }
-        
-        .event-image:after {
-            content: attr(data-text);
-            padding: 20px;
-        }
-        
-        .event-image img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
-    <style>
-        .events-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .event-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .event-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .event-card:hover .event-image img {
-            transform: scale(1.05);
-        }
-        
-        .event-details {
-            padding: 25px;
-        }
-        
-        .event-date {
-            display: inline-block;
-            background: var(--accent-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .event-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-        
-        .event-description {
-            color: var(--text-light);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .event-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-        
-        .event-location {
-            display: flex;
-            align-items: center;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        .event-location i {
-            margin-right: 5px;
-            color: var(--accent-color);
-        }
-        
-        .event-btn {
-            padding: 8px 20px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .event-btn:hover {
-            background: var(--accent-color);
-            transform: translateY(-2px);
-        }
-        
-        .no-events {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 50px 0;
-            color: var(--text-light);
-        }
-        
-        @media (max-width: 768px) {
-            .events-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="../index.html" class="logo">NEPERG</a>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="../index.html">Início</a></li>
-                    <li><a href="../rede-tematica.html">Rede Temática em Extensão</a></li>
-                    <li><a href="../sobre.html">Sobre Nós</a></li>
-                    <li><a href="../equipamentos.html">Equipamentos</a></li>
-                    <li><a href="../publicacoes/">Publicações</a></li>
-                    <li><a href="../noticias.html">Notícias</a></li>
-                    <li><a href="#" class="active">Eventos</a></li>
-                    <li><a href="#" class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Login</a></li>
-                </ul>
+    <header class="site-header">
+        <div class="container header-shell">
+            <a class="brand" href="../index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Nucleo de Pesquisa e Extensao em Ergonomia</span></span></a>
+            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegacao"><span></span></button>
+            <nav class="site-nav" id="site-nav" data-menu>
+                <a href="../index.html">Inicio</a>
+                <a href="../sobre.html">Sobre</a>
+                <a href="../equipe.html">Equipe</a>
+                <a href="../rede-tematica.html">Rede tematica</a>
+                <a href="../equipamentos.html">Equipamentos</a>
+                <a href="../publicacoes/index.html">Publicacoes</a>
+                <a href="../noticias.html">Noticias</a>
+                <a class="active" href="index.html">Eventos</a>
+                <a class="nav-cta" href="../contato.html">Contato</a>
             </nav>
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/events-bg.jpg') no-repeat center center/cover; height: 300px; display: flex; align-items: center; text-align: center; color: white; margin-top: 80px;">
-        <div class="container">
-            <h1>Eventos</h1>
-            <p>Fique por dentro dos próximos eventos, palestras e workshops organizados pelo NEPERG</p>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="section" style="padding: 80px 0;">
-        <div class="container">
-            <div class="events-container">
-                <!-- Evento 1 -->
-                <div class="event-card">
-                    <div class="event-image" data-text="Evento de Ergonomia" style="background-color: #2a2a2a; color: #7a7a7a;">
-                        <!-- Imagem será carregada aqui -->
-                    </div>
-                    <div class="event-details">
-                        <span class="event-date">25 OUT 2023</span>
-                        <h3 class="event-title">II Seminário Internacional de Ergonomia</h3>
-                        <p class="event-description">Evento que reúne especialistas nacionais e internacionais para discutir os avanços na área de ergonomia da atividade.</p>
-                        <div class="event-meta">
-                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> Teatro Paulo Roberto Lisboa</span>
-                            <a href="#" class="event-btn">Saiba Mais</a>
-                        </div>
-                    </div>
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-shell">
+                    <span class="eyebrow">Historico e agenda</span>
+                    <h1>Eventos apresentados de forma simples, legivel e conectada ao restante do site.</h1>
+                    <p>A nova pagina privilegia marcos historicos e participacoes institucionais do NEPERG sem depender de layouts quebrados ou cards vazios.</p>
                 </div>
+            </div>
+        </section>
 
-                <!-- Evento 2 -->
-                <div class="event-card">
-                    <div class="event-image" data-text="Workshop de Ergonomia" style="background-color: #e0f2fe; color: #0c4a6e;">
-                        <!-- Imagem será carregada aqui -->
-                    </div>
-                    <div class="event-details">
-                        <span class="event-date">15 NOV 2023</span>
-                        <h3 class="event-title">Workshop de Ergonomia Aplicada</h3>
-                        <p class="event-description">Aprenda técnicas práticas de ergonomia para aplicar no ambiente de trabalho e melhorar a qualidade de vida dos colaboradores.</p>
-                        <div class="event-meta">
-                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> Laboratório de Ergonomia - NEPERG</span>
-                            <a href="#" class="event-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                </div>
+        <section class="section">
+            <div class="container events-grid">
+                <article class="event-card"><div class="event-top"><span class="icon-badge"><i class="fa-solid fa-globe"></i></span><span class="tag">2024</span></div><h3>34o Congresso Internacional da ICOH</h3><p>Participao da Profa. Dra. Iracimara Messias em Marrakesh, entre 28 de abril e 3 de maio de 2024, com apresentacao de pesquisas em saude ocupacional.</p></article>
+                <article class="event-card"><div class="event-top"><span class="icon-badge"><i class="fa-solid fa-users"></i></span><span class="tag">2018</span></div><h3>II Seminrio Internacional de Ergonomia</h3><p>Evento realizado em 25 de outubro de 2018, em Presidente Prudente, com foco em questes de saude e seguranca do trabalho.</p></article>
+                <article class="event-card"><div class="event-top"><span class="icon-badge"><i class="fa-solid fa-landmark"></i></span><span class="tag">Acervo</span></div><h3>Historico de seminrios e atividades</h3><p>O projeto mantm referencia s edicoes anteriores e s acoes de circulao cientifica e extensionista do nucleo.</p></article>
+            </div>
+        </section>
 
-                <!-- Evento 3 -->
-                <div class="event-card">
-                    <div class="event-image" data-text="Saúde Ocupacional" style="background-color: #dcfce7; color: #166534;">
-                        <!-- Imagem será carregada aqui -->
+        <section class="section compact section-muted">
+            <div class="container">
+                <div class="cta-band">
+                    <div>
+                        <span class="eyebrow">Participao</span>
+                        <h2>Quer acompanhar atividades, propor parceria ou solicitar apresentacao do nucleo?</h2>
+                        <p>O site foi fechado com uma rota direta entre eventos, noticias, equipe e contato para facilitar a navegacao do visitante.</p>
                     </div>
-                    <div class="event-details">
-                        <span class="event-date">05 DEZ 2023</span>
-                        <h3 class="event-title">Saúde e Bem-estar no Trabalho</h3>
-                        <p class="event-description">Palestra sobre estratégias para promover saúde e qualidade de vida no ambiente de trabalho.</p>
-                        <div class="event-meta">
-                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> Auditório da FCT/UNESP</span>
-                            <a href="#" class="event-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Evento 4 -->
-                <div class="event-card">
-                    <div class="event-image" data-text="Curso de Análise Ergonômica" style="background-color: #f97316; color: #fff;">
-                        <!-- Imagem será carregada aqui -->
-                    </div>
-                    <div class="event-details">
-                        <span class="event-date">20 JAN 2024</span>
-                        <h3 class="event-title">Curso de Análise Ergonômica do Trabalho</h3>
-                        <p class="event-description">Aprenda a realizar análises ergonômicas completas e elaborar laudos técnicos detalhados.</p>
-                        <div class="event-meta">
-                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> Laboratório de Ergonomia - NEPERG</span>
-                            <a href="#" class="event-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Evento 5 -->
-                <div class="event-card">
-                    <div class="event-image" data-text="Ginástica Laboral" style="background-color: #3a5a78; color: #fff;">
-                        <!-- Imagem será carregada aqui -->
-                    </div>
-                    <div class="event-details">
-                        <span class="event-date">10 FEV 2024</span>
-                        <h3 class="event-title">Workshop de Ginástica Laboral</h3>
-                        <p class="event-description">Técnicas e exercícios práticos para implementar programas de ginástica laboral nas empresas.</p>
-                        <div class="event-meta">
-                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> Sala de Ginástica - NEPERG</span>
-                            <a href="#" class="event-btn">Saiba Mais</a>
-                        </div>
+                    <div class="btn-row">
+                        <a class="btn btn-accent" href="../contato.html">Falar com o nucleo</a>
+                        <a class="btn btn-secondary" href="../noticias.html">Ver noticias</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section about">
-                    <h3>Sobre o NEPERG</h3>
-                    <p>O Núcleo de Estudos e Pesquisas em Ergonomia tem como objetivo promover estudos e pesquisas na área de ergonomia, contribuindo para a melhoria das condições de trabalho e qualidade de vida.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section links">
-                    <h3>Links Rápidos</h3>
-                    <ul>
-                        <li><a href="../index.html">Início</a></li>
-                        <li><a href="../sobre.html">Sobre Nós</a></li>
-                        <li><a href="../equipamentos.html">Equipamentos</a></li>
-                        <li><a href="../publicacoes/">Publicações</a></li>
-                        <li><a href="../noticias.html">Notícias</a></li>
-                        <li><a href="#">Eventos</a></li>
-                        <li><a href="../contato.html">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section contact">
-                    <h3>Contato</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Endereço: Rua Exemplo, 123 - Cidade/UF</p>
-                    <p><i class="fas fa-phone"></i> Telefone: (00) 0000-0000</p>
-                    <p><i class="fas fa-envelope"></i> Email: contato@neperg.com.br</p>
-                </div>
+            <div class="footer-grid">
+                <section><h3>Eventos</h3><p>Pagina refeita com foco em marcos institucionais e participacoes relevantes.</p></section>
+                <section><h3>Navegar</h3><ul class="footer-links"><li><a href="../noticias.html">Noticias</a></li><li><a href="../publicacoes/index.html">Publicacoes</a></li><li><a href="../contato.html">Contato</a></li></ul></section>
+                <section><h3>Acervo</h3><ul class="footer-links"><li><a href="https://ergonomiadaatividade.wixsite.com/neperg/eventos" target="_blank" rel="noopener noreferrer">Historico original</a></li></ul></section>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 NEPERG - Núcleo de Estudos e Pesquisas em Ergonomia. Todos os direitos reservados.</p>
-            </div>
+            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Eventos organizados para consulta rapida em celular e desktop.</p></div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
     <script src="../js/main.js"></script>
-    <script src="js/events.js"></script>
-    
-    <script>
-        // Inicialização de componentes
-        document.addEventListener('DOMContentLoaded', function() {
-            // Menu mobile
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if (menuToggle && navLinks) {
-                menuToggle.addEventListener('click', function() {
-                    navLinks.classList.toggle('active');
-                    menuToggle.classList.toggle('active');
-                });
-            }
-            
-            // Fechar menu ao clicar em um link
-            const navItems = document.querySelectorAll('.nav-links a');
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                    }
-                });
-            });
-            
-            // Adicionar classe de ativo ao item do menu atual
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            navItems.forEach(link => {
-                if (link.getAttribute('href') === currentPage || 
-                   (currentPage === '' && link.getAttribute('href') === 'index.html')) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-        });
-    </script>
-    <!-- Bot�o Voltar ao Topo -->
-    <button class="back-to-top" aria-label="Voltar ao topo">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
 </body>
 </html>
