@@ -615,7 +615,7 @@ function setupCmsCollections() {
 }
 
 function renderCollectionCard(type, item) {
-    if (type === "news") {
+    if (item.type === "news") {
         return `
             <article class="news-card">
                 <div class="news-image">
@@ -636,6 +636,24 @@ function renderCollectionCard(type, item) {
                     <p>${escapeHtml(item.summary)}</p>
                     ${renderCtaButton(item)}
                 </div>
+            </article>
+        `;
+    }
+
+    if (item.type === "announcement") {
+        return `
+            <article class="event-card">
+                <div class="event-top">
+                    <span class="icon-badge"><i class="fa-solid fa-bullhorn"></i></span>
+                    <span class="tag">${escapeHtml(item.category || "Aviso")}</span>
+                </div>
+                <h3>${escapeHtml(item.title)}</h3>
+                <div class="meta-line">
+                    <span><i class="fa-solid fa-calendar-days"></i> ${escapeHtml(window.NepergCMS.formatDate(item.date))}</span>
+                    ${item.location ? `<span><i class="fa-solid fa-location-dot"></i> ${escapeHtml(item.location)}</span>` : ""}
+                </div>
+                <p>${escapeHtml(item.summary)}</p>
+                ${renderCtaButton(item)}
             </article>
         `;
     }

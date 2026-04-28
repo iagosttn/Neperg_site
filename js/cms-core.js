@@ -518,12 +518,13 @@
     }
 
     function getContents(type, includeDrafts = false) {
+        const types = type ? type.split(",") : [];
         return state.contents.filter((item) => {
             if (!includeDrafts && item.status !== "published") {
                 return false;
             }
 
-            return !type || item.type === type;
+            return types.length === 0 || types.includes(item.type);
         });
     }
 
@@ -536,8 +537,9 @@
     }
 
     function getCategories(type) {
+        const types = type ? type.split(",") : [];
         const values = state.contents
-            .filter((item) => !type || item.type === type)
+            .filter((item) => types.length === 0 || types.includes(item.type))
             .map((item) => item.category)
             .filter(Boolean);
 
