@@ -1,153 +1,204 @@
-# NEPERG - Núcleo de Pesquisa e Extensão em Ergonomia
+# NEPERG - site institucional com backend
 
-![NEPERG Logo](img/logo-neperg.png)
+Este projeto roda como um site institucional com backend em Node.js, painel administrativo, persistencia server-side e envio de mensagens pelo formulario de contato.
 
-Bem-vindo ao repositório oficial do site do Núcleo de Pesquisa e Extensão em Ergonomia (NEPERG) da UNESP. Este projeto representa uma modernização completa do site, com foco em usabilidade, design responsivo e experiência do usuário aprimorada.
+## O que ja esta pronto
 
-## Visão Geral
+- painel administrativo com login no servidor
+- criacao do primeiro acesso direto pela tela de admin
+- multiplos acessos administrativos com separacao por pessoa
+- nivel `owner` para gerenciar acessos e nivel `editor` para editar conteudo
+- noticias, eventos e avisos salvos no backend
+- formulario de contato salvo no servidor
+- upload de imagens com persistencia em `uploads/`
+- backup autenticado em `/api/export`
+- protecoes basicas de origem, sessao, CSRF e links/imagens
+- bloqueio de setup inseguro em producao sem `ADMIN_SETUP_TOKEN`
+- exigencia de armazenamento persistente em producao com `CMS_STORAGE_DIR`
+- limitacao de tentativas de login e setup
+- historico de autoria no painel para saber quem atualizou o conteudo
 
-O NEPERG é um núcleo de pesquisa dedicado ao estudo da Ergonomia da Atividade, promovendo pesquisas inovadoras e soluções práticas para melhorar as condições de trabalho. Este site foi desenvolvido para refletir a excelência e o profissionalismo do núcleo, fornecendo uma plataforma acessível e informativa para estudantes, pesquisadores e parceiros.
+## Como rodar localmente
 
-## Recursos Principais
+1. Tenha Node.js 18+ instalado.
+2. Copie `.env.example` para `.env.local` se quiser testar com variaveis de ambiente.
+3. Rode:
 
-- **Design Responsivo**
-  - Layout adaptável para todos os dispositivos (desktop, tablet e mobile)
-  - Navegação otimizada para diferentes tamanhos de tela
-
-- **Navegação Intuitiva**
-  - Menu principal de fácil acesso
-  - Estrutura de informações clara e organizada
-  - Links rápidos para seções importantes
-
-- **Páginas Principais**
-  - **Início**: Apresentação do NEPERG e destaques
-  - **Rede Temática em Extensão**: Informações sobre projetos de extensão
-  - **Sobre Nós**: Missão, visão e histórico do núcleo
-  - **Nossa Equipe**: Perfis dos pesquisadores e colaboradores
-  - **Equipamentos**: Descrição da infraestrutura disponível
-  - **Publicações**: Produção científica com filtros avançados
-  - **Notícias**: Atualizações e notícias relevantes
-  - **Eventos**: Calendário de eventos e destaques
-  - **Contato**: Formulário de contato e localização
-
-- **Otimização**
-  - Carregamento rápido de páginas
-  - Código limpo e bem estruturado
-  - Boas práticas de SEO
-
-## Estrutura do Projeto
-
-```
-neperg-site/
-├── css/
-│   ├── style.css               # Estilos principais
-│   └── style-backup.css        # Backup dos estilos
-├── js/
-│   ├── main.js                 # JavaScript principal
-│   └── publications.js         # Lógica das publicações
-├── eventos/
-│   ├── css/                   # Estilos específicos de eventos
-│   ├── js/                     # Scripts de eventos
-│   └── index.html              # Página de eventos
-├── publicacoes/
-│   ├── css/                   # Estilos específicos de publicações
-│   ├── js/                     # Scripts de publicações
-│   └── index.html              # Página de publicações
-├── img/                        # Imagens e recursos visuais
-├── index.html                   # Página inicial
-├── sobre.html                   # Página Sobre Nós
-├── equipe.html                  # Página da Equipe
-├── equipamentos.html            # Página de Equipamentos
-├── noticias.html                # Página de Notícias
-├── contato.html                 # Página de Contato
-├── rede-tematica.html           # Página da Rede Temática
-└── README.md                    # Documentação
+```bash
+npm start
 ```
 
-## Como Executar o Projeto
+4. Abra:
 
-### Pré-requisitos
-
-- Navegador web moderno (Chrome, Firefox, Safari, Edge)
-- Git (opcional, para clonar o repositório)
-
-### Instalação Local
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/iagosttn/Neperg_site.git
-   ```
-
-2. Navegue até o diretório do projeto:
-   ```bash
-   cd Neperg_site
-   ```
-
-3. Abra o arquivo `index.html` no seu navegador preferido.
-
-## Tecnologias Utilizadas
-
-- **Frontend**
-  - HTML5 semântico
-  - CSS3 (Flexbox e Grid Layout)
-  - JavaScript Vanilla
-  - [Font Awesome](https://fontawesome.com/) - Ícones
-  - [Google Fonts](https://fonts.google.com/) - Tipografia
-
-- **Ferramentas**
-  - Git - Controle de versão
-  - Visual Studio Code - Editor de código
-
-## Personalização
-
-### Cores
-
-As cores principais podem ser alteradas no arquivo `css/style.css`. Procure pelas variáveis CSS no início do arquivo:
-
-```css
-:root {
-    --primary-color: #0056b3;
-    --secondary-color: #003366;
-    --accent-color: #ff6b35;
-    --light-color: #f8f9fa;
-    --dark-color: #343a40;
-    --text-color: #333;
-    --text-light: #6c757d;
-    --white: #ffffff;
-}
+```text
+http://127.0.0.1:3000
 ```
 
-### Conteúdo
+## Primeiro acesso administrativo
 
-- Edite os arquivos HTML para modificar o conteúdo textual
-- Atualize as imagens na pasta `img/`
-- Ajuste os estilos em `css/style.css`
+1. Acesse `http://127.0.0.1:3000/admin/index.html`
+2. Se `ADMIN_SETUP_TOKEN` estiver configurado, informe a chave
+3. Crie o primeiro usuario e a senha inicial
+4. Esse primeiro acesso nasce como `owner`
+5. Entre no painel
+6. Cadastre outros usuarios para a equipe, se necessario
+7. Cadastre ou edite noticias, eventos e avisos
 
-### Páginas
+## Modelo de acessos
 
-Cada página principal tem seu próprio arquivo HTML e pode ser personalizada individualmente.
+Para um projeto institucional com varias pessoas, o fluxo recomendado e:
 
-## Licença
+- `owner`: responsavel tecnico ou coordenacao; cria e remove acessos
+- `editor`: professores e equipe que vao atualizar conteudo
 
-Este projeto está licenciado sob a Licença MIT - consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.
+Boa pratica:
 
-## Contribuição
+- cada pessoa usa o proprio login
+- evite compartilhar senha
+- mantenha pelo menos dois `owners` ativos para evitar dependencia de uma unica pessoa
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
+## Variaveis de ambiente
 
-1. Faça um Fork do projeto
-2. Crie uma Branch para sua Feature (`git checkout -b feature/AmazingFeature`)
-3. Adicione suas mudanças (`git add .`)
-4. Comite suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-5. Faça o Push da Branch (`git push origin feature/AmazingFeature`)
-6. Abra um Pull Request
+Use `.env.example` como base.
 
-## Contato
+- `NODE_ENV`: use `production` no deploy
+- `PORT`: porta do servidor
+- `HOST`: host do servidor, normalmente `0.0.0.0`
+- `COOKIE_SECURE=1`: exige cookie seguro em HTTPS
+- `ADMIN_SETUP_TOKEN`: chave obrigatoria para liberar o primeiro acesso em producao
+- `CMS_STORAGE_DIR`: diretorio persistente onde ficam dados e uploads
 
-- **Email**: [contato@neperg.unesp.br](mailto:contato@neperg.unesp.br)
-- **Site**: [https://neperg.unesp.br](https://neperg.unesp.br)
-- **Localização**: UNESP - Campus de Presidente Prudente
+## Persistencia
 
----
+O sistema salva:
 
-Desenvolvido com ❤️ pelo NEPERG - Núcleo de Pesquisa e Extensão em Ergonomia da FCT/UNESP
+- conteudo administrativo em `data/runtime/cms.json`
+- uploads em `uploads/`
+
+Em producao, nao deixe isso na raiz efemera do container. Configure:
+
+- `CMS_STORAGE_DIR=/app/storage`
+
+Assim o sistema passa a usar:
+
+- `/app/storage/data/runtime/cms.json`
+- `/app/storage/uploads/`
+
+## Deploy recomendado
+
+Para deixar o site no ar sem depender do seu PC, o caminho mais seguro para a arquitetura atual e:
+
+1. subir o codigo para o GitHub
+2. conectar o repositorio ao Railway
+3. anexar um volume/disco persistente montado em `/app/storage`
+4. definir as variaveis de ambiente de producao
+5. publicar um dominio HTTPS
+6. criar o primeiro acesso pelo painel admin
+
+Plataforma recomendada para esta versao:
+
+- Railway
+
+Este repositorio ja inclui:
+
+- `Dockerfile`
+- `railway.json`
+
+Isso deixa o build por container, o healthcheck e a politica de restart mais previsiveis no deploy.
+
+## Configuracao minima de producao
+
+Defina no painel da hospedagem:
+
+```text
+NODE_ENV=production
+HOST=0.0.0.0
+PORT=3000
+COOKIE_SECURE=1
+CMS_STORAGE_DIR=/app/storage
+ADMIN_SETUP_TOKEN=<chave-forte-e-unica>
+```
+
+## Health check
+
+Use:
+
+```text
+/healthz
+```
+
+## Railway
+
+Passo a passo recomendado:
+
+1. criar um novo projeto no Railway a partir do repositorio GitHub
+2. deixar o Railway usar o `Dockerfile`
+3. montar um volume persistente em `/app/storage`
+4. configurar as variaveis de ambiente de producao
+5. gerar o dominio publico HTTPS
+6. acessar `/admin/index.html` e criar o primeiro `owner`
+
+Variaveis minimas:
+
+```text
+NODE_ENV=production
+HOST=0.0.0.0
+PORT=3000
+COOKIE_SECURE=1
+CMS_STORAGE_DIR=/app/storage
+ADMIN_SETUP_TOKEN=<chave-forte>
+```
+
+Observacao importante:
+
+- servicos com volume persistente podem ter pequena indisponibilidade durante redeploy
+- mantenha apenas uma instancia enquanto a persistencia continuar em volume local
+
+## Backup
+
+Depois de entrar no painel administrativo:
+
+- use o botao `Baixar backup JSON`
+- ou acesse `/api/export`
+
+O backup exporta:
+
+- usuarios administrativos sem hashes de senha
+- conteudos
+- mensagens de contato
+
+## Subindo para o GitHub
+
+Exemplo basico:
+
+```bash
+git add .
+git commit -m "Prepara deploy do CMS do NEPERG"
+git branch -M main
+git remote add origin <URL_DO_REPOSITORIO>
+git push -u origin main
+```
+
+## Estrutura principal
+
+```text
+server.js            Servidor HTTP, API, autenticacao e persistencia
+admin/index.html     Painel administrativo
+js/admin.js          Logica do painel
+js/cms-core.js       Cliente da API
+js/main.js           Integracao das paginas publicas com a API
+uploads/             Imagens enviadas pelo painel
+data/runtime/        Dados gerados em execucao
+Dockerfile           Deploy em container
+railway.json         Configuracao de deploy do Railway
+.env.example         Modelo de configuracao
+```
+
+## Observacoes importantes
+
+- GitHub hospeda o codigo, nao o backend
+- GitHub Pages serve apenas site estatico
+- a arquitetura atual nao e ideal para Vercel porque o projeto depende de escrita persistente em disco
+- para colocar esta versao na Vercel, seria preciso migrar uploads e dados para servicos externos como Blob + banco
+- o modelo atual foi preparado para equipe: cada pessoa pode ter o proprio acesso
+- use uma unica instancia do servico enquanto a persistencia estiver baseada em volume local

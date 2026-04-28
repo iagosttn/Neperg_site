@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Contato do NEPERG e informacoes para visita, parceria e uso de infraestrutura.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; script-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src https://www.google.com https://www.google.com.br https://maps.google.com">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Contato | NEPERG</title>
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
@@ -36,7 +39,7 @@
                 <div class="page-hero-shell">
                     <span class="eyebrow">Fale com o nucleo</span>
                     <h1>Contato organizado para visitas, parceria e uso da infraestrutura.</h1>
-                    <p>A pagina agora concentra os canais mais uteis para quem quer se aproximar do NEPERG sem depender de formulrios quebrados ou informacoes genricas.</p>
+                    <p>A pagina agora concentra os canais mais uteis para quem quer se aproximar do NEPERG, com formulario conectado ao backend do site e acompanhamento pelo painel administrativo.</p>
                 </div>
             </div>
         </section>
@@ -60,6 +63,7 @@
                             <input class="field" type="email" name="email" placeholder="E-mail" required>
                         </div>
                         <input class="field" type="text" name="assunto" placeholder="Assunto">
+                        <input class="hidden" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <textarea class="field" name="mensagem" placeholder="Escreva sua mensagem" required></textarea>
                         <button class="btn btn-primary" type="submit">Enviar mensagem</button>
                         <div class="form-message hidden" data-form-message></div>
@@ -87,7 +91,7 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <section><h3>Contato</h3><p>Pagina refeita com dados institucionais, formulrio funcional de demonstrao e mapa incorporado.</p></section>
+                <section><h3>Contato</h3><p>Pagina refeita com dados institucionais, formulario conectado ao backend e mapa incorporado.</p></section>
                 <section><h3>Relacionados</h3><ul class="footer-links"><li><a href="equipamentos.html">Equipamentos</a></li><li><a href="equipe.html">Equipe</a></li><li><a href="https://www.fct.unesp.br/#!/neperg" target="_blank" rel="noopener noreferrer">Pagina institucional</a></li></ul></section>
                 <section><h3>E-mails</h3><ul class="footer-links"><li><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li><li><a href="mailto:nikele.milani@unesp.br">nikele.milani@unesp.br</a></li></ul></section>
             </div>
@@ -96,6 +100,9 @@
     </footer>
 
     <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+    <script src="js/cms-core.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
+
+

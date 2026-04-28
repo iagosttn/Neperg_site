@@ -1,5 +1,10 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    if (window.NepergCMS?.ready) {
+        await window.NepergCMS.ready();
+    }
+
     applyBrandLogo();
+    initCMSPublicViews();
     normalizeLocalizedText();
     setupNavigation();
     setupBackToTop();
@@ -28,7 +33,10 @@ function applyBrandLogo() {
             return;
         }
 
-        container.innerHTML = `<img src="${logoSrc}" alt="Logo do NEPERG">`;
+        const logo = document.createElement("img");
+        logo.src = logoSrc;
+        logo.alt = "Logo do NEPERG";
+        container.replaceChildren(logo);
     });
 }
 
@@ -418,17 +426,279 @@ function setupFaq() {
 function setupForms() {
     document.querySelectorAll("[data-demo-form]").forEach((form) => {
         const messageTarget = form.querySelector("[data-form-message]");
+        const submitButton = form.querySelector('button[type="submit"]');
 
-        form.addEventListener("submit", (event) => {
+        form.addEventListener("submit", async (event) => {
             event.preventDefault();
 
-            if (messageTarget) {
-                messageTarget.classList.remove("hidden");
-                messageTarget.textContent =
-                    "Mensagem recebida com sucesso. O conteudo foi preparado para integracao futura com o canal oficial do NEPERG.";
+            if (!window.NepergCMS?.submitContactMessage || !window.NepergCMS.isServerMode()) {
+                if (messageTarget) {
+                    messageTarget.classList.remove("hidden");
+                    messageTarget.textContent =
+                        "Inicie o servidor do projeto para ativar o envio real das mensagens.";
+                }
+                return;
             }
 
-            form.reset();
+            const formData = new FormData(form);
+            const payload = Object.fromEntries(formData.entries());
+
+            if (submitButton) {
+                submitButton.disabled = true;
+            }
+
+            try {
+                await window.NepergCMS.submitContactMessage(payload);
+
+                if (messageTarget) {
+                    messageTarget.classList.remove("hidden");
+                    messageTarget.textContent =
+                        "Mensagem enviada com sucesso. A equipe pode acompanhar este contato no painel administrativo.";
+                }
+
+                form.reset();
+            } catch (error) {
+                if (messageTarget) {
+                    messageTarget.classList.remove("hidden");
+                    messageTarget.textContent =
+                        error.message || "Nao foi possivel enviar a mensagem agora.";
+                }
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                }
+            }
         });
     });
+}
+
+function initCMSPublicViews() {
+    if (!window.NepergCMS) {
+        return;
+    }
+
+    renderHomeAnnouncements();
+    renderHomeFeed();
+    setupCmsCollections();
+}
+
+function renderHomeAnnouncements() {
+    const target = document.querySelector("[data-cms-announcements]");
+
+    if (!target) {
+        return;
+    }
+
+    const items = window.NepergCMS.getPublishedContents("announcement").slice(0, 3);
+
+    target.innerHTML = items.length
+        ? items
+              .map(
+                  (item) => `
+                    <article class="card">
+                        <div class="card-top">
+                            <span class="icon-badge"><i class="fa-solid fa-bullhorn"></i></span>
+                            <div>
+                                <h3>${escapeHtml(item.title)}</h3>
+                                <span class="tag">${escapeHtml(item.category || "Aviso")}</span>
+                            </div>
+                        </div>
+                        <p>${escapeHtml(item.summary)}</p>
+                        <div class="meta-line">
+                            <span><i class="fa-solid fa-calendar-days"></i> ${escapeHtml(window.NepergCMS.formatDate(item.date))}</span>
+                            ${item.location ? `<span><i class="fa-solid fa-location-dot"></i> ${escapeHtml(item.location)}</span>` : ""}
+                        </div>
+                        ${renderCtaButton(item)}
+                    </article>
+                `
+              )
+              .join("")
+        : `<article class="content-card"><h3>Nenhum aviso publicado.</h3><p>Publique os destaques institucionais que devem aparecer nesta area.</p></article>`;
+}
+
+function renderHomeFeed() {
+    const target = document.querySelector("[data-cms-home-feed]");
+
+    if (!target) {
+        return;
+    }
+
+    const featured = window.NepergCMS
+        .getContents()
+        .filter((item) => item.status === "published" && item.featured && item.type !== "announcement")
+        .slice(0, 4);
+    const items = featured.length
+        ? featured
+        : window.NepergCMS
+              .getContents()
+              .filter((item) => item.status === "published" && item.type !== "announcement")
+              .slice(0, 4);
+
+    target.innerHTML = items.length
+        ? items.map((item) => renderFeedCard(item)).join("")
+        : `<article class="content-card"><h3>Nenhum conteudo disponivel.</h3><p>Publique noticias ou eventos para preencher esta area automaticamente.</p></article>`;
+}
+
+function setupCmsCollections() {
+    document.querySelectorAll("[data-cms-collection]").forEach((scope) => {
+        const type = scope.dataset.cmsCollection;
+        const searchInput = scope.querySelector("[data-cms-search]");
+        const filtersTarget = scope.querySelector("[data-cms-filters]");
+        const gridTarget = scope.querySelector("[data-cms-grid]");
+        const emptyState = scope.querySelector("[data-cms-empty]");
+        let activeCategory = "all";
+
+        if (!gridTarget || !filtersTarget) {
+            return;
+        }
+
+        const categories = window.NepergCMS.getCategories(type);
+
+        filtersTarget.innerHTML = [
+            '<button class="filter-button active" type="button" data-category="all">Tudo</button>'
+        ]
+            .concat(
+                categories.map(
+                    (category) =>
+                        `<button class="filter-button" type="button" data-category="${escapeAttribute(
+                            category
+                        )}">${escapeHtml(category)}</button>`
+                )
+            )
+            .join("");
+
+        const runRender = () => {
+            const term = (searchInput?.value || "").trim().toLowerCase();
+            const items = window.NepergCMS.getPublishedContents(type).filter((item) => {
+                const haystack = [
+                    item.title,
+                    item.summary,
+                    item.body,
+                    item.category,
+                    item.location,
+                    ...(item.tags || [])
+                ]
+                    .join(" ")
+                    .toLowerCase();
+
+                const matchesTerm = !term || haystack.includes(term);
+                const matchesCategory =
+                    activeCategory === "all" || item.category === activeCategory;
+
+                return matchesTerm && matchesCategory;
+            });
+
+            gridTarget.innerHTML = items.map((item) => renderCollectionCard(type, item)).join("");
+
+            if (emptyState) {
+                emptyState.classList.toggle("hidden", items.length !== 0);
+            }
+        };
+
+        filtersTarget.addEventListener("click", (event) => {
+            const button = event.target.closest("[data-category]");
+
+            if (!button) {
+                return;
+            }
+
+            activeCategory = button.dataset.category || "all";
+            filtersTarget
+                .querySelectorAll("[data-category]")
+                .forEach((item) => item.classList.toggle("active", item === button));
+            runRender();
+        });
+
+        searchInput?.addEventListener("input", runRender);
+        runRender();
+    });
+}
+
+function renderCollectionCard(type, item) {
+    if (type === "news") {
+        return `
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="${escapeAttribute(window.NepergCMS.getImageUrl(item.image))}" alt="${escapeAttribute(
+                        item.title
+                    )}">
+                </div>
+                <div class="news-body">
+                    <div class="news-top">
+                        <span class="icon-badge"><i class="fa-solid fa-newspaper"></i></span>
+                        <span class="tag">${escapeHtml(item.category || "Noticia")}</span>
+                    </div>
+                    <h3>${escapeHtml(item.title)}</h3>
+                    <div class="meta-line">
+                        <span><i class="fa-solid fa-calendar-days"></i> ${escapeHtml(window.NepergCMS.formatDate(item.date))}</span>
+                        ${item.location ? `<span><i class="fa-solid fa-location-dot"></i> ${escapeHtml(item.location)}</span>` : ""}
+                    </div>
+                    <p>${escapeHtml(item.summary)}</p>
+                    ${renderCtaButton(item)}
+                </div>
+            </article>
+        `;
+    }
+
+    return `
+        <article class="event-card">
+            <div class="event-top">
+                <span class="icon-badge"><i class="fa-solid fa-calendar-days"></i></span>
+                <span class="tag">${escapeHtml(item.category || "Evento")}</span>
+            </div>
+            <h3>${escapeHtml(item.title)}</h3>
+            <div class="meta-line">
+                <span><i class="fa-solid fa-calendar-days"></i> ${escapeHtml(window.NepergCMS.formatDate(item.date))}</span>
+                ${item.location ? `<span><i class="fa-solid fa-location-dot"></i> ${escapeHtml(item.location)}</span>` : ""}
+            </div>
+            <p>${escapeHtml(item.summary)}</p>
+            ${renderCtaButton(item)}
+        </article>
+    `;
+}
+
+function renderFeedCard(item) {
+    const meta = window.NepergCMS.getTypeMeta(item.type);
+    const body = item.summary || item.body || "";
+
+    return `
+        <article class="archive-card">
+            <div class="event-top">
+                <span class="icon-badge"><i class="fa-solid ${escapeAttribute(meta.icon)}"></i></span>
+                <span class="tag">${escapeHtml(meta.label)}</span>
+            </div>
+            <h3>${escapeHtml(item.title)}</h3>
+            <div class="meta-line">
+                <span><i class="fa-solid fa-calendar-days"></i> ${escapeHtml(window.NepergCMS.formatDate(item.date))}</span>
+                <span><i class="fa-solid fa-tag"></i> ${escapeHtml(item.category || "Geral")}</span>
+            </div>
+            <p>${escapeHtml(body)}</p>
+            ${renderCtaButton(item)}
+        </article>
+    `;
+}
+
+function renderCtaButton(item) {
+    const href = window.NepergCMS.resolveUrl(item.ctaUrl);
+
+    if (!href) {
+        return "";
+    }
+
+    return `<a class="btn btn-secondary" href="${escapeAttribute(href)}">${escapeHtml(
+        item.ctaLabel || "Saiba mais"
+    )}</a>`;
+}
+
+function escapeHtml(value) {
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function escapeAttribute(value) {
+    return escapeHtml(value);
 }

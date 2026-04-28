@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NEPERG - Nucleo de Pesquisa e Extensao em Ergonomia da FCT/UNESP.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; script-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>NEPERG | Ergonomia da Atividade</title>
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
@@ -82,16 +85,38 @@
             </div>
         </section>
 
+        <section class="section section-muted">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Avisos dinamicos</span>
+                    <h2>Comunicados e atualizacoes institucionais ganham um espaco administravel.</h2>
+                    <p>Os avisos abaixo reunem orientacoes, chamadas internas e comunicados institucionais em uma area facil de localizar.</p>
+                </div>
+                <div class="card-grid three" data-cms-announcements></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Conteudo vivo</span>
+                    <h2>Ultimas noticias e eventos em destaque.</h2>
+                    <p>Esta area destaca os conteudos mais recentes do site institucional, organizados para leitura rapida em celular e desktop.</p>
+                </div>
+                <div class="archive-grid" data-cms-home-feed></div>
+            </div>
+        </section>
+
         <section class="section compact">
             <div class="container">
                 <div class="cta-band">
                     <div>
-                        <span class="eyebrow">Navegao rapida</span>
-                        <h2>Explore equipe, rede tematica, infraestrutura e canais de contato.</h2>
-                        <p>Agora o projeto est estruturado para desktop e celular, com paginas mais consistentes e sem conteudo genrico quebrado.</p>
+                        <span class="eyebrow">Navegacao institucional</span>
+                        <h2>Explore as principais areas do acervo institucional do NEPERG.</h2>
+                        <p>O site foi reorganizado para ficar mais claro, leve e pronto para publicacao estatica com conteudo versionado.</p>
                     </div>
                     <div class="btn-row">
-                        <a class="btn btn-accent" href="equipe.html">Ver equipe</a>
+                        <a class="btn btn-accent" href="noticias.html">Ver noticias</a>
                         <a class="btn btn-secondary" href="contato.html">Entrar em contato</a>
                     </div>
                 </div>
@@ -104,13 +129,16 @@
             <div class="footer-grid">
                 <section><h3>NEPERG</h3><p>Nucleo de Pesquisa e Extensao em Ergonomia da FCT/UNESP em Presidente Prudente.</p></section>
                 <section><h3>Navegao</h3><ul class="footer-links"><li><a href="sobre.html">Sobre</a></li><li><a href="equipamentos.html">Equipamentos</a></li><li><a href="publicacoes/index.html">Publicacoes</a></li><li><a href="eventos/index.html">Eventos</a></li></ul></section>
-                <section><h3>Contato</h3><ul class="footer-links"><li><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li><li><a href="mailto:nikele.milani@unesp.br">nikele.milani@unesp.br</a></li><li>Rua Roberto Simonsen, 305  Presidente Prudente/SP</li></ul></section>
+                <section><h3>Contato</h3><ul class="footer-links"><li><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li><li><a href="mailto:nikele.milani@unesp.br">nikele.milani@unesp.br</a></li><li>Rua Roberto Simonsen, 305  Presidente Prudente/SP</li><li><a href="contato.html">Canal institucional</a></li></ul></section>
             </div>
             <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Site reorganizado para navegacao em celular e computador.</p></div>
         </div>
     </footer>
 
     <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+    <script src="js/cms-core.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
+
+

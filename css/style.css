@@ -210,7 +210,8 @@ ul {
     flex-wrap: nowrap;
 }
 
-.site-nav a {
+.site-nav a,
+.site-nav button {
     padding: 0.72rem 0.9rem;
     border-radius: 999px;
     color: var(--muted);
@@ -221,6 +222,8 @@ ul {
 
 .site-nav a:hover,
 .site-nav a:focus-visible,
+.site-nav button:hover,
+.site-nav button:focus-visible,
 .site-nav a.active {
     background: rgba(24, 78, 91, 0.1);
     color: var(--primary);
@@ -927,6 +930,17 @@ textarea.field {
     font-size: 0.88rem;
 }
 
+.field-help {
+    display: block;
+    margin-top: 0.45rem;
+    color: var(--muted);
+    font-size: 0.86rem;
+}
+
+.field-help-error {
+    color: #a33c2f;
+}
+
 .form-message {
     margin-top: 1rem;
     padding: 0.95rem 1rem;
@@ -1000,6 +1014,234 @@ textarea.field {
 .cta-band p {
     max-width: 54ch;
     color: rgba(255, 255, 255, 0.82);
+}
+
+.login-wrap {
+    display: grid;
+    place-items: center;
+}
+
+.login-card {
+    width: min(100%, 520px);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(23, 33, 41, 0.08);
+    box-shadow: var(--shadow);
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.admin-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-highlight-card .card-top {
+    margin-bottom: 0;
+}
+
+.admin-shortcuts {
+    margin-top: 1.5rem;
+}
+
+.admin-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    align-items: start;
+}
+
+.admin-side,
+.admin-list {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.admin-item {
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(23, 33, 41, 0.08);
+    box-shadow: var(--shadow);
+}
+
+.admin-item-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.admin-item h3 {
+    font-family: "Source Serif 4", serif;
+    line-height: 1.2;
+    margin-top: 0.8rem;
+}
+
+.form-block {
+    padding: 1.4rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(23, 33, 41, 0.08);
+    background: rgba(24, 78, 91, 0.03);
+}
+
+.form-block + .form-block {
+    margin-top: 0.2rem;
+}
+
+.form-block-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.form-block-head h3 {
+    font-family: "Source Serif 4", serif;
+    margin-bottom: 0.2rem;
+}
+
+.form-block-head p {
+    color: var(--muted);
+}
+
+.step-badge {
+    width: 2.2rem;
+    height: 2.2rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.choice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.choice-button {
+    padding: 1.2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(24, 78, 91, 0.14);
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--ink);
+    text-align: left;
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+
+.choice-button:hover,
+.choice-button:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(24, 78, 91, 0.28);
+    box-shadow: var(--shadow);
+}
+
+.choice-button strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1rem;
+}
+
+.choice-button span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.choice-button.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.choice-button.active span {
+    color: rgba(255, 255, 255, 0.84);
+}
+
+.destination-note {
+    margin-top: 0.9rem;
+}
+
+.image-uploader {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.image-preview {
+    min-height: 220px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    border: 1px dashed rgba(24, 78, 91, 0.28);
+    background: rgba(24, 78, 91, 0.05);
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    max-height: 320px;
+    object-fit: cover;
+}
+
+.image-placeholder {
+    padding: 1rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.save-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.save-actions .btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.inline-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    justify-content: flex-end;
+}
+
+.checkbox-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.checkbox-line input {
+    width: 1rem;
+    height: 1rem;
 }
 
 .site-footer {
@@ -1095,7 +1337,8 @@ textarea.field {
         transform: translateY(0);
     }
 
-    .site-nav a {
+    .site-nav a,
+    .site-nav button {
         width: 100%;
         padding: 0.95rem 1rem;
     }
@@ -1107,6 +1350,9 @@ textarea.field {
     .hero-layout,
     .split-layout,
     .contact-layout,
+    .dashboard-header,
+    .admin-info-grid,
+    .admin-shell,
     .footer-grid,
     .stats-grid,
     .metrics-grid,
@@ -1128,6 +1374,10 @@ textarea.field {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .dashboard-header {
+        align-items: flex-start;
+    }
 }
 
 @media (max-width: 1320px) {
@@ -1140,7 +1390,8 @@ textarea.field {
         max-width: 15rem;
     }
 
-    .site-nav a {
+    .site-nav a,
+    .site-nav button {
         padding: 0.65rem 0.78rem;
         font-size: 0.88rem;
     }
@@ -1158,6 +1409,7 @@ textarea.field {
     .hero-panel,
     .page-hero-shell,
     .cta-band,
+    .login-card,
     .hero-aside,
     .content-card,
     .card,
@@ -1177,9 +1429,14 @@ textarea.field {
 
     .timeline-item,
     .form-split,
+    .choice-grid,
     .team-grid,
     .equipment-grid {
         grid-template-columns: 1fr;
+    }
+
+    .admin-item-top {
+        flex-direction: column;
     }
 
     .timeline-item {
@@ -1206,9 +1463,11 @@ textarea.field {
 
     .btn,
     .site-nav a,
+    .site-nav button,
     .tag,
     .chip,
-    .filter-button {
+    .filter-button,
+    .save-actions .btn {
         width: 100%;
         justify-content: center;
     }
@@ -1220,5 +1479,10 @@ textarea.field {
 
     .person-card {
         flex-direction: column;
+    }
+
+    .inline-actions {
+        width: 100%;
+        justify-content: stretch;
     }
 }

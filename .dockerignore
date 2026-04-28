@@ -1,0 +1,10 @@
+.git
+.gitignore
+data/runtime
+node_modules
+storage
+uploads/*
+!uploads/.gitkeep
+.env
+.env.local
+.env.production
