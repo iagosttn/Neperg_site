@@ -217,17 +217,42 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
+    function toggleFormFields(section, enabled) {
+        if (!section) {
+            return;
+        }
+
+        section.querySelectorAll("input, button, textarea, select").forEach((field) => {
+            field.disabled = !enabled;
+            if (!enabled && field.hasAttribute("required")) {
+                field.removeAttribute("required");
+                field.dataset.wasRequired = "1";
+            } else if (enabled && field.dataset.wasRequired === "1") {
+                field.setAttribute("required", "");
+                delete field.dataset.wasRequired;
+            }
+        });
+    }
+
     function renderVisibility() {
         const adminAvailable = window.NepergCMS.isAdminAvailable();
         const hasProfile = window.NepergCMS.hasProfile();
         const authenticated = adminAvailable && hasProfile && window.NepergCMS.isAuthenticated();
         const canManageUsers = authenticated && window.NepergCMS.canManageUsers();
 
-        unavailableSection?.classList.toggle("hidden", adminAvailable);
-        setupSection?.classList.toggle("hidden", !adminAvailable || hasProfile);
-        loginSection?.classList.toggle("hidden", !adminAvailable || !hasProfile || authenticated);
-        appSection?.classList.toggle("hidden", !authenticated);
+        const showUnavailable = !adminAvailable;
+        const showSetup = adminAvailable && !hasProfile;
+        const showLogin = adminAvailable && hasProfile && !authenticated;
+        const showApp = authenticated;
+
+        unavailableSection?.classList.toggle("hidden", !showUnavailable);
+        setupSection?.classList.toggle("hidden", !showSetup);
+        loginSection?.classList.toggle("hidden", !showLogin);
+        appSection?.classList.toggle("hidden", !showApp);
         userManagementSection?.classList.toggle("hidden", !canManageUsers);
+
+        toggleFormFields(setupSection, showSetup);
+        toggleFormFields(loginSection, showLogin);
 
         if (adminUser) {
             adminUser.textContent = window.NepergCMS.getSessionUser() || "-";
@@ -242,12 +267,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         const needsSetupToken = window.NepergCMS.requiresSetupToken();
         const setupLocked = window.NepergCMS.isSetupLocked();
         setupTokenRow?.classList.toggle("hidden", !needsSetupToken);
-        setupForm?.setupToken?.toggleAttribute("required", needsSetupToken);
+        if (showSetup) {
+            setupForm?.setupToken?.toggleAttribute("required", needsSetupToken);
+        }
         setupLockNote?.classList.toggle("hidden", !setupLocked);
 
-        if (setupForm) {
+        if (setupForm && setupLocked) {
             setupForm.querySelectorAll("input, button").forEach((field) => {
-                field.disabled = setupLocked;
+                field.disabled = true;
             });
         }
     }
@@ -539,17 +566,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     async function refreshDashboard() {
+        try {
+            if (window.NepergCMS.isAdminAvailable() || window.NepergCMS.isServerMode()) {
+                await window.NepergCMS.refreshStatus();
+            }
+        } catch (error) {
+            // Server may be temporarily unavailable; continue with current state.
+        }
+
         renderVisibility();
 
-        if (window.NepergCMS.isAdminAvailable()) {
-            await window.NepergCMS.refreshContents({
-                includeDrafts: window.NepergCMS.isAuthenticated()
-            });
+        try {
+            if (window.NepergCMS.isAdminAvailable()) {
+                await window.NepergCMS.refreshContents({
+                    includeDrafts: window.NepergCMS.isAuthenticated()
+                });
 
-            if (window.NepergCMS.isAuthenticated()) {
-                await window.NepergCMS.refreshMessages();
-                await window.NepergCMS.refreshUsers();
+                if (window.NepergCMS.isAuthenticated()) {
+                    await window.NepergCMS.refreshMessages();
+                    await window.NepergCMS.refreshUsers();
+                }
             }
+        } catch (error) {
+            // Silently handle fetch errors during dashboard refresh.
         }
 
         renderStats();
