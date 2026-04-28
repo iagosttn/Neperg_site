@@ -412,7 +412,7 @@
     }
 
     async function refreshStatus() {
-        const status = await apiRequest(API_STATUS_URL);
+        const status = await apiRequest(`${API_STATUS_URL}?t=${Date.now()}`);
         applyStatus(status);
         return status;
     }
@@ -422,13 +422,13 @@
             return getContents(options.type, options.includeDrafts);
         }
 
-        const query = [];
+        const query = [`t=${Date.now()}`];
         if (options.includeDrafts && state.authenticated) {
             query.push("scope=all");
         }
 
         const payload = await apiRequest(
-            `${API_CONTENTS_URL}${query.length ? `?${query.join("&")}` : ""}`
+            `${API_CONTENTS_URL}?${query.join("&")}`
         );
 
         state.contents = normalizeContentArray(payload.items);
