@@ -11,6 +11,7 @@ ENV HOST=0.0.0.0
 ENV PORT=3000
 
 RUN mkdir -p /app/storage
+ENV CMS_STORAGE_DIR=/app/storage
 
 EXPOSE 3000
 

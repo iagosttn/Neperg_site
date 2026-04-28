@@ -6,28 +6,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     await window.NepergCMS.ready();
 
     const TYPE_HELP = {
-        news: "Noticia: aparece na pagina Noticias e pode aparecer na pagina inicial se voce marcar como destaque.",
-        event: "Evento: aparece na pagina Eventos e pode aparecer na pagina inicial se voce marcar como destaque.",
+        news: "Notícia: aparece na página Notícias e pode aparecer na página inicial se você marcar como destaque.",
+        event: "Evento: aparece na página Eventos e pode aparecer na página inicial se você marcar como destaque.",
         announcement:
-            "Aviso: aparece na area de avisos da pagina inicial. Ideal para recados, chamadas e informacoes rapidas."
+            "Aviso: aparece na área de avisos da página inicial. Ideal para recados, chamadas e informações rápidas."
     };
 
     const SAVE_HELP = {
-        published: "Se voce publicar, o item aparece no site imediatamente.",
-        draft: "Se voce salvar como rascunho, o item fica guardado no painel e nao aparece no site ainda."
+        published: "Se você publicar, o item aparece no site imediatamente.",
+        draft: "Se você salvar como rascunho, o item fica guardado no painel e não aparece no site ainda."
     };
 
     const DEFAULT_IMAGE_HELP =
-        "Prefira imagens leves para nao ocupar muito espaco no servidor e no carregamento da pagina.";
-    const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
+        "Prefira imagens leves para não ocupar muito espaço no servidor e no carregamento da página.";
+    const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
     const MIN_USERNAME_LENGTH = 3;
     const MIN_PASSWORD_LENGTH = 8;
     const ROLE_LABELS = {
-        owner: "Proprietario",
+        owner: "Proprietário",
         editor: "Editor"
     };
     const SERVER_REQUIRED_MESSAGE =
-        "Servidor indisponivel. Inicie o backend do projeto para usar o painel administrativo.";
+        "Servidor indisponível. Inicie o backend do projeto para usar o painel administrativo.";
 
     const unavailableSection = document.querySelector("[data-admin-unavailable]");
     const setupSection = document.querySelector("[data-admin-setup]");
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function validateCredentials(username, password, confirmPassword = password) {
         if (username.length < MIN_USERNAME_LENGTH) {
-            return `O usuario precisa ter ao menos ${MIN_USERNAME_LENGTH} caracteres.`;
+            return `O usuário precisa ter ao menos ${MIN_USERNAME_LENGTH} caracteres.`;
         }
 
         if (password.length < MIN_PASSWORD_LENGTH) {
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         if (password !== confirmPassword) {
-            return "A confirmacao de senha nao confere.";
+            return "A confirmação de senha não confere.";
         }
 
         return "";
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const preview = document.createElement("img");
         preview.src = window.NepergCMS.getImageUrl(value);
-        preview.alt = "Pre-visualizacao da imagem";
+        preview.alt = "Pré-visualização da imagem";
         imagePreview.appendChild(preview);
     }
 
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (localNote) {
             localNote.textContent = adminAvailable
-                ? "Servidor conectado. As alteracoes ficam persistidas no backend do site."
+                ? "Servidor conectado. As alterações ficam persistidas no backend do site."
                 : SERVER_REQUIRED_MESSAGE;
         }
 
@@ -293,11 +293,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         statsTarget.innerHTML = `
             <article class="metric-card">
                 <strong>${contents.length}</strong>
-                <span>Total de conteudos cadastrados</span>
+                <span>Total de conteúdos cadastrados</span>
             </article>
             <article class="metric-card">
                 <strong>${published.filter((item) => item.type === "news").length}</strong>
-                <span>Noticias publicadas</span>
+                <span>Notícias publicadas</span>
             </article>
             <article class="metric-card">
                 <strong>${published.filter((item) => item.type === "event").length}</strong>
@@ -375,8 +375,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!items.length) {
             listTarget.innerHTML = `
                 <article class="content-card">
-                    <h3>Nenhum conteudo encontrado.</h3>
-                    <p>Ajuste os filtros ou cadastre um novo item no formulario ao lado.</p>
+                    <h3>Nenhum conteúdo encontrado.</h3>
+                    <p>Ajuste os filtros ou cadastre um novo item no formulário ao lado.</p>
                 </article>
             `;
             return;
@@ -403,9 +403,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 </div>
                                 <h3>${escapeHtml(item.title)}</h3>
                             </div>
-                            <div class="inline-actions">
-                                <button class="btn btn-secondary" type="button" data-action="edit" data-id="${escapeAttribute(item.id)}">Editar</button>
-                                <button class="btn btn-secondary" type="button" data-action="delete" data-id="${escapeAttribute(item.id)}">Excluir</button>
+                            <div class="admin-item-actions">
+                                <button class="btn btn-secondary btn-small" type="button" data-edit-item="${escapeAttribute(item.id)}">Editar</button>
+                                <button class="btn btn-danger btn-small" type="button" data-delete-item="${escapeAttribute(item.id)}">Remover</button>
                             </div>
                         </div>
                         <p>${escapeHtml(item.summary || item.body || "")}</p>
@@ -415,7 +415,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         </div>
                         <div class="meta-line">
                             <span><i class="fa-solid fa-user-pen"></i> Atualizado por ${escapeHtml(item.updatedBy || "Sistema")}</span>
-                            <span><i class="fa-solid fa-clock"></i> ${escapeHtml(formatDateTime(item.updatedAt) || "Sem historico")}</span>
+                            <span><i class="fa-solid fa-clock"></i> ${escapeHtml(formatDateTime(item.updatedAt) || "Sem histórico")}</span>
                         </div>
                         ${tags ? `<div class="chip-list">${tags}</div>` : ""}
                     </article>
@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             messagesTarget.innerHTML = `
                 <article class="content-card">
                     <h3>Nenhuma mensagem recebida ainda.</h3>
-                    <p>As mensagens enviadas pelo formulario de contato vao aparecer aqui.</p>
+                    <p>As mensagens enviadas pelo formulário de contato vão aparecer aqui.</p>
                 </article>
             `;
             return;
@@ -495,7 +495,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             <div>
                                 <div class="tag-row">
                                     <span class="tag">${escapeHtml(roleLabel)}</span>
-                                    ${isCurrentUser ? '<span class="tag">Voce</span>' : ""}
+                                    ${isCurrentUser ? '<span class="tag">Você</span>' : ""}
                                 </div>
                                 <h3>${escapeHtml(user.username)}</h3>
                             </div>
@@ -508,7 +508,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             <span><i class="fa-solid fa-calendar-days"></i> Criado em ${escapeHtml(formatDateTime(user.createdAt) || "Sem data")}</span>
                         </div>
                         <div class="meta-line">
-                            <span><i class="fa-solid fa-clock"></i> Ultimo acesso: ${escapeHtml(formatDateTime(user.lastLoginAt) || "Ainda nao entrou")}</span>
+                            <span><i class="fa-solid fa-clock"></i> Último acesso: ${escapeHtml(formatDateTime(user.lastLoginAt) || "Ainda não entrou")}</span>
                         </div>
                     </article>
                 `;
@@ -541,7 +541,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const imageValue = item?.image || "";
         setImageValue(imageValue, {
             manualValue: imageValue.startsWith("data:") ? "" : imageValue,
-            statusMessage: imageValue ? "Imagem carregada para este conteudo." : DEFAULT_IMAGE_HELP
+            statusMessage: imageValue ? "Imagem carregada para este conteúdo." : DEFAULT_IMAGE_HELP
         });
     }
 
@@ -611,7 +611,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (window.NepergCMS.isSetupLocked()) {
             showMessage(
                 setupMessage,
-                "Defina ADMIN_SETUP_TOKEN na hospedagem antes de criar o primeiro acesso em producao."
+                "Defina ADMIN_SETUP_TOKEN na hospedagem antes de criar o primeiro acesso em produção."
             );
             return;
         }
@@ -637,7 +637,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             setupForm.reset();
             await refreshDashboard();
         } catch (error) {
-            showMessage(setupMessage, error.message || "Nao foi possivel criar o primeiro acesso.");
+            showMessage(setupMessage, error.message || "Não foi possível criar o primeiro acesso.");
         }
     });
 
@@ -653,7 +653,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             loginForm.reset();
             await refreshDashboard();
         } catch (error) {
-            showMessage(loginMessage, error.message || "Usuario ou senha invalidos.");
+            showMessage(loginMessage, error.message || "Usuário ou senha inválidos.");
         }
     });
 
@@ -667,7 +667,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         button.addEventListener("click", () => {
             resetForm();
             updateTypeUI(button.dataset.newType || "news");
-            showMessage(formMessage, "Formulario preparado para um novo conteudo.");
+            showMessage(formMessage, "Formulário preparado para um novo conteúdo.");
             contentForm?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
     });
@@ -692,7 +692,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!file.type.startsWith("image/")) {
             setImageValue("", {
                 manualValue: "",
-                statusMessage: "Selecione um arquivo de imagem valido.",
+                statusMessage: "Selecione um arquivo de imagem válido.",
                 isError: true
             });
             return;
@@ -701,17 +701,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (file.size > MAX_IMAGE_SIZE) {
             setImageValue("", {
                 manualValue: "",
-                statusMessage: "A imagem esta muito grande. Use uma imagem com ate 2 MB.",
+                statusMessage: "A imagem é muito pesada (máximo 5 MB). Reduza o tamanho antes de enviar.",
                 isError: true
             });
             return;
         }
 
         const reader = new FileReader();
-        reader.onload = () => {
-            setImageValue(String(reader.result || ""), {
-                manualValue: "",
-                statusMessage: `Imagem carregada: ${file.name}`
+        reader.onload = (event) => {
+            setImageValue(String(event.target?.result || ""), {
+                statusMessage: "Imagem carregada com sucesso. Salve o conteúdo para confirmar."
+            });
+        };
+        reader.onerror = () => {
+            setImageValue("", {
+                statusMessage: "Erro ao ler o arquivo de imagem.",
+                isError: true
             });
         };
         reader.readAsDataURL(file);
@@ -741,7 +746,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     imageRemoveButton?.addEventListener("click", () => {
         setImageValue("", {
             manualValue: "",
-            statusMessage: "Imagem removida. O sistema vai usar o placeholder padrao."
+            statusMessage: "Imagem removida. O sistema vai usar o placeholder padrão."
         });
     });
 
@@ -757,14 +762,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         payload.image = imageInput?.value || "";
 
         if (!payload.title || !payload.summary || !payload.date) {
-            showMessage(formMessage, "Preencha ao menos titulo, resumo e data.");
+            showMessage(formMessage, "Preencha ao menos título, resumo e data.");
             return;
         }
 
         if (payload.ctaUrl && !window.NepergCMS.isAllowedLinkValue(payload.ctaUrl)) {
             showMessage(
                 formMessage,
-                "Use um link seguro: caminho interno, ancora, mailto, tel ou URL https."
+                "Use um link seguro: caminho interno, âncora, mailto, tel ou URL https."
             );
             return;
         }
@@ -780,20 +785,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             await window.NepergCMS.upsertContent(payload);
 
-            let successMessage = "Conteudo salvo com sucesso.";
+            let successMessage = "Conteúdo salvo com sucesso!";
             if (payload.status === "draft") {
-                successMessage = "Conteudo salvo como rascunho.";
+                successMessage = "Conteúdo salvo como rascunho.";
             } else if (editingId) {
-                successMessage = "Conteudo atualizado e publicado.";
+                successMessage = "Conteúdo atualizado e publicado.";
             } else {
-                successMessage = "Conteudo criado e publicado.";
+                successMessage = "Conteúdo criado e publicado.";
             }
 
             resetForm(false);
             showMessage(formMessage, successMessage);
             await refreshDashboard();
         } catch (error) {
-            showMessage(formMessage, error.message || "Nao foi possivel salvar o conteudo.");
+            showMessage(formMessage, error.message || "Não foi possível salvar o conteúdo.");
         }
     });
 
@@ -807,11 +812,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         const validationMessage = password
             ? validateCredentials(username, password)
             : username.length < MIN_USERNAME_LENGTH
-              ? `O usuario precisa ter ao menos ${MIN_USERNAME_LENGTH} caracteres.`
+              ? `O usuário precisa ter ao menos ${MIN_USERNAME_LENGTH} caracteres.`
               : "";
 
         if (!username || !currentProfile?.username) {
-            showMessage(profileMessage, "Sessao invalida. Entre novamente no painel.");
+            showMessage(profileMessage, "Sessão inválida. Entre novamente no painel.");
             return;
         }
 
@@ -828,11 +833,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             showMessage(
                 profileMessage,
-                password ? "Credenciais atualizadas." : "Usuario atualizado. A senha anterior foi mantida."
+                password ? "Credenciais atualizadas." : "Usuário atualizado. A senha anterior foi mantida."
             );
             await refreshDashboard();
         } catch (error) {
-            showMessage(profileMessage, error.message || "Nao foi possivel atualizar o acesso.");
+            showMessage(profileMessage, error.message || "Não foi possível atualizar o acesso.");
         }
     });
 
@@ -862,10 +867,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (userForm.role) {
                 userForm.role.value = "editor";
             }
-            showMessage(userMessage, "Novo acesso criado com sucesso.");
+            showMessage(userMessage, "Acesso criado com sucesso!");
             await refreshDashboard();
         } catch (error) {
-            showMessage(userMessage, error.message || "Nao foi possivel criar o novo acesso.");
+            showMessage(userMessage, error.message || "Não foi possível criar o novo acesso.");
         }
     });
 
@@ -876,11 +881,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         const userId = button.dataset.id || "";
-        const username = button.dataset.username || "este usuario";
+        const username = button.dataset.username || "este usuário";
 
         if (button.dataset.userAction === "delete") {
             const confirmed = window.confirm(
-                `Deseja remover o acesso de "${username}"? Essa pessoa perdera o acesso ao painel.`
+                `Deseja remover o acesso de "${username}"? Essa pessoa perderá o acesso ao painel.`
             );
 
             if (!confirmed) {
@@ -892,36 +897,31 @@ document.addEventListener("DOMContentLoaded", async () => {
                 showMessage(userMessage, "Acesso removido com sucesso.");
                 await refreshDashboard();
             } catch (error) {
-                showMessage(userMessage, error.message || "Nao foi possivel remover o acesso.");
+                showMessage(userMessage, error.message || "Não foi possível remover o acesso.");
             }
         }
     });
 
     listTarget?.addEventListener("click", async (event) => {
-        const button = event.target.closest("[data-action]");
+        const editButton = event.target.closest("[data-edit-item]");
+        const deleteButton = event.target.closest("[data-delete-item]");
 
-        if (!button) {
-            return;
-        }
-
-        const { action, id } = button.dataset;
-
-        if (action === "edit") {
-            const item = window.NepergCMS.getContentById(id);
+        if (editButton) {
+            const item = window.NepergCMS.getContentById(editButton.dataset.editItem);
             fillForm(item);
             showMessage(formMessage, "Editando item selecionado.");
             contentForm?.scrollIntoView({ behavior: "smooth", block: "start" });
             return;
         }
 
-        if (action === "delete") {
+        if (deleteButton) {
+            const id = deleteButton.dataset.deleteItem;
             const item = window.NepergCMS.getContentById(id);
             if (!item) {
                 return;
             }
 
-            const confirmed = window.confirm(`Deseja excluir "${item.title}"?`);
-            if (!confirmed) {
+            if (!confirm(`Tem certeza que deseja remover este conteúdo? Esta ação não pode ser desfeita.`)) {
                 return;
             }
 
@@ -932,7 +932,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
                 await refreshDashboard();
             } catch (error) {
-                showMessage(formMessage, error.message || "Nao foi possivel excluir o conteudo.");
+                showMessage(formMessage, error.message || "Não foi possível excluir o conteúdo.");
             }
         }
     });
@@ -958,11 +958,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     resetContentButton?.addEventListener("click", async () => {
-        const confirmed = window.confirm(
-            "Deseja restaurar o conteudo inicial do site e manter a estrutura pronta para novos cadastros?"
-        );
-
-        if (!confirmed) {
+        if (
+            !confirm(
+                "Deseja resetar o conteúdo para os dados iniciais? Todos os seus posts atuais serão removidos."
+            )
+        ) {
             return;
         }
 
@@ -971,7 +971,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             resetForm();
             await refreshDashboard();
         } catch (error) {
-            showMessage(formMessage, error.message || "Nao foi possivel restaurar o conteudo inicial.");
+            showMessage(formMessage, error.message || "Não foi possível restaurar o conteúdo inicial.");
         }
     });
 

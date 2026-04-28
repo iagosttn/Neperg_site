@@ -12,17 +12,17 @@
             type: "announcement",
             status: "published",
             featured: true,
-            title: "Agenda do laboratorio atualizada",
+            title: "Agenda do laboratório atualizada",
             summary:
-                "O laboratorio passa a concentrar as informacoes de uso, horarios de atendimento e encaminhamento de solicitacoes em um unico fluxo institucional.",
+                "O laboratório passa a concentrar as informações de uso, horários de atendimento e encaminhamento de solicitações em um único fluxo institucional.",
             body:
-                "Os avisos podem ser publicados rapidamente pela area administrativa, facilitando a comunicacao com estudantes, pesquisadores e parceiros externos.",
+                "Os avisos podem ser publicados rapidamente pela área administrativa, facilitando a comunicação com estudantes, pesquisadores e parceiros externos.",
             category: "Institucional",
-            tags: ["laboratorio", "agenda"],
+            tags: ["laboratório", "agenda"],
             date: "2026-04-18",
             location: "Presidente Prudente",
             image: "",
-            ctaLabel: "Falar com o nucleo",
+            ctaLabel: "Falar com o núcleo",
             ctaUrl: "contato.html"
         },
         {
@@ -32,15 +32,15 @@
             featured: true,
             title: "Chamadas e avisos internos ficam centralizados no site",
             summary:
-                "A homepage agora pode destacar avisos prioritarios, novas chamadas e orientacoes de forma visivel para toda a comunidade.",
+                "A homepage agora pode destacar avisos prioritários, novas chamadas e orientações de forma visível para toda a comunidade.",
             body:
-                "Os comunicados reforcam rotinas, editais e orientacoes em uma area facil de localizar para quem acompanha o site.",
+                "Os comunicados reforçam rotinas, editais e orientações em uma área fácil de localizar para quem acompanha o site.",
             category: "Avisos",
-            tags: ["editais", "comunicacao"],
+            tags: ["editais", "comunicação"],
             date: "2026-04-15",
             location: "",
             image: "",
-            ctaLabel: "Ver noticias",
+            ctaLabel: "Ver notícias",
             ctaUrl: "noticias.html"
         },
         {
@@ -48,17 +48,17 @@
             type: "news",
             status: "published",
             featured: true,
-            title: "Seminarios e noticias passam a ter atualizacao dinamica",
+            title: "Seminários e notícias passam a ter atualização dinâmica",
             summary:
-                "O site institucional foi preparado para receber novos destaques sem depender de edicao manual em HTML, com cards criados a partir do painel.",
+                "O site institucional foi preparado para receber novos destaques sem depender de edição manual em HTML, com cards criados a partir do painel.",
             body:
-                "Noticias podem ser cadastradas com titulo, resumo, categoria, imagem, data e link complementar, mantendo o acervo escalavel ao longo do tempo.",
-            category: "Transformacao digital",
-            tags: ["site", "cms", "noticias"],
+                "Notícias podem ser cadastradas com título, resumo, categoria, imagem, data e link complementar, mantendo o acervo escalável ao longo do tempo.",
+            category: "Transformação digital",
+            tags: ["site", "cms", "notícias"],
             date: "2026-04-20",
             location: "NEPERG",
             image: "img/noticias/seminario_internacional.avif",
-            ctaLabel: "Ver noticias",
+            ctaLabel: "Ver notícias",
             ctaUrl: "noticias.html"
         },
         {
@@ -66,12 +66,12 @@
             type: "news",
             status: "published",
             featured: false,
-            title: "Acervo institucional pode crescer por categorias e topicos",
+            title: "Acervo institucional pode crescer por categorias e tópicos",
             summary:
-                "Cada novo item pode ser classificado por categoria e encontrado por busca, deixando a organizacao do conteudo mais simples para a equipe.",
+                "Cada novo item pode ser classificado por categoria e encontrado por busca, deixando a organização do conteúdo mais simples para a equipe.",
             body:
-                "A administracao do conteudo agora permite organizar noticias, eventos e avisos de forma padronizada, com filtros automaticos no site.",
-            category: "Conteudo",
+                "A administração do conteúdo agora permite organizar notícias, eventos e avisos de forma padronizada, com filtros automáticos no site.",
+            category: "Conteúdo",
             tags: ["categorias", "busca"],
             date: "2026-04-16",
             location: "Portal institucional",
@@ -84,13 +84,13 @@
             type: "event",
             status: "published",
             featured: true,
-            title: "Calendario de eventos pode ser ampliado em poucos cliques",
+            title: "Calendário de eventos pode ser ampliado em poucos cliques",
             summary:
-                "O modulo de eventos foi convertido para uma agenda dinamica, pronta para receber novos encontros, seminarios, oficinas e atividades academicas.",
+                "O módulo de eventos foi convertido para uma agenda dinâmica, pronta para receber novos encontros, seminários, oficinas e atividades acadêmicas.",
             body:
-                "Administradores conseguem informar data, local, categoria, descricao e link de inscricao para manter a agenda atualizada continuamente.",
+                "Administradores conseguem informar data, local, categoria, descrição e link de inscrição para manter a agenda atualizada continuamente.",
             category: "Agenda",
-            tags: ["eventos", "seminarios"],
+            tags: ["eventos", "seminários"],
             date: "2026-05-10",
             location: "FCT/UNESP",
             image: "img/noticias/1_sem_inter_da_ergonomia_da_atividade.avif",
@@ -102,17 +102,17 @@
             type: "event",
             status: "published",
             featured: false,
-            title: "Atividades futuras podem ser divulgadas com antecedencia",
+            title: "Atividades futuras podem ser divulgadas com antecedência",
             summary:
-                "Novos eventos entram automaticamente na pagina publica e podem ser encontrados por categoria ou pela pesquisa integrada.",
+                "Novos eventos entram automaticamente na página pública e podem ser encontrados por categoria ou pela pesquisa integrada.",
             body:
-                "Esse fluxo ajuda a divulgar encontros e fortalecer a comunicacao institucional sem depender do time tecnico.",
-            category: "Extensao",
-            tags: ["oficinas", "divulgacao"],
+                "Esse fluxo ajuda a divulgar encontros e fortalecer a comunicação institucional sem depender do time técnico.",
+            category: "Extensão",
+            tags: ["oficinas", "divulgação"],
             date: "2026-06-02",
             location: "Presidente Prudente",
             image: "img/noticias/2_predio_novo unesp.avif",
-            ctaLabel: "Falar com o nucleo",
+            ctaLabel: "Falar com o núcleo",
             ctaUrl: "contato.html"
         }
     ];
@@ -280,8 +280,8 @@
     function getTypeMeta(type) {
         const map = {
             news: {
-                label: "Noticia",
-                plural: "Noticias",
+                label: "Notícia",
+                plural: "Notícias",
                 icon: "fa-newspaper"
             },
             event: {
@@ -400,7 +400,7 @@
             try {
                 payload = JSON.parse(text);
             } catch (error) {
-                throw new Error("Resposta invalida do servidor.");
+                throw new Error("Resposta inválida do servidor.");
             }
         }
 

@@ -513,7 +513,8 @@ function renderHomeAnnouncements() {
                 `
               )
               .join("")
-        : `<article class="content-card"><h3>Nenhum aviso publicado.</h3><p>Publique os destaques institucionais que devem aparecer nesta area.</p></article>`;
+        : `<article class="content-card"><h3>Nenhum aviso publicado.</h3><p>Publique os destaques institucionais que devem aparecer nesta área.</p></article>`;
+}
 }
 
 function renderHomeFeed() {
@@ -536,7 +537,8 @@ function renderHomeFeed() {
 
     target.innerHTML = items.length
         ? items.map((item) => renderFeedCard(item)).join("")
-        : `<article class="content-card"><h3>Nenhum conteudo disponivel.</h3><p>Publique noticias ou eventos para preencher esta area automaticamente.</p></article>`;
+        : `<article class="content-card"><h3>Nenhum conteúdo disponível.</h3><p>Publique notícias ou eventos para preencher esta área automaticamente.</p></article>`;
+}
 }
 
 function setupCmsCollections() {

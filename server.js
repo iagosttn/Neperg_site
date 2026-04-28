@@ -15,8 +15,8 @@ const UPLOAD_DIR = path.join(STORAGE_ROOT, "uploads");
 const DATA_DIR = path.join(ROOT_DIR, "data");
 const SESSION_COOKIE = "neperg_session";
 const SESSION_TTL_MS = 1000 * 60 * 60 * 12;
-const MAX_BODY_SIZE = 6 * 1024 * 1024;
-const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
+const MAX_BODY_SIZE = 10 * 1024 * 1024;
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 const CONTACT_THROTTLE_MS = 1000 * 45;
 const AUTH_WINDOW_MS = 1000 * 60 * 15;
 const MAX_AUTH_ATTEMPTS = 8;
@@ -829,7 +829,7 @@ async function persistImageValue(rawValue, previousValue) {
 
         const buffer = Buffer.from(match[2], "base64");
         if (!buffer.length || buffer.length > MAX_IMAGE_SIZE) {
-            throw new Error("A imagem precisa ter ate 2 MB.");
+            throw new Error("A imagem precisa ter ate 5 MB.");
         }
 
         const filename = `content-${Date.now()}-${crypto.randomBytes(5).toString("hex")}.${extension}`;
@@ -967,35 +967,35 @@ function isSetupLocked(data) {
 
 function assertProductionStorageReady() {
     if (IS_PRODUCTION && !HAS_CUSTOM_STORAGE_DIR) {
-        throw new Error(
-            "Defina CMS_STORAGE_DIR em producao para usar um diretorio persistente antes de publicar o site."
+        console.warn(
+            "AVISO: CMS_STORAGE_DIR nao configurado em producao. Os uploads e dados serao perdidos a cada reinicio do servidor."
         );
     }
 }
 
 function assertTrustedOrigin(req) {
     if (!isTrustedOrigin(req)) {
-        throw new Error("Origem da requisicao nao permitida.");
+        throw new Error("Origem da requisição não permitida.");
     }
 }
 
 function assertAuthenticated(session) {
     if (!session) {
-        throw new Error("Sessao expirada. Entre novamente no painel.");
+        throw new Error("Sessão expirada. Entre novamente no painel.");
     }
 }
 
 function assertOwner(session) {
     assertAuthenticated(session);
     if (session.role !== "owner") {
-        throw new Error("Somente proprietarios podem gerenciar os acessos administrativos.");
+        throw new Error("Somente proprietários podem gerenciar os acessos administrativos.");
     }
 }
 
 function assertCsrf(req, session) {
     const token = normalizeText(req.headers["x-csrf-token"], 200);
     if (!session || !token || token !== session.csrfToken) {
-        throw new Error("Falha de validacao da sessao. Atualize a pagina e tente novamente.");
+        throw new Error("Falha de validação da sessão. Atualize a página e tente novamente.");
     }
 }
 
@@ -1192,12 +1192,12 @@ async function handleApi(req, res, url) {
         const payload = await parseJsonBody(req);
 
         if (hasConfiguredUsers(data)) {
-            throw new Error("O acesso administrativo ja foi configurado.");
+            throw new Error("O acesso administrativo já foi configurado.");
         }
 
         if (isSetupLocked(data)) {
             throw new Error(
-                "Defina ADMIN_SETUP_TOKEN no ambiente antes de criar o primeiro acesso em producao."
+                "Defina ADMIN_SETUP_TOKEN no ambiente para proteger o primeiro acesso."
             );
         }
 
@@ -1207,7 +1207,7 @@ async function handleApi(req, res, url) {
         const setupToken = normalizeText(payload.setupToken, 200);
 
         if (username.length < 3) {
-            throw new Error("O usuario precisa ter ao menos 3 caracteres.");
+            throw new Error("O usuário precisa ter ao menos 3 caracteres.");
         }
 
         if (password.length < 8) {
@@ -1215,12 +1215,12 @@ async function handleApi(req, res, url) {
         }
 
         if (password !== confirmPassword) {
-            throw new Error("A confirmacao de senha nao confere.");
+            throw new Error("A confirmação de senha não confere.");
         }
 
         if (isSetupTokenRequired(data) && setupToken !== ADMIN_SETUP_TOKEN) {
             recordAuthFailure(req, "setup");
-            throw new Error("Chave de configuracao inicial invalida.");
+            throw new Error("Chave de configuração inicial inválida.");
         }
 
         const { passwordHash, passwordSalt } = hashPassword(password);
@@ -1274,7 +1274,7 @@ async function handleApi(req, res, url) {
 
         if (!user || !verifyPassword(password, user)) {
             recordAuthFailure(req, "login");
-            throw new Error("Usuario ou senha invalidos.");
+            throw new Error("Usuário ou senha inválidos.");
         }
 
         await mutateData((current) => {
@@ -1341,7 +1341,7 @@ async function handleApi(req, res, url) {
                 (item) => item.id !== currentUser.id && getUsernameKey(item.username) === getUsernameKey(username)
             );
             if (duplicatedUser) {
-                throw new Error("Ja existe outro acesso com esse usuario.");
+                throw new Error("Já existe outro acesso com esse usuário.");
             }
 
             if (password) {
@@ -1442,7 +1442,7 @@ async function handleApi(req, res, url) {
         }
 
         if (targetUser.role === "owner" && getOwnerCount(data.users || []) <= 1) {
-            throw new Error("Mantenha pelo menos um proprietario ativo no sistema.");
+            throw new Error("Mantenha pelo menos um proprietário ativo no sistema.");
         }
 
         const updated = await mutateData((current) => {
@@ -1561,7 +1561,7 @@ async function handleApi(req, res, url) {
         }
 
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            throw new Error("Informe um e-mail valido.");
+            throw new Error("Informe um e-mail válido.");
         }
 
         if (message.length < 10) {
@@ -1633,9 +1633,9 @@ async function handleRequest(req, res) {
         const message =
             error && typeof error.message === "string" ? error.message : "Erro interno do servidor.";
         const statusCode =
-            /nao encontrada|nao encontrado/i.test(message) ? 404 : /permitid|origem|csrf|sessao/i.test(message)
+            /não encontrada|não encontrado/i.test(message) ? 404 : /permitid|origem|csrf|sessão/i.test(message)
                 ? 403
-                : /inval|valid|preencha|aguarde|crie|usuario|senha|defina|chave|formato|limite|tentativas/i.test(message)
+                : /inval|valid|preencha|aguarde|crie|usuário|senha|defina|chave|formato|limite|tentativas/i.test(message)
                   ? 400
                   : 500;
 
