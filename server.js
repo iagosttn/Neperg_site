@@ -329,11 +329,21 @@ async function ensureRuntimeReady() {
     try {
         await fs.access(DATA_FILE);
     } catch (error) {
-        await writeDataFile(createDefaultData());
+        if (error.code === "ENOENT") {
+            console.log("Arquivo de dados nao encontrado. Criando base inicial...");
+            await writeDataFile(createDefaultData());
+        } else {
+            console.error("Erro ao acessar arquivo de dados:", error);
+            throw error; // Nao sobrescrever se o erro for outro (permissao, etc)
+        }
     }
 }
 
 async function writeDataFile(data) {
+    if (!data || (Array.isArray(data.users) && data.users.length === 0 && cachedData?.users?.length > 0)) {
+        console.error("Tentativa de salvar dados sem usuarios ignorada para evitar corrupcao.");
+        return;
+    }
     const tempPath = `${DATA_FILE}.tmp`;
     await fs.writeFile(tempPath, JSON.stringify(data, null, 2), "utf8");
     await fs.rename(tempPath, DATA_FILE);
@@ -343,10 +353,16 @@ async function loadData() {
     await ensureRuntimeReady();
 
     if (!cachedData) {
-        const raw = await fs.readFile(DATA_FILE, "utf8");
-        const parsed = JSON.parse(raw);
-        cachedData = normalizeData(parsed);
-        console.log(`Dados carregados. Usuarios configurados: ${cachedData.users.length}`);
+        try {
+            const raw = await fs.readFile(DATA_FILE, "utf8");
+            const parsed = JSON.parse(raw);
+            cachedData = normalizeData(parsed);
+            console.log(`Dados carregados. Usuarios configurados: ${cachedData.users.length}`);
+        } catch (error) {
+            console.error("Erro ao ler ou processar arquivo de dados:", error);
+            // Se o arquivo existir mas estiver corrompido, tentamos o normalize nos dados vazios mas SEM sobrescrever o arquivo ainda
+            cachedData = normalizeData({});
+        }
     }
 
     return cachedData;
