@@ -8,6 +8,7 @@ router.get('/contents', cmsController.getContents);
 router.post('/contact', cmsController.submitContact);
 
 // Auth
+router.post('/setup', cmsController.setup);
 router.post('/login', cmsController.login);
 router.post('/logout', cmsController.logout);
 

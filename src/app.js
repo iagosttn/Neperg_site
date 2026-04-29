@@ -21,9 +21,9 @@ app.use((req, res, next) => {
 app.use('/api', apiRoutes);
 app.get('/healthz', (req, res) => res.json({ ok: true }));
 
-// Static file serving - specifically handling the uploads and root
 const ROOT_DIR = path.join(__dirname, '..');
-app.use('/uploads', express.static(path.join(ROOT_DIR, 'uploads')));
+const dataStore = require('./services/dataStore');
+app.use('/uploads', express.static(dataStore.UPLOAD_DIR));
 app.use(express.static(ROOT_DIR));
 
 // Fallback for index.html (SPA-like or just convenience)

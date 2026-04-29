@@ -176,3 +176,51 @@ exports.submitContact = async (req, res) => {
 
     res.status(201).json({ ok: true });
 };
+
+exports.setup = async (req, res) => {
+    const data = await dataStore.readData();
+    if (data.users && data.users.length > 0) {
+        return res.status(400).json({ error: "O acesso administrativo já foi configurado." });
+    }
+
+    const { username, password, confirmPassword, setupToken } = req.body;
+    
+    if (authService.isSetupTokenRequired(data) && setupToken !== authService.ADMIN_SETUP_TOKEN) {
+        return res.status(400).json({ error: "Chave de configuração inicial inválida." });
+    }
+
+    if (!username || username.length < 3) return res.status(400).json({ error: "O usuário precisa ter ao menos 3 caracteres." });
+    if (!password || password.length < 8) return res.status(400).json({ error: "A senha precisa ter ao menos 8 caracteres." });
+    if (password !== confirmPassword) return res.status(400).json({ error: "A confirmação de senha não confere." });
+
+    const { passwordHash, passwordSalt } = authService.hashPassword(password);
+    const ownerUser = dataStore.normalizeStoredUser({
+        username,
+        passwordHash,
+        passwordSalt,
+        role: "owner",
+        createdAt: dataStore.nowIso(),
+        updatedAt: dataStore.nowIso(),
+        lastLoginAt: dataStore.nowIso()
+    });
+
+    await dataStore.mutateData((current) => {
+        current.users = [ownerUser];
+        return current;
+    });
+
+    const nextSession = authService.createSession(ownerUser);
+    res.cookie(authService.SESSION_COOKIE, nextSession.token, {
+        httpOnly: true,
+        maxAge: authService.SESSION_TTL_MS,
+        path: "/",
+        sameSite: "Lax",
+        secure: req.secure || process.env.NODE_ENV === "production"
+    });
+
+    res.status(201).json({
+        ok: true,
+        csrfToken: nextSession.csrfToken,
+        user: { id: ownerUser.id, username: ownerUser.username, role: ownerUser.role }
+    });
+};
