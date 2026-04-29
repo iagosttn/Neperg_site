@@ -1,6 +1,7 @@
 const dataStore = require("../services/dataStore");
 const authService = require("../services/authService");
 const cmsService = require("../services/cmsService");
+const validator = require("../utils/validator");
 const crypto = require("node:crypto");
 
 exports.getStatus = async (req, res) => {
@@ -69,6 +70,14 @@ exports.login = async (req, res) => {
     }
 
     const { username, password } = req.body;
+    const v = validator(req.body)
+        .required("username", "Informe o usuário.")
+        .required("password", "Informe a senha.");
+
+    if (!v.isValid()) {
+        return res.status(400).json({ error: v.getErrorMessage() });
+    }
+
     const data = await dataStore.readData();
     const user = (data.users || []).find(u => u.username.toLowerCase() === String(username || "").toLowerCase());
 
@@ -111,6 +120,16 @@ exports.saveContent = async (req, res) => {
 
     const data = await dataStore.readData();
     const payload = req.body;
+
+    const v = validator(payload)
+        .required("title", "O título é obrigatório.")
+        .required("summary", "O resumo é obrigatório.")
+        .required("type", "O tipo de conteúdo é obrigatório.");
+
+    if (!v.isValid()) {
+        return res.status(400).json({ error: v.getErrorMessage() });
+    }
+
     const existing = data.contents.find(c => c.id === payload.id) || null;
 
     // Normalização local rápida (pode ser movida para serviço se crescer)
@@ -163,7 +182,15 @@ exports.submitContact = async (req, res) => {
     const { name, email, subject, message, website } = req.body;
     if (website) return res.status(202).json({ ok: true }); // Honeypot
 
-    if (!name || !email || !message) return res.status(400).json({ error: "Preencha todos os campos." });
+    const v = validator(req.body)
+        .required("name", "O nome é obrigatório.")
+        .required("email", "O e-mail é obrigatório.")
+        .email("email", "E-mail inválido.")
+        .required("message", "A mensagem não pode estar vazia.");
+
+    if (!v.isValid()) {
+        return res.status(400).json({ error: v.getErrorMessage() });
+    }
 
     await dataStore.mutateData((current) => {
         current.messages.push({
@@ -185,13 +212,22 @@ exports.setup = async (req, res) => {
 
     const { username, password, confirmPassword, setupToken } = req.body;
     
+    const v = validator(req.body)
+        .required("username", "Usuário é obrigatório.")
+        .minLength("username", 3, "O usuário precisa ter ao menos 3 caracteres.")
+        .required("password", "Senha é obrigatória.")
+        .minLength("password", 8, "A senha precisa ter ao menos 8 caracteres.")
+        .required("confirmPassword", "Confirme a senha.");
+
+    if (!v.isValid()) {
+        return res.status(400).json({ error: v.getErrorMessage() });
+    }
+
+    if (password !== confirmPassword) return res.status(400).json({ error: "A confirmação de senha não confere." });
+    
     if (authService.isSetupTokenRequired(data) && setupToken !== authService.ADMIN_SETUP_TOKEN) {
         return res.status(400).json({ error: "Chave de configuração inicial inválida." });
     }
-
-    if (!username || username.length < 3) return res.status(400).json({ error: "O usuário precisa ter ao menos 3 caracteres." });
-    if (!password || password.length < 8) return res.status(400).json({ error: "A senha precisa ter ao menos 8 caracteres." });
-    if (password !== confirmPassword) return res.status(400).json({ error: "A confirmação de senha não confere." });
 
     const { passwordHash, passwordSalt } = authService.hashPassword(password);
     const ownerUser = dataStore.normalizeStoredUser({

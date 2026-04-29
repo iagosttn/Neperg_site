@@ -2,6 +2,7 @@ const crypto = require("node:crypto");
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const dataStore = require("./dataStore");
+const imageService = require("./imageService");
 
 async function safeDeleteUpload(value) {
     const isUploadedPath = (val) => {
@@ -60,22 +61,8 @@ async function persistImageValue(rawValue, previousValue) {
     }
 
     if (/^data:image\//i.test(value)) {
-        const match = value.match(/^data:image\/([a-z0-9+.-]+);base64,(.+)$/i);
-        if (!match) throw new Error("Formato de imagem nao suportado.");
-
-        const extensionMap = { avif: "avif", gif: "gif", jpeg: "jpg", jpg: "jpg", png: "png", webp: "webp" };
-        const extension = extensionMap[match[1].toLowerCase()];
-        if (!extension) throw new Error("Formato de imagem nao suportado.");
-
-        const buffer = Buffer.from(match[2], "base64");
-        const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
-        if (!buffer.length || buffer.length > MAX_IMAGE_SIZE) {
-            throw new Error("A imagem precisa ter ate 5 MB.");
-        }
-
-        const filename = `content-${Date.now()}-${crypto.randomBytes(5).toString("hex")}.${extension}`;
+        const filename = await imageService.processCmsImage(value, dataStore.UPLOAD_DIR);
         const relativePath = `uploads/${filename}`;
-        await fs.writeFile(path.join(dataStore.UPLOAD_DIR, filename), buffer);
 
         if (previousValue && previousValue !== relativePath) {
             await safeDeleteUpload(previousValue);
