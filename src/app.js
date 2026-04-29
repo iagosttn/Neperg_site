@@ -2,8 +2,10 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('node:path');
 const apiRoutes = require('./routes/api');
+const connectDB = require('./services/db');
 
 const app = express();
+connectDB();
 
 app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
@@ -23,7 +25,6 @@ app.get('/healthz', (req, res) => res.json({ ok: true }));
 
 const ROOT_DIR = path.join(__dirname, '..');
 const dataStore = require('./services/dataStore');
-app.use('/uploads', express.static(dataStore.UPLOAD_DIR));
 app.use(express.static(ROOT_DIR));
 
 // Fallback for index.html (SPA-like or just convenience)

@@ -1,65 +1,69 @@
-const sharp = require('sharp');
-const path = require('path');
-const fs = require('fs').promises;
+const cloudinary = require('cloudinary').v2;
 
 /**
- * Service to handle image processing and optimization
+ * Service to handle image processing and optimization using Cloudinary
  */
+
+// Configuration is automatically handled if CLOUDINARY_URL is present in env
+// Otherwise, user should set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
+if (process.env.CLOUDINARY_URL) {
+    cloudinary.config({ secure: true });
+} else {
+    cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+        secure: true
+    });
+}
+
 class ImageService {
     /**
-     * Optimizes an image and saves it as WebP
-     * @param {string} inputPath Path to original image
-     * @param {string} outputDir Directory to save optimized image
-     * @returns {Promise<string>} Filename of optimized image
-     */
-    async optimizeToWebP(inputPath, outputDir) {
-        const filename = path.basename(inputPath, path.extname(inputPath)) + '.webp';
-        const outputPath = path.join(outputDir, filename);
-
-        await sharp(inputPath)
-            .resize(1200, null, { // Max width 1200px, keep aspect ratio
-                withoutEnlargement: true,
-                fit: 'inside'
-            })
-            .webp({ quality: 80 }) // 80% quality is a good balance
-            .toFile(outputPath);
-
-        return filename;
-    }
-
-    /**
-     * Process base64 image data from the CMS
+     * Process base64 image data and upload to Cloudinary
      * @param {string} base64Data Data URI
-     * @param {string} outputDir Directory to save
-     * @returns {Promise<string>} Final filename
+     * @returns {Promise<string>} Cloudinary URL
      */
-    async processCmsImage(base64Data, outputDir) {
+    async processCmsImage(base64Data) {
         if (!base64Data || !base64Data.startsWith('data:image/')) {
             return base64Data; // Return as is if not a data URI
         }
 
-        // Create temp file from base64
-        const matches = base64Data.match(/^data:image\/([A-Za-z-+/]+);base64,(.+)$/);
-        if (!matches) return base64Data;
+        try {
+            const result = await cloudinary.uploader.upload(base64Data, {
+                folder: 'neperg_cms',
+                resource_type: 'image',
+                // Transformation for optimization
+                transformation: [
+                    { width: 1200, crop: "limit" },
+                    { quality: "auto" },
+                    { fetch_format: "webp" }
+                ]
+            });
+            
+            return result.secure_url;
+        } catch (error) {
+            console.error('Cloudinary upload failed:', error);
+            throw new Error('Falha ao processar imagem na nuvem.');
+        }
+    }
 
-        const buffer = Buffer.from(matches[2], 'base64');
-        const tempName = `temp-${Date.now()}.bin`;
-        const tempPath = path.join(outputDir, tempName);
-
-        await fs.writeFile(tempPath, buffer);
+    /**
+     * Delete image from Cloudinary if it's a Cloudinary URL
+     * @param {string} imageUrl 
+     */
+    async safeDeleteUpload(imageUrl) {
+        if (!imageUrl || !imageUrl.includes('cloudinary.com')) return;
 
         try {
-            const webpFilename = await this.optimizeToWebP(tempPath, outputDir);
-            await fs.unlink(tempPath); // Cleanup temp
-            return webpFilename;
+            // Extract public_id from URL
+            const parts = imageUrl.split('/');
+            const filename = parts[parts.length - 1].split('.')[0];
+            const folder = parts[parts.length - 2];
+            const publicId = `${folder}/${filename}`;
+
+            await cloudinary.uploader.destroy(publicId);
         } catch (error) {
-            console.error('Image optimization failed, falling back to original:', error);
-            // Fallback: save original if sharp fails
-            const ext = matches[1].split('+')[0] || 'jpg';
-            const fallbackName = `img-${Date.now()}.${ext}`;
-            await fs.writeFile(path.join(outputDir, fallbackName), buffer);
-            await fs.unlink(tempPath);
-            return fallbackName;
+            console.warn('Could not delete image from Cloudinary:', error);
         }
     }
 }

@@ -1,32 +1,14 @@
 const crypto = require("node:crypto");
-const fs = require("node:fs/promises");
-const path = require("node:path");
 const dataStore = require("./dataStore");
 const imageService = require("./imageService");
 
+/**
+ * Service to handle CMS business logic (Cloud version)
+ */
+
 async function safeDeleteUpload(value) {
-    const isUploadedPath = (val) => {
-        const normalized = dataStore.normalizeText(val, 500);
-        return normalized.startsWith("uploads/") || normalized.startsWith("/uploads/");
-    };
-
-    if (!isUploadedPath(value)) {
-        return;
-    }
-
-    try {
-        const relative = dataStore.normalizeText(value).replace(/^\/+/, "");
-        const target = path.normalize(path.join(dataStore.STORAGE_ROOT, relative));
-
-        if (!target.startsWith(path.normalize(dataStore.UPLOAD_DIR))) {
-            throw new Error("Caminho de upload invalido.");
-        }
-        await fs.unlink(target);
-    } catch (error) {
-        if (error.code !== "ENOENT") {
-            throw error;
-        }
-    }
+    // Delegates deletion to imageService which handles Cloudinary
+    await imageService.safeDeleteUpload(value);
 }
 
 async function persistImageValue(rawValue, previousValue) {
@@ -40,8 +22,13 @@ async function persistImageValue(rawValue, previousValue) {
             return /^data:image\/(?:avif|gif|jpeg|jpg|png|webp);base64,[a-z0-9+/=]+$/i.test(rawValue);
         }
         if (/^(javascript:|vbscript:)/i.test(rawValue)) return false;
+        
+        // Allow Cloudinary URLs and relative site paths
+        if (rawValue.includes('cloudinary.com')) return true;
+        
         const isRelativeSitePath = (v) => Boolean(v) && !/^[a-z][a-z0-9+.-]*:/i.test(v) && !v.startsWith("//");
         if (isRelativeSitePath(rawValue)) return true;
+        
         try {
             const url = new URL(rawValue);
             const isLoopbackHost = (hostname) => ["localhost", "127.0.0.1", "[::1]", "::1"].includes(hostname);
@@ -57,25 +44,21 @@ async function persistImageValue(rawValue, previousValue) {
     }
 
     if (!isAllowedImageValue(value)) {
-        throw new Error("A imagem precisa ser interna, https ou um arquivo enviado pelo painel.");
+        throw new Error("A imagem precisa ser um link seguro ou um arquivo enviado pelo painel.");
     }
 
+    // If it's a data URI, upload to Cloudinary
     if (/^data:image\//i.test(value)) {
-        const filename = await imageService.processCmsImage(value, dataStore.UPLOAD_DIR);
-        const relativePath = `uploads/${filename}`;
-
-        if (previousValue && previousValue !== relativePath) {
+        const cloudUrl = await imageService.processCmsImage(value);
+        
+        if (previousValue && previousValue !== cloudUrl) {
             await safeDeleteUpload(previousValue);
         }
-        return relativePath;
+        return cloudUrl;
     }
 
-    const isUploadedPath = (val) => {
-        const normalized = dataStore.normalizeText(val, 500);
-        return normalized.startsWith("uploads/") || normalized.startsWith("/uploads/");
-    };
-
-    if (previousValue && previousValue !== value && isUploadedPath(previousValue)) {
+    // Cleanup old Cloudinary image if URL changed
+    if (previousValue && previousValue !== value && previousValue.includes('cloudinary.com')) {
         await safeDeleteUpload(previousValue);
     }
 
