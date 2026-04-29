@@ -515,7 +515,6 @@ function renderHomeAnnouncements() {
               .join("")
         : `<article class="content-card"><h3>Nenhum aviso publicado.</h3><p>Publique os destaques institucionais que devem aparecer nesta área.</p></article>`;
 }
-}
 
 function renderHomeFeed() {
     const target = document.querySelector("[data-cms-home-feed]");

@@ -1058,6 +1058,7 @@ function sendJson(res, statusCode, payload, extraHeaders = {}) {
 }
 
 function sendError(res, statusCode, message) {
+    console.error(`Resposta de erro [${statusCode}]: ${message}`);
     sendJson(res, statusCode, { error: message });
 }
 
@@ -1641,6 +1642,7 @@ async function handleRequest(req, res) {
 
         await sendStaticFile(res, filePath);
     } catch (error) {
+        console.error(`Erro fatal no servidor [${req.method} ${req.url}]:`, error);
         const message =
             error && typeof error.message === "string" ? error.message : "Erro interno do servidor.";
         const statusCode =
