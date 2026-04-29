@@ -63,7 +63,7 @@
                         <h2>Criar acesso administrativo</h2>
                         <p>Defina o primeiro usuário e senha do sistema. Depois disso, o acesso passa a ser validado pelo backend do projeto.</p>
                     </div>
-                    <form class="form-grid" data-admin-setup-form>
+                    <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-admin-setup-form>
                         <label>
                             <span class="mini-label">Usuário</span>
                             <input class="field" type="text" name="username" autocomplete="username" minlength="3" required>
@@ -96,7 +96,7 @@
                         <h2>Entrar no painel</h2>
                         <p>Entre com as credenciais administrativas salvas no servidor para editar o conteúdo publicado pelo site.</p>
                     </div>
-                    <form class="form-grid" data-admin-login-form>
+                    <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-admin-login-form>
                         <label>
                             <span class="mini-label">Usuário</span>
                             <input class="field" type="text" name="username" autocomplete="username" required>
@@ -180,7 +180,7 @@
                             <h2>Criar ou editar conteúdo</h2>
                             <p>O formulário abaixo foi organizado por etapas para ficar mais claro onde cada informação vai aparecer no site.</p>
                         </div>
-                        <form class="form-grid" data-content-form>
+                        <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-content-form>
                             <input type="hidden" name="id">
                             <input type="hidden" name="type" value="news">
                             <input type="hidden" name="status" value="published">
@@ -330,7 +330,7 @@
                                 <h2>Atualizar meu login</h2>
                                 <p>Cada pessoa deve usar o próprio usuário. Aqui você altera apenas o seu acesso atual.</p>
                             </div>
-                            <form class="form-grid" data-profile-form>
+                            <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-profile-form>
                                 <label>
                                     <span class="mini-label">Meu usuário</span>
                                     <input class="field" type="text" name="username" autocomplete="username" minlength="3" required>
@@ -350,7 +350,7 @@
                                 <h2>Gerenciar acessos</h2>
                                 <p>Somente proprietários podem criar ou remover logins da equipe. O ideal é cada professor usar a própria conta.</p>
                             </div>
-                            <form class="form-grid" data-user-form>
+                            <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-user-form>
                                 <label>
                                     <span class="mini-label">Novo usuário</span>
                                     <input class="field" type="text" name="username" autocomplete="off" minlength="3" required>
