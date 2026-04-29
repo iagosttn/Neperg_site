@@ -6,3 +6,4 @@ storage/
 data/runtime/
 uploads/*
 !uploads/.gitkeep
+node_modules/  
