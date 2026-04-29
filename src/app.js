@@ -21,9 +21,19 @@ app.use((req, res, next) => {
 app.use('/api', apiRoutes);
 app.get('/healthz', (req, res) => res.json({ ok: true }));
 
-// Static file serving
-app.use('/uploads', express.static(path.join(__dirname, '..', 'storage', 'uploads')));
-app.use(express.static(path.join(__dirname, '..')));
+// Static file serving - specifically handling the uploads and root
+const ROOT_DIR = path.join(__dirname, '..');
+app.use('/uploads', express.static(path.join(ROOT_DIR, 'uploads')));
+app.use(express.static(ROOT_DIR));
+
+// Fallback for index.html (SPA-like or just convenience)
+app.get('*', (req, res, next) => {
+    if (req.accepts('html')) {
+        res.sendFile(path.join(ROOT_DIR, 'index.html'));
+    } else {
+        next();
+    }
+});
 
 // Error handling fallback
 app.use((err, req, res, next) => {
