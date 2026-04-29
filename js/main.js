@@ -538,7 +538,6 @@ function renderHomeFeed() {
         ? items.map((item) => renderFeedCard(item)).join("")
         : `<article class="content-card"><h3>Nenhum conteúdo disponível.</h3><p>Publique notícias ou eventos para preencher esta área automaticamente.</p></article>`;
 }
-}
 
 function setupCmsCollections() {
     document.querySelectorAll("[data-cms-collection]").forEach((scope) => {
