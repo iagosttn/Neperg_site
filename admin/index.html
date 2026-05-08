@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Painel administrativo do NEPERG para gerenciamento de noticias, eventos e avisos.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; script-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin | NEPERG</title>
+    <link rel="icon" href="../img/logo/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-shell">
+            <a class="brand" href="../index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Nucleo de Pesquisa e Extensao em Ergonomia</span></span></a>
+            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegacao"><span></span></button>
+            <nav class="site-nav" id="site-nav" data-menu>
+                <a href="../index.html">Inicio</a>
+                <a href="../sobre.html">Sobre</a>
+                <a href="../noticias.html">Noticias</a>
+                <a href="../eventos/index.html">Eventos</a>
+                <a class="active" href="index.html">Admin</a>
+                <a class="nav-cta" href="../index.html">Ver site</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-shell">
+                    <span class="eyebrow">Gestao do site</span>
+                    <h1>Painel administrativo com autenticação e persistência no servidor.</h1>
+                    <p>Gerencie notícias, eventos e avisos em um fluxo único, com dados salvos no backend do projeto e mensagens do formulário de contato centralizadas no mesmo painel.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section hidden" data-admin-unavailable>
+            <div class="container login-wrap">
+                <article class="login-card">
+                    <div class="section-heading">
+                        <span class="eyebrow">Servidor necessário</span>
+                        <h2>O backend do site ainda não está respondendo</h2>
+                        <p>Este painel depende do servidor Node do projeto para autenticar usuários, salvar conteúdos no backend e listar as mensagens recebidas pelo formulário de contato.</p>
+                    </div>
+                    <p class="form-note">Inicie o projeto com <code>npm start</code> antes de usar a área administrativa.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section hidden" data-admin-setup>
+            <div class="container login-wrap">
+                <article class="login-card">
+                    <div class="section-heading">
+                        <span class="eyebrow">Primeiro acesso</span>
+                        <h2>Criar acesso administrativo</h2>
+                        <p>Defina o primeiro usuário e senha do sistema. Depois disso, o acesso passa a ser validado pelo backend do projeto.</p>
+                    </div>
+                    <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-admin-setup-form>
+                        <label>
+                            <span class="mini-label">Usuário</span>
+                            <input class="field" type="text" name="username" autocomplete="username" minlength="3" required>
+                        </label>
+                        <label class="hidden" data-setup-token-row>
+                            <span class="mini-label">Chave de configuração</span>
+                            <input class="field" type="password" name="setupToken" autocomplete="one-time-code">
+                        </label>
+                        <label>
+                            <span class="mini-label">Senha</span>
+                            <input class="field" type="password" name="password" autocomplete="new-password" minlength="8" required>
+                        </label>
+                        <label>
+                            <span class="mini-label">Confirmar senha</span>
+                            <input class="field" type="password" name="confirmPassword" autocomplete="new-password" minlength="8" required>
+                        </label>
+                        <button class="btn btn-primary" type="submit">Criar acesso administrativo</button>
+                    </form>
+                    <p class="form-note hidden" data-setup-lock-note>Em produção, configure <code>ADMIN_SETUP_TOKEN</code> na hospedagem antes de liberar o primeiro acesso administrativo.</p>
+                    <p class="form-message hidden" data-setup-message></p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" data-admin-login>
+            <div class="container login-wrap">
+                <article class="login-card">
+                    <div class="section-heading">
+                        <span class="eyebrow">Acesso restrito</span>
+                        <h2>Entrar no painel</h2>
+                        <p>Entre com as credenciais administrativas salvas no servidor para editar o conteúdo publicado pelo site.</p>
+                    </div>
+                    <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-admin-login-form>
+                        <label>
+                            <span class="mini-label">Usuário</span>
+                            <input class="field" type="text" name="username" autocomplete="username" required>
+                        </label>
+                        <label>
+                            <span class="mini-label">Senha</span>
+                            <input class="field" type="password" name="password" autocomplete="current-password" required>
+                        </label>
+                        <button class="btn btn-primary" type="submit">Entrar</button>
+                    </form>
+                    <p class="form-note" data-admin-local-note>Servidor conectado. As alterações ficam persistidas no backend do site.</p>
+                    <p class="form-message hidden" data-login-message></p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section hidden" data-admin-app>
+            <div class="container">
+                <div class="dashboard-header">
+                    <div class="section-heading">
+                        <span class="eyebrow">Painel ativo</span>
+                        <h2>Conteúdo administrado por <span data-admin-user>admin</span></h2>
+                        <p>As alterações salvas aqui atualizam o acervo dinâmico do site, com autenticação persistida no servidor e sem depender do navegador local.</p>
+                    </div>
+                    <div class="btn-row">
+                        <a class="btn btn-secondary" href="/api/export" download>Baixar backup JSON</a>
+                        <button class="btn btn-secondary" type="button" data-reset-content>Restaurar conteúdo inicial</button>
+                        <button class="btn btn-accent" type="button" data-admin-logout>Encerrar sessão</button>
+                    </div>
+                </div>
+
+                <div class="admin-info-grid">
+                    <article class="content-card admin-highlight-card">
+                        <div class="card-top">
+                            <span class="icon-badge"><i class="fa-solid fa-floppy-disk"></i></span>
+                            <div>
+                                <h3>As atualizações ficam salvas ao fechar o site?</h3>
+                                <p>Sim. Os dados agora ficam persistidos no backend do projeto, então continuam disponíveis mesmo ao trocar de navegador ou encerrar a sessão.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="content-card admin-highlight-card">
+                        <div class="card-top">
+                            <span class="icon-badge"><i class="fa-solid fa-database"></i></span>
+                            <div>
+                                <h3>Backend do projeto</h3>
+                                <p>O painel agora grava conteúdo, credenciais e mensagens de contato no servidor do site, criando uma base real de administração para a equipe.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="metrics-grid" data-admin-stats></div>
+
+                <article class="content-card admin-shortcuts">
+                    <div class="section-heading">
+                        <span class="eyebrow">Atalhos</span>
+                        <h2>Comece pelo tipo de conteudo</h2>
+                        <p>Use um dos botoes abaixo para abrir o formulario ja preparado para o item que voce quer cadastrar.</p>
+                    </div>
+                    <div class="choice-grid">
+                        <button class="choice-button" type="button" data-new-type="news">
+                            <strong>Nova notícia</strong>
+                            <span>Vai para a página Notícias e pode aparecer na Home.</span>
+                        </button>
+                        <button class="choice-button" type="button" data-new-type="event">
+                            <strong>Novo evento</strong>
+                            <span>Vai para a página Eventos e pode aparecer na Home.</span>
+                        </button>
+                        <button class="choice-button" type="button" data-new-type="announcement">
+                            <strong>Novo aviso</strong>
+                            <span>Vai para a área de avisos da página inicial.</span>
+                        </button>
+                    </div>
+                </article>
+
+                <div class="admin-shell">
+                    <article class="content-card">
+                        <div class="section-heading">
+                            <span class="eyebrow">Cadastro</span>
+                            <h2>Criar ou editar conteúdo</h2>
+                            <p>O formulário abaixo foi organizado por etapas para ficar mais claro onde cada informação vai aparecer no site.</p>
+                        </div>
+                        <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-content-form>
+                            <input type="hidden" name="id">
+                            <input type="hidden" name="type" value="news">
+                            <input type="hidden" name="status" value="published">
+                            <input type="hidden" name="image">
+
+                            <section class="form-block">
+                                <div class="form-block-head">
+                                    <span class="step-badge">1</span>
+                                    <div>
+                                        <h3>Escolha o tipo</h3>
+                                        <p>Selecione o que você quer cadastrar para o sistema saber onde esse conteúdo vai aparecer.</p>
+                                    </div>
+                                </div>
+                                <div class="choice-grid" data-type-picker>
+                                    <button class="choice-button active" type="button" data-type-choice="news">
+                                        <strong>Notícia</strong>
+                                        <span>Página Notícias e possível destaque na Home.</span>
+                                    </button>
+                                    <button class="choice-button" type="button" data-type-choice="event">
+                                        <strong>Evento</strong>
+                                        <span>Página Eventos e possível destaque na Home.</span>
+                                    </button>
+                                    <button class="choice-button" type="button" data-type-choice="announcement">
+                                        <strong>Aviso</strong>
+                                        <span>Área de avisos da página inicial.</span>
+                                    </button>
+                                </div>
+                                <p class="field-help destination-note" data-content-destination></p>
+                            </section>
+
+                            <section class="form-block">
+                                <div class="form-block-head">
+                                    <span class="step-badge">2</span>
+                                    <div>
+                                        <h3>Informações principais</h3>
+                                        <p>Esses campos formam a base do card e da página pública.</p>
+                                    </div>
+                                </div>
+                                <div class="form-grid">
+                                    <label>
+                                        <span class="mini-label">Título</span>
+                                        <input class="field" type="text" name="title" placeholder="Ex.: Seminário internacional de ergonomia" required>
+                                        <span class="field-help">Esse é o título principal que aparece para o visitante.</span>
+                                    </label>
+                                    <div class="form-split">
+                                        <label>
+                                            <span class="mini-label">Categoria ou tópico</span>
+                                            <input class="field" type="text" name="category" placeholder="Ex.: Institucional, Pesquisa, Extensão">
+                                            <span class="field-help">A categoria ajuda na organização e nos filtros.</span>
+                                        </label>
+                                        <label>
+                                            <span class="mini-label">Data</span>
+                                            <input class="field" type="date" name="date" required>
+                                            <span class="field-help">Use a data da notícia, do evento ou do aviso.</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-split">
+                                        <label>
+                                            <span class="mini-label">Local</span>
+                                            <input class="field" type="text" name="location" placeholder="Ex.: FCT/UNESP - Presidente Prudente">
+                                            <span class="field-help">Opcional. Ideal para eventos e comunicados presenciais.</span>
+                                        </label>
+                                        <label>
+                                            <span class="mini-label">Tags</span>
+                                            <input class="field" type="text" name="tags" placeholder="Separe por vírgula">
+                                            <span class="field-help">Ex.: ergonomia, pesquisa, oficina</span>
+                                        </label>
+                                    </div>
+                                    <label>
+                                        <span class="mini-label">Resumo curto</span>
+                                        <textarea class="field" name="summary" placeholder="Texto curto para aparecer no card do site" required></textarea>
+                                        <span class="field-help">Esse texto aparece primeiro no site. Tente escrever de forma curta e clara.</span>
+                                    </label>
+                                    <label>
+                                        <span class="mini-label">Descrição completa</span>
+                                        <textarea class="field" name="body" placeholder="Texto mais detalhado para complementar o conteúdo"></textarea>
+                                        <span class="field-help">Campo opcional para detalhes extras, contexto e explicações.</span>
+                                    </label>
+                                </div>
+                            </section>
+
+                            <section class="form-block">
+                                <div class="form-block-head">
+                                    <span class="step-badge">3</span>
+                                    <div>
+                                        <h3>Imagem e botão</h3>
+                                        <p>Selecione uma imagem do computador ou informe um link/caminho manual.</p>
+                                    </div>
+                                </div>
+                                <div class="image-uploader">
+                                    <div class="image-preview" data-image-preview>
+                                        <span class="image-placeholder">Nenhuma imagem selecionada.</span>
+                                    </div>
+                                    <input class="hidden-file-input" type="file" accept="image/*" data-image-upload>
+                                    <div class="btn-row">
+                                        <button class="btn btn-secondary" type="button" data-image-pick>Selecionar imagem do computador</button>
+                                        <button class="btn btn-secondary" type="button" data-image-remove>Remover imagem</button>
+                                    </div>
+                                    <label>
+                                        <span class="mini-label">Link ou caminho da imagem</span>
+                                        <input class="field" type="text" data-image-manual placeholder="Ex.: img/noticias/foto.jpg ou https://site.com/imagem.jpg">
+                                        <span class="field-help">Se preferir, você pode colar um caminho manual. Se enviar do computador, ela será salva no backend do site.</span>
+                                    </label>
+                                    <p class="field-help" data-image-status>Prefira imagens leves para não ocupar muito espaço no navegador.</p>
+                                </div>
+                                <div class="form-split">
+                                    <label>
+                                        <span class="mini-label">Texto do botão</span>
+                                        <input class="field" type="text" name="ctaLabel" placeholder="Ex.: Saiba mais, Inscreva-se, Ver detalhes">
+                                    </label>
+                                    <label>
+                                        <span class="mini-label">Link do botao</span>
+                                        <input class="field" type="text" name="ctaUrl" placeholder="Ex.: contato.html ou https://...">
+                                    </label>
+                                </div>
+                            </section>
+
+                            <section class="form-block">
+                                <div class="form-block-head">
+                                    <span class="step-badge">4</span>
+                                    <div>
+                                        <h3>Publicação</h3>
+                                        <p>Escolha se o conteúdo deve entrar no ar agora ou ficar guardado como rascunho.</p>
+                                    </div>
+                                </div>
+                                <label class="checkbox-line">
+                                    <input type="checkbox" name="featured">
+                                    <span>Destacar este conteúdo na página inicial</span>
+                                </label>
+                                <p class="field-help">Use destaque para os itens mais importantes que devem aparecer na Home.</p>
+                            </section>
+
+                            <div class="save-actions">
+                                <button class="btn btn-primary" type="submit" data-save-mode="published">Salvar e publicar agora</button>
+                                <button class="btn btn-secondary" type="submit" data-save-mode="draft">Salvar como rascunho</button>
+                                <button class="btn btn-secondary" type="button" data-reset-form>Limpar formulário</button>
+                            </div>
+                            <p class="field-help" data-save-hint>Se você publicar, o item aparece no site imediatamente.</p>
+                            <p class="form-message hidden" data-form-message></p>
+                        </form>
+                    </article>
+
+                    <div class="admin-side">
+                        <article class="content-card">
+                            <div class="section-heading">
+                                <span class="eyebrow">Meu acesso</span>
+                                <h2>Atualizar meu login</h2>
+                                <p>Cada pessoa deve usar o próprio usuário. Aqui você altera apenas o seu acesso atual.</p>
+                            </div>
+                            <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-profile-form>
+                                <label>
+                                    <span class="mini-label">Meu usuário</span>
+                                    <input class="field" type="text" name="username" autocomplete="username" minlength="3" required>
+                                </label>
+                                <label>
+                                    <span class="mini-label">Nova senha</span>
+                                    <input class="field" type="password" name="password" autocomplete="new-password" minlength="8">
+                                </label>
+                                <button class="btn btn-secondary" type="submit">Salvar credenciais</button>
+                                <p class="form-message hidden" data-profile-message></p>
+                            </form>
+                        </article>
+
+                        <article class="content-card hidden" data-user-management>
+                            <div class="section-heading">
+                                <span class="eyebrow">Equipe admin</span>
+                                <h2>Gerenciar acessos</h2>
+                                <p>Somente proprietários podem criar ou remover logins da equipe. O ideal é cada professor usar a própria conta.</p>
+                            </div>
+                            <form class="form-grid" method="POST" onsubmit="event.preventDefault();" data-user-form>
+                                <label>
+                                    <span class="mini-label">Novo usuário</span>
+                                    <input class="field" type="text" name="username" autocomplete="off" minlength="3" required>
+                                </label>
+                                <div class="form-split">
+                                    <label>
+                                        <span class="mini-label">Senha inicial</span>
+                                        <input class="field" type="password" name="password" autocomplete="new-password" minlength="8" required>
+                                    </label>
+                                    <label>
+                                        <span class="mini-label">Confirmar senha</span>
+                                        <input class="field" type="password" name="confirmPassword" autocomplete="new-password" minlength="8" required>
+                                    </label>
+                                </div>
+                                <label>
+                                    <span class="mini-label">Nível de acesso</span>
+                                    <select class="select-field" name="role">
+                                        <option value="editor">Editor</option>
+                                        <option value="owner">Proprietário</option>
+                                    </select>
+                                    <span class="field-help">Editor edita conteúdo. Proprietário também gerencia os acessos.</span>
+                                </label>
+                                <button class="btn btn-secondary" type="submit">Criar acesso</button>
+                                <p class="form-message hidden" data-user-message></p>
+                            </form>
+                            <div class="admin-list" data-admin-users></div>
+                        </article>
+
+                        <article class="content-card">
+                            <div class="section-heading">
+                                <span class="eyebrow">Filtro rápido</span>
+                                <h2>Conteúdos cadastrados</h2>
+                                <p>Busque por termo, tipo, status ou categoria para localizar rapidamente o que precisa editar.</p>
+                            </div>
+                            <div class="form-grid">
+                                <label>
+                                    <span class="mini-label">Buscar</span>
+                                    <input class="search-input" type="search" placeholder="Buscar por título, resumo ou tag" data-admin-search>
+                                </label>
+                                <div class="form-split">
+                                    <label>
+                                        <span class="mini-label">Tipo</span>
+                                        <select class="select-field" data-admin-type-filter>
+                                            <option value="">Todos os tipos</option>
+                                            <option value="news">Notícias</option>
+                                            <option value="event">Eventos</option>
+                                            <option value="announcement">Avisos</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <span class="mini-label">Status</span>
+                                        <select class="select-field" data-admin-status-filter>
+                                            <option value="">Todos os status</option>
+                                            <option value="published">Publicados</option>
+                                            <option value="draft">Rascunhos</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <label>
+                                    <span class="mini-label">Categoria</span>
+                                    <select class="select-field" data-admin-category-filter>
+                                        <option value="">Todas as categorias</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </article>
+
+                        <article class="content-card">
+                            <div class="section-heading">
+                                <span class="eyebrow">Contato</span>
+                                <h2>Mensagens recebidas</h2>
+                                <p>Os envios feitos na página de contato aparecem aqui para acompanhamento da equipe.</p>
+                            </div>
+                        </article>
+                        <div class="admin-list" data-admin-messages></div>
+
+                        <div class="admin-list" data-admin-list></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <section><h3>Painel do site</h3><p>Área administrativa conectada ao backend do projeto para gerenciar conteúdo e mensagens institucionais.</p></section>
+                <section><h3>Acesso</h3><ul class="footer-links"><li><a href="../index.html">Voltar ao site</a></li><li><a href="../noticias.html">Notícias</a></li><li><a href="../eventos/index.html">Eventos</a></li></ul></section>
+                <section><h3>Importante</h3><p>Para manter a persistência, publique o projeto em um ambiente Node com armazenamento local do backend preservado.</p></section>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Painel administrativo do site institucional.</p></div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+    <script src="../js/cms-core.js?v=20260428-3"></script>
+    <script src="../js/admin.js?v=20260428-3"></script>
+    <script src="../js/main.js?v=20260428-3"></script>
+</body>
+</html>
+

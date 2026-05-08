@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Acervo de publicacoes do NEPERG.">
-    <title>Publicacoes | NEPERG</title>
+    <meta name="description" content="Acervo de publicações do NEPERG.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; script-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Publicações | NEPERG</title>
+    <link rel="icon" href="../img/logo/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
@@ -14,16 +17,16 @@
 <body>
     <header class="site-header">
         <div class="container header-shell">
-            <a class="brand" href="../index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Nucleo de Pesquisa e Extensao em Ergonomia</span></span></a>
-            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegacao"><span></span></button>
+            <a class="brand" href="../index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Núcleo de Pesquisa e Extensão em Ergonomia</span></span></a>
+            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegação"><span></span></button>
             <nav class="site-nav" id="site-nav" data-menu>
-                <a href="../index.html">Inicio</a>
+                <a href="../index.html">Início</a>
                 <a href="../sobre.html">Sobre</a>
                 <a href="../equipe.html">Equipe</a>
-                <a href="../rede-tematica.html">Rede tematica</a>
+                <a href="../rede-tematica.html">Rede temática</a>
                 <a href="../equipamentos.html">Equipamentos</a>
-                <a class="active" href="index.html">Publicacoes</a>
-                <a href="../noticias.html">Noticias</a>
+                <a class="active" href="index.html">Publicações</a>
+                <a href="../noticias.html">Notícias</a>
                 <a href="../eventos/index.html">Eventos</a>
                 <a class="nav-cta" href="../contato.html">Contato</a>
             </nav>
@@ -34,16 +37,16 @@
         <section class="page-hero">
             <div class="container">
                 <div class="page-hero-shell">
-                    <span class="eyebrow">Acervo cientifico</span>
-                    <h1>Publicacoes reais do NEPERG organizadas para consulta rapida.</h1>
-                    <p>Agora a pagina traz artigos, resumos de CIC e trabalhos em anais citados no acervo historico do nucleo, com busca e filtro por categoria.</p>
+                    <span class="eyebrow">Acervo científico</span>
+                    <h1>Publicações reais do NEPERG organizadas para consulta rápida.</h1>
+                    <p>Agora a página traz artigos, resumos de CIC e trabalhos em anais citados no acervo histórico do núcleo, com busca e filtro por categoria.</p>
                 </div>
             </div>
         </section>
 
         <section class="section">
             <div class="container filter-shell" id="publication-list" data-filter-scope>
-                <input class="search-input" type="search" placeholder="Buscar por titulo, autor, tema ou categoria" data-publication-search="#publication-list">
+                <input class="search-input" type="search" placeholder="Buscar por título, autor, tema ou categoria" data-publication-search="#publication-list">
                 <div class="filter-bar" data-publication-filters>
                     <button class="filter-button active" type="button" data-filter="all">Tudo</button>
                     <button class="filter-button" type="button" data-filter="artigos">Artigos</button>
@@ -54,17 +57,17 @@
                 <div class="publication-grid">
                     <article class="publication-card" data-publication-item data-filter-item data-category="artigos">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-book-open"></i></span><span class="tag">Artigo</span></div>
-                        <h3>Risco de lesoes de ombro em cortadores de cana-de-acucar</h3>
-                        <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Iracimara Anchieta Messias, Fabiana R. de Andrade, Almir O. Artero, Liria A. O. A. Nobrega</span></div>
-                        <p>Analise baseada na simulacao dos movimentos do corte de cana, com dados coletados no laboratorio de biomecanica ocupacional e foco na sobrecarga articular do ombro.</p>
+                        <h3>Risco de lesões de ombro em cortadores de cana-de-açúcar</h3>
+                        <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Iracimara Anchieta Messias, Fabiana R. de Andrade, Almir O. Artero, Liria A. O. A. Nóbrega</span></div>
+                        <p>Análise baseada na simulação dos movimentos do corte de cana, com dados coletados no laboratório de biomecânica ocupacional e foco na sobrecarga articular do ombro.</p>
                         <a class="btn btn-secondary" href="https://repositorio.unesp.br/items/ce55c4dd-2f74-4d6d-aac9-dcb77f4420d3" target="_blank" rel="noopener noreferrer">Ler artigo</a>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="artigos">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-book-open"></i></span><span class="tag">Artigo</span></div>
-                        <h3>Rodizios de postos em abate de bovinos</h3>
+                        <h3>Rodízios de postos em abate de bovinos</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Adelaide Nascimento e Iracimara de Anchieta Messias</span></div>
-                        <p>Discussao sobre rodizio de postos para alem das exigencias fisicas, destacando dimensoes organizacionais, humanas e pedagogicas do trabalho real.</p>
+                        <p>Discussão sobre rodízio de postos para além das exigências físicas, destacando dimensões organizacionais, humanas e pedagógicas do trabalho real.</p>
                         <a class="btn btn-secondary" href="https://www.scielo.br/j/laboreal/a/8cHLN6fF8qhTjVtfm3M8cQx/" target="_blank" rel="noopener noreferrer">Ler artigo</a>
                     </article>
 
@@ -72,79 +75,79 @@
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-book-open"></i></span><span class="tag">Artigo</span></div>
                         <h3>Ergonomics in Clothing</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Maricielo Well Quispe Nunez, Iracimara de Anchieta Messias, Carolina Lotufo Bartholomei</span></div>
-                        <p>Estudo sobre conforto termico em frigorifico de bovinos e o papel da roupa de trabalho como agente de protecao ergonomica em ambientes frios.</p>
+                        <p>Estudo sobre conforto térmico em frigorífico de bovinos e o papel da roupa de trabalho como agente de proteção ergonômica em ambientes frios.</p>
                         <a class="btn btn-secondary" href="https://www.researchgate.net/publication/282318047_Ergonomics_in_Clothing_Importance_of_Thermal_Comfort_in_a_Typical_Brazilian_Refrigerator_of_Beef_Industry" target="_blank" rel="noopener noreferrer">Saiba mais</a>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="artigos">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-book-open"></i></span><span class="tag">Artigo</span></div>
-                        <h3>Analise de condicoes de conforto ambiental em uma empresa de comunicacao</h3>
+                        <h3>Análise de condições de conforto ambiental em uma empresa de comunicação</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Esdras Veloso Santos, Mery Caroliny de Jesus Ribeiro, Iracimara de Anchieta Messias, Carolina Lotufo Bartholomei</span></div>
-                        <p>Resultados sobre conforto termico, luminico e acustico em ambientes de trabalho de uma empresa de comunicacao do oeste paulista.</p>
+                        <p>Resultados sobre conforto térmico, lumínico e acústico em ambientes de trabalho de uma empresa de comunicação do oeste paulista.</p>
                         <a class="btn btn-secondary" href="https://revistas.unoeste.br/index.php/beta/article/view/2154" target="_blank" rel="noopener noreferrer">Ler artigo</a>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="artigos">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-book-open"></i></span><span class="tag">Artigo</span></div>
-                        <h3>Exposicao ocupacional de fisioterapeutas a campos eletricos e magneticos</h3>
+                        <h3>Exposição ocupacional de fisioterapeutas a campos elétricos e magnéticos</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Iracimara de Anchieta Messias, Emico Okuno, Sergio Colacioppo</span></div>
-                        <p>Medicoes de exposicao em clinicas de fisioterapia e avaliacao da eficacia de gaiolas de Faraday como medida de protecao ocupacional.</p>
+                        <p>Medições de exposição em clínicas de fisioterapia e avaliação da eficácia de gaiolas de Faraday como medida de proteção ocupacional.</p>
                         <a class="btn btn-secondary" href="https://www.scielosp.org/article/csp/2007.v23n12/3003-3011/" target="_blank" rel="noopener noreferrer">Ler artigo</a>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="cic">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-file-lines"></i></span><span class="tag">Resumo CIC</span></div>
-                        <h3>Analise ergonomica da atividade em um frigorifico no oeste paulista</h3>
+                        <h3>Análise ergonômica da atividade em um frigorífico no oeste paulista</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Rodrigo Gabioneta, Amanda Kato Penha, Maricielo Well Quispe Nunes, Thiago Pereira Veronese</span></div>
-                        <p>Resumo orientado pela Profa. Dra. Iracimara de Anchieta Messias sobre a perspectiva do trabalhador na analise ergonomica da atividade.</p>
+                        <p>Resumo orientado pela Profa. Dra. Iracimara de Anchieta Messias sobre a perspectiva do trabalhador na análise ergonômica da atividade.</p>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="cic">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-file-lines"></i></span><span class="tag">Resumo CIC</span></div>
-                        <h3>Protocolo de avaliacao do movimento tridimensional no carregamento da mochila escolar</h3>
+                        <h3>Protocolo de avaliação do movimento tridimensional no carregamento da mochila escolar</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Maria Carolina Benedecte Garcia, Ana Caroline Ferreira Alves, Liria Akie Okai-Nobrega, Iracimara de Anchieta Messias</span></div>
-                        <p>Resumo voltado a avaliacao do movimento em universitarios e ao uso de protocolo tridimensional de coleta.</p>
+                        <p>Resumo voltado à avaliação do movimento em universitários e ao uso de protocolo tridimensional de coleta.</p>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="cic">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-file-lines"></i></span><span class="tag">Resumo CIC</span></div>
-                        <h3>A gestao do conhecimento tacito como fator de prevencao em cooperativa de material reciclavel</h3>
+                        <h3>A gestão do conhecimento tácito como fator de prevenção em cooperativa de material reciclável</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Maria Luisa Alves Pereira, Iracimara de Anchieta Messias, Ana Beatriz Costa Pinto</span></div>
-                        <p>Resumo de iniciacao cientifica sobre prevencao e organizacao do trabalho em cooperativa de reciclaveis.</p>
+                        <p>Resumo de iniciação científica sobre prevenção e organização do trabalho em cooperativa de recicláveis.</p>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="anais">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-hard-drive"></i></span><span class="tag">Anais em CD</span></div>
-                        <h3>A ergonomia como instrumento na caracterizacao da sensacao termica em frigorifico</h3>
+                        <h3>A ergonomia como instrumento na caracterização da sensação térmica em frigorífico</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Maricielo Well Quispen Nunes, Fabio Ferreira Correia, Gislaine A. de Oliveira da Silva, Iracimara de Anchieta Messias</span></div>
-                        <p>Trabalho voltado aos efeitos da baixa temperatura sobre trabalhadores de frigorifico em Presidente Prudente.</p>
+                        <p>Trabalho voltado aos efeitos da baixa temperatura sobre trabalhadores de frigorífico em Presidente Prudente.</p>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="anais">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-hard-drive"></i></span><span class="tag">Anais em CD</span></div>
-                        <h3>O trabalho que adoece em frigorifico de bovinos no oeste de Sao Paulo</h3>
+                        <h3>O trabalho que adoece em frigorífico de bovinos no oeste de São Paulo</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Gislaine A. de Oliveira da Silva, Fabio Ferreira Correia, Iracimara de Anchieta Messias, Maricielo Well Quispe Nunes</span></div>
-                        <p>Levantamento sobre as principais doencas relacionadas ao trabalho em frigorifico bovino da regiao.</p>
+                        <p>Levantamento sobre as principais doenças relacionadas ao trabalho em frigorífico bovino da região.</p>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="anais">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-hard-drive"></i></span><span class="tag">Anais em CD</span></div>
-                        <h3>Conforto ambiental em empresa de comunicacao do oeste paulista</h3>
+                        <h3>Conforto ambiental em empresa de comunicação do oeste paulista</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Esdras Santos, Mery Ribeiro, Camila de Oliveira Rafael, Gislaine A. de Oliveira da Silva, Carolina Bueno-Bartholomei, Iracimara de Anchieta Messias</span></div>
-                        <p>Trabalho sobre desempenho ambiental e compatibilizacao de conforto termico, luminico e acustico em situacao real de trabalho.</p>
+                        <p>Trabalho sobre desempenho ambiental e compatibilização de conforto térmico, lumínico e acústico em situação real de trabalho.</p>
                     </article>
 
                     <article class="publication-card" data-publication-item data-filter-item data-category="anais">
                         <div class="publication-top"><span class="icon-badge"><i class="fa-solid fa-hard-drive"></i></span><span class="tag">Anais em CD</span></div>
-                        <h3>Analise dos riscos no setor de impressao de um jornal regional</h3>
+                        <h3>Análise dos riscos no setor de impressão de um jornal regional</h3>
                         <div class="meta-line"><span><i class="fa-solid fa-user-group"></i> Camila de Oliveira Rafael, Mery Ribeiro, Jhelfry Paulo, Lara Delalande, Gislaine A. de Oliveira da Silva, Iracimara de Anchieta Messias</span></div>
-                        <p>Mapeamento de riscos em setor de impressao de empresa de comunicacao no oeste do estado de Sao Paulo.</p>
+                        <p>Mapeamento de riscos em setor de impressão de empresa de comunicação no oeste do estado de São Paulo.</p>
                     </article>
                 </div>
 
                 <div class="content-card hidden" data-empty-state>
                     <h3>Nenhum item encontrado.</h3>
-                    <p>Tente outra busca ou volte para a visualizacao completa.</p>
+                    <p>Tente outra busca ou volte para a visualização completa.</p>
                 </div>
             </div>
         </section>
@@ -154,8 +157,8 @@
                 <div class="cta-band">
                     <div>
                         <span class="eyebrow">Acervo original</span>
-                        <h2>O site novo organiza o essencial e mantem a ponte com a pagina historica.</h2>
-                        <p>Se voce quiser consultar a listagem original completa do Wix, ela continua disponivel no link abaixo como referencia complementar.</p>
+                        <h2>O site novo organiza o essencial e mantém a ponte com a página histórica.</h2>
+                        <p>Se você quiser consultar a listagem original completa do Wix, ela continua disponível no link abaixo como referência complementar.</p>
                     </div>
                     <div class="btn-row">
                         <a class="btn btn-accent" href="https://ergonomiadaatividade.wixsite.com/neperg/publicacoes" target="_blank" rel="noopener noreferrer">Abrir acervo original</a>
@@ -168,11 +171,11 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <section><h3>Publicacoes</h3><p>A pagina agora traz mais conteudo real do acervo do NEPERG, em vez de apenas categorias resumidas.</p></section>
-                <section><h3>Navegacao</h3><ul class="footer-links"><li><a href="../noticias.html">Noticias</a></li><li><a href="../eventos/index.html">Eventos</a></li><li><a href="../contato.html">Contato</a></li></ul></section>
-                <section><h3>Referencia</h3><ul class="footer-links"><li><a href="https://ergonomiadaatividade.wixsite.com/neperg/publicacoes" target="_blank" rel="noopener noreferrer">Acervo historico</a></li></ul></section>
+                <section><h3>Publicações</h3><p>A página agora traz mais conteúdo real do acervo do NEPERG, em vez de apenas categorias resumidas.</p></section>
+                <section><h3>Navegação</h3><ul class="footer-links"><li><a href="../noticias.html">Notícias</a></li><li><a href="../eventos/index.html">Eventos</a></li><li><a href="../contato.html">Contato</a></li></ul></section>
+                <section><h3>Referência</h3><ul class="footer-links"><li><a href="https://ergonomiadaatividade.wixsite.com/neperg/publicacoes" target="_blank" rel="noopener noreferrer">Acervo histórico</a></li></ul></section>
             </div>
-            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Publicacoes reorganizadas com mais profundidade e filtro funcional.</p></div>
+            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Publicações reorganizadas com mais profundidade e filtro funcional.</p></div>
         </div>
     </footer>
 

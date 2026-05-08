@@ -1,10 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Equipe do NEPERG com coordenao, docentes, colaboradores e estudantes.">
+    <meta name="description" content="Equipe do NEPERG com coordenação, docentes, colaboradores e estudantes.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; script-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Equipe | NEPERG</title>
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
@@ -14,16 +17,16 @@
 <body>
     <header class="site-header">
         <div class="container header-shell">
-            <a class="brand" href="index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Nucleo de Pesquisa e Extensao em Ergonomia</span></span></a>
-            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegacao"><span></span></button>
+            <a class="brand" href="index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Núcleo de Pesquisa e Extensão em Ergonomia</span></span></a>
+            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegação"><span></span></button>
             <nav class="site-nav" id="site-nav" data-menu>
-                <a href="index.html">Inicio</a>
+                <a href="index.html">Início</a>
                 <a href="sobre.html">Sobre</a>
                 <a class="active" href="equipe.html">Equipe</a>
-                <a href="rede-tematica.html">Rede tematica</a>
+                <a href="rede-tematica.html">Rede temática</a>
                 <a href="equipamentos.html">Equipamentos</a>
-                <a href="publicacoes/index.html">Publicacoes</a>
-                <a href="noticias.html">Noticias</a>
+                <a href="publicacoes/index.html">Publicações</a>
+                <a href="noticias.html">Notícias</a>
                 <a href="eventos/index.html">Eventos</a>
                 <a class="nav-cta" href="contato.html">Contato</a>
             </nav>
@@ -34,9 +37,9 @@
         <section class="page-hero">
             <div class="container">
                 <div class="page-hero-shell">
-                    <span class="eyebrow">Pessoas do nucleo</span>
+                    <span class="eyebrow">Pessoas do núcleo</span>
                     <h1>Equipe multidisciplinar reunida em torno da ergonomia da atividade.</h1>
-                    <p>Os nomes abaixo foram organizados por funcao para deixar a navegacao mais clara em celular e desktop.</p>
+                    <p>Os nomes abaixo foram organizados por função para deixar a navegação mais clara em celular e desktop.</p>
                 </div>
             </div>
         </section>
@@ -45,23 +48,23 @@
             <div class="container" data-filter-scope>
                 <div class="filter-bar">
                     <button class="filter-button active" type="button" data-filter="all">Todos</button>
-                    <button class="filter-button" type="button" data-filter="coordenacao">Coordenao</button>
+                    <button class="filter-button" type="button" data-filter="coordenacao">Coordenação</button>
                     <button class="filter-button" type="button" data-filter="docentes">Docentes</button>
                     <button class="filter-button" type="button" data-filter="colaboradores">Colaboradores</button>
-                    <button class="filter-button" type="button" data-filter="formacao">Em formacao</button>
+                    <button class="filter-button" type="button" data-filter="formacao">Em formação</button>
                 </div>
                 <div class="team-grid">
-                    <article class="person-card" data-filter-item data-category="coordenacao"><div class="person-mark">IM</div><div><h3>Iracimara de Anchieta Messias</h3><p class="person-role">Coordenao</p><p>Professora da UNESP com atuao em saude ocupacional, ergonomia e saude ambiental.</p><ul class="person-meta"><li><i class="fa-solid fa-envelope"></i><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li></ul></div></article>
-                    <article class="person-card" data-filter-item data-category="coordenacao"><div class="person-mark">NM</div><div><h3>Nikele Maiara Milani</h3><p class="person-role">Suporte academico</p><p>Assistente de suporte academico II ligada ao funcionamento do nucleo e ao uso da infraestrutura.</p><ul class="person-meta"><li><i class="fa-solid fa-envelope"></i><a href="mailto:nikele.milani@unesp.br">nikele.milani@unesp.br</a></li></ul></div></article>
-                    <article class="person-card" data-filter-item data-category="docentes"><div class="person-mark">LB</div><div><h3>Luis Antonio Barone</h3><p class="person-role">Docente</p><p>Atuao em sociologia, movimentos sociais, desenvolvimento rural e cidadania.</p></div></article>
-                    <article class="person-card" data-filter-item data-category="docentes colaboradores"><div class="person-mark">LG</div><div><h3>Luis Alberto Gobbo</h3><p class="person-role">Pesquisador colaborador</p><p>Professor do Departamento de Educao Fisica e colaborador do NEPERG.</p></div></article>
-                    <article class="person-card" data-filter-item data-category="docentes colaboradores"><div class="person-mark">CB</div><div><h3>Carolina Lotufo Bueno Bartholomei</h3><p class="person-role">Docente colaboradora</p><p>Pesquisa conforto termico, acstica, iluminao e ergonomia.</p></div></article>
-                    <article class="person-card" data-filter-item data-category="colaboradores"><div class="person-mark">AN</div><div><h3>Adelaide Nascimento</h3><p class="person-role">Colaboradora internacional</p><p>Professora em ergonomia e neurociencias do trabalho no Cnam.</p></div></article>
-                    <article class="person-card" data-filter-item data-category="colaboradores"><div class="person-mark">LN</div><div><h3>Liria Akie Okai de Albuquerque Nobrega</h3><p class="person-role">Colaboradora</p><p>Atuao em fisioterapia, postura, funcao muscular e reabilitacao.</p></div></article>
-                    <article class="person-card" data-filter-item data-category="colaboradores"><div class="person-mark">RS</div><div><h3>Raoni Rocha Simoes</h3><p class="person-role">Colaborador</p><p>Pesquisas em seguranca, confiabilidade humana e engenharia de resiliencia.</p></div></article>
-                    <article class="person-card" data-filter-item data-category="colaboradores"><div class="person-mark">LT</div><div><h3>Liliane Reis Teixeira</h3><p class="person-role">Colaboradora</p><p>Saude publica e saude do trabalhador com foco em exposicoes e organizacao do trabalho.</p></div></article>
-                    <article class="person-card" data-filter-item data-category="formacao"><div class="person-mark">TU</div><div><h3>Thales Vinicius de Brito Ue</h3><p class="person-role">Doutorando</p><p>Pesquisador em ciencia da computacao e integrante do apoio tecnico do nucleo.</p></div></article>
-                    <article class="person-card" data-filter-item data-category="formacao"><div class="person-mark">EA</div><div><h3>Elias Azevedo da Silva</h3><p class="person-role">Mestrando</p><p>Pesquisa ligada a saude rural, trabalho decente e vulnerabilidade social.</p></div></article>
+                    <article class="person-card" data-filter-item data-category="coordenacao"><div class="person-mark">IM</div><div><h3>Iracimara de Anchieta Messias</h3><p class="person-role">Coordenação</p><p>Professora da UNESP com atuação em saúde ocupacional, ergonomia e saúde ambiental.</p><ul class="person-meta"><li><i class="fa-solid fa-envelope"></i><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li></ul></div></article>
+                    <article class="person-card" data-filter-item data-category="coordenacao"><div class="person-mark">NM</div><div><h3>Nikele Maiara Milani</h3><p class="person-role">Suporte acadêmico</p><p>Assistente de suporte acadêmico II ligada ao funcionamento do núcleo e ao uso da infraestrutura.</p><ul class="person-meta"><li><i class="fa-solid fa-envelope"></i><a href="mailto:nikele.milani@unesp.br">nikele.milani@unesp.br</a></li></ul></div></article>
+                    <article class="person-card" data-filter-item data-category="docentes"><div class="person-mark">LB</div><div><h3>Luis Antonio Barone</h3><p class="person-role">Docente</p><p>Atuação em sociologia, movimentos sociais, desenvolvimento rural e cidadania.</p></div></article>
+                    <article class="person-card" data-filter-item data-category="docentes colaboradores"><div class="person-mark">LG</div><div><h3>Luis Alberto Gobbo</h3><p class="person-role">Pesquisador colaborador</p><p>Professor do Departamento de Educação Física e colaborador do NEPERG.</p></div></article>
+                    <article class="person-card" data-filter-item data-category="docentes colaboradores"><div class="person-mark">CB</div><div><h3>Carolina Lotufo Bueno Bartholomei</h3><p class="person-role">Docente colaboradora</p><p>Pesquisa conforto térmico, acústica, iluminação e ergonomia.</p></div></article>
+                    <article class="person-card" data-filter-item data-category="colaboradores"><div class="person-mark">AN</div><div><h3>Adelaide Nascimento</h3><p class="person-role">Colaboradora internacional</p><p>Professora em ergonomia e neurociências do trabalho no Cnam.</p></div></article>
+                    <article class="person-card" data-filter-item data-category="colaboradores"><div class="person-mark">LN</div><div><h3>Liria Akie Okai de Albuquerque Nóbrega</h3><p class="person-role">Colaboradora</p><p>Atuação em fisioterapia, postura, função muscular e reabilitação.</p></div></article>
+                    <article class="person-card" data-filter-item data-category="colaboradores"><div class="person-mark">RS</div><div><h3>Raoni Rocha Simões</h3><p class="person-role">Colaborador</p><p>Pesquisas em segurança, confiabilidade humana e engenharia de resiliência.</p></div></article>
+                    <article class="person-card" data-filter-item data-category="colaboradores"><div class="person-mark">LT</div><div><h3>Liliane Reis Teixeira</h3><p class="person-role">Colaboradora</p><p>Saúde pública e saúde do trabalhador com foco em exposições e organização do trabalho.</p></div></article>
+                    <article class="person-card" data-filter-item data-category="formacao"><div class="person-mark">TU</div><div><h3>Thales Vinicius de Brito Ue</h3><p class="person-role">Doutorando</p><p>Pesquisador em ciência da computação e integrante do apoio técnico do núcleo.</p></div></article>
+                    <article class="person-card" data-filter-item data-category="formacao"><div class="person-mark">EA</div><div><h3>Elias Azevedo da Silva</h3><p class="person-role">Mestrando</p><p>Pesquisa ligada a saúde rural, trabalho decente e vulnerabilidade social.</p></div></article>
                     <article class="person-card" data-filter-item data-category="formacao"><div class="person-mark">MP</div><div><h3>Maria Julia Pinheiro</h3><p class="person-role">Graduanda</p><p>Estudante de fisioterapia presente no acervo recente do NEPERG.</p></div></article>
                 </div>
             </div>
@@ -71,12 +74,12 @@
             <div class="container split-layout">
                 <div class="content-card">
                     <span class="eyebrow">Egressos</span>
-                    <h2>Formacao espalhada por varias areas.</h2>
-                    <p>O acervo do nucleo registra egressos de fisioterapia, engenharia ambiental, arquitetura e urbanismo, estatstica, educao fisica, computacao e engenharia cartogrfica.</p>
+                    <h2>Formação espalhada por várias áreas.</h2>
+                    <p>O acervo do núcleo registra egressos de fisioterapia, engenharia ambiental, arquitetura e urbanismo, estatística, educação física, computação e engenharia cartográfica.</p>
                 </div>
                 <div class="content-card">
-                    <span class="eyebrow">Contato academico</span>
-                    <p>Para parcerias, visitas e uso da infraestrutura, a navegacao do site aponta diretamente para a pagina de contato e para a pagina de equipamentos.</p>
+                    <span class="eyebrow">Contato acadêmico</span>
+                    <p>Para parcerias, visitas e uso da infraestrutura, a navegação do site aponta diretamente para a página de contato e para a página de equipamentos.</p>
                 </div>
             </div>
         </section>
@@ -85,11 +88,11 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <section><h3>Equipe</h3><p>Conteudo reorganizado com base no acervo publico do NEPERG.</p></section>
-                <section><h3>Paginas relacionadas</h3><ul class="footer-links"><li><a href="sobre.html">Sobre</a></li><li><a href="rede-tematica.html">Rede tematica</a></li><li><a href="contato.html">Contato</a></li></ul></section>
+                <section><h3>Equipe</h3><p>Conteúdo reorganizado com base no acervo público do NEPERG.</p></section>
+                <section><h3>Páginas relacionadas</h3><ul class="footer-links"><li><a href="sobre.html">Sobre</a></li><li><a href="rede-tematica.html">Rede temática</a></li><li><a href="contato.html">Contato</a></li></ul></section>
                 <section><h3>E-mails</h3><ul class="footer-links"><li><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li><li><a href="mailto:nikele.milani@unesp.br">nikele.milani@unesp.br</a></li></ul></section>
             </div>
-            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Equipe apresentada em formato filtrvel e responsivo.</p></div>
+            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Equipe apresentada em formato filtrável e responsivo.</p></div>
         </div>
     </footer>
 

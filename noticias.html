@@ -1,10 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Noticias e destaques do NEPERG.">
-    <title>Noticias | NEPERG</title>
+    <meta name="description" content="Notícias e destaques do NEPERG.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; script-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Notícias e Avisos | NEPERG</title>
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
@@ -14,16 +17,16 @@
 <body>
     <header class="site-header">
         <div class="container header-shell">
-            <a class="brand" href="index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Nucleo de Pesquisa e Extensao em Ergonomia</span></span></a>
-            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegacao"><span></span></button>
+            <a class="brand" href="index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Núcleo de Pesquisa e Extensão em Ergonomia</span></span></a>
+            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegação"><span></span></button>
             <nav class="site-nav" id="site-nav" data-menu>
-                <a href="index.html">Inicio</a>
+                <a href="index.html">Início</a>
                 <a href="sobre.html">Sobre</a>
                 <a href="equipe.html">Equipe</a>
-                <a href="rede-tematica.html">Rede tematica</a>
+                <a href="rede-tematica.html">Rede temática</a>
                 <a href="equipamentos.html">Equipamentos</a>
-                <a href="publicacoes/index.html">Publicacoes</a>
-                <a class="active" href="noticias.html">Noticias</a>
+                <a href="publicacoes/index.html">Publicações</a>
+                <a class="active" href="noticias.html">Notícias e Avisos</a>
                 <a href="eventos/index.html">Eventos</a>
                 <a class="nav-cta" href="contato.html">Contato</a>
             </nav>
@@ -34,62 +37,22 @@
         <section class="page-hero">
             <div class="container">
                 <div class="page-hero-shell">
-                    <span class="eyebrow">Atualizacoes do projeto</span>
-                    <h1>Noticias organizadas em um formato mais claro e permanente.</h1>
-                    <p>A pagina reune destaques do acervo do NEPERG e conteudos institucionais que ajudam a entender a trajetoria recente do nucleo.</p>
+                    <span class="eyebrow">Atualizações do projeto</span>
+                    <h1>Notícias e avisos organizados em um formato mais claro e permanente.</h1>
+                    <p>A página reúne destaques do acervo do NEPERG e conteúdos institucionais que ajudam a entender a trajetória recente do núcleo.</p>
                 </div>
             </div>
         </section>
 
         <section class="section">
-            <div class="container news-grid">
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="img/noticias/seminario_internacional.avif" alt="Cartaz do seminario internacional do NEPERG">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-top"><span class="icon-badge"><i class="fa-solid fa-globe"></i></span><span class="tag">Participacao</span></div>
-                        <h3>Participacao em encontros e circulacao internacional da producao do nucleo</h3>
-                        <p>O acervo agora conecta noticias locais, seminarios e a participacao da equipe em congressos e redes de discussao sobre ergonomia da atividade.</p>
-                        <a class="btn btn-secondary" href="publicacoes/index.html">Ver publicacoes</a>
-                    </div>
-                </article>
-
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="img/noticias/1_sem_inter_da_ergonomia_da_atividade.avif" alt="Divulgacao do primeiro seminario internacional da ergonomia da atividade">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-top"><span class="icon-badge"><i class="fa-solid fa-users"></i></span><span class="tag">Seminario</span></div>
-                        <h3>Apresentacao do seminario internacional da ergonomia da atividade</h3>
-                        <p>O registro visual destaca a apresentacao do seminario e reforca a organizacao do historico de eventos do NEPERG dentro do novo site.</p>
-                        <a class="btn btn-secondary" href="eventos/index.html">Ver eventos</a>
-                    </div>
-                </article>
-
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="img/noticias/2_predio_novo unesp.avif" alt="Predio da UNESP relacionado ao NEPERG">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-top"><span class="icon-badge"><i class="fa-solid fa-building-columns"></i></span><span class="tag">Institucional</span></div>
-                        <h3>Infraestrutura e presenca institucional do NEPERG ganham mais destaque</h3>
-                        <p>As paginas do site foram reorganizadas para mostrar melhor o vinculo com a FCT/UNESP, a infraestrutura do laboratorio e os canais de contato.</p>
-                        <a class="btn btn-secondary" href="equipamentos.html">Ver infraestrutura</a>
-                    </div>
-                </article>
-
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="img/noticias/nucleo_estudos.png" alt="Identidade visual do nucleo de estudos em ergonomia">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-top"><span class="icon-badge"><i class="fa-solid fa-flask"></i></span><span class="tag">Acervo</span></div>
-                        <h3>Pagina de noticias recebe imagens reais do projeto</h3>
-                        <p>Com a inclusao das imagens na pasta do projeto, a aba de noticias deixa de depender de blocos secos e passa a comunicar melhor o trabalho do NEPERG.</p>
-                        <a class="btn btn-secondary" href="sobre.html">Conhecer o nucleo</a>
-                    </div>
-                </article>
+            <div class="container filter-shell cms-collection" data-cms-collection="news,announcement">
+                <input class="search-input" type="search" placeholder="Buscar por título, categoria ou palavra-chave" data-cms-search>
+                <div class="filter-bar" data-cms-filters></div>
+                <div class="news-grid" data-cms-grid></div>
+                <div class="content-card hidden" data-cms-empty>
+                    <h3>Nenhum conteúdo encontrado.</h3>
+                    <p>Tente outro termo ou ajuste o filtro de categorias para ver mais conteúdos.</p>
+                </div>
             </div>
         </section>
 
@@ -97,13 +60,13 @@
             <div class="container">
                 <div class="cta-band">
                     <div>
-                        <span class="eyebrow">Explorar mais</span>
-                        <h2>As noticias agora conversam com eventos, publicacoes e infraestrutura.</h2>
-                        <p>O conteudo foi condensado para evitar paginas vazias e centralizar o que realmente ajuda o visitante a entender o projeto.</p>
+                        <span class="eyebrow">Acervo editorial</span>
+                        <h2>As notícias foram organizadas para leitura rápida e manutenção versionada.</h2>
+                        <p>O acervo fica mais simples de revisar e publicar em um deploy estático, sem depender de um painel exposto na internet.</p>
                     </div>
                     <div class="btn-row">
-                        <a class="btn btn-accent" href="eventos/index.html">Ver eventos</a>
-                        <a class="btn btn-secondary" href="publicacoes/index.html">Ver publicacoes</a>
+                        <a class="btn btn-accent" href="index.html">Voltar ao início</a>
+                        <a class="btn btn-secondary" href="eventos/index.html">Ver eventos</a>
                     </div>
                 </div>
             </div>
@@ -113,15 +76,16 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <section><h3>Noticias</h3><p>Pagina refeita para destacar acontecimentos institucionais relevantes sem blocos genricos.</p></section>
-                <section><h3>Navegar</h3><ul class="footer-links"><li><a href="eventos/index.html">Eventos</a></li><li><a href="publicacoes/index.html">Publicacoes</a></li><li><a href="contato.html">Contato</a></li></ul></section>
-                <section><h3>Referencia</h3><ul class="footer-links"><li><a href="https://ergonomiadaatividade.wixsite.com/neperg/eventos" target="_blank" rel="noopener noreferrer">Acervo de eventos</a></li><li><a href="https://www.fct.unesp.br/#!/neperg" target="_blank" rel="noopener noreferrer">Pagina institucional</a></li></ul></section>
+                <section><h3>Notícias</h3><p>Página refeita para receber conteúdos dinâmicos, com busca e organização por categoria.</p></section>
+                <section><h3>Navegar</h3><ul class="footer-links"><li><a href="eventos/index.html">Eventos</a></li><li><a href="publicacoes/index.html">Publicações</a></li><li><a href="contato.html">Contato</a></li></ul></section>
+                <section><h3>Referência</h3><ul class="footer-links"><li><a href="index.html">Página inicial</a></li><li><a href="https://www.fct.unesp.br/#!/neperg" target="_blank" rel="noopener noreferrer">Página institucional</a></li></ul></section>
             </div>
-            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Noticias condensadas e mais faceis de localizar.</p></div>
+            <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Notícias condensadas e mais fáceis de localizar.</p></div>
         </div>
     </footer>
 
     <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+    <script src="js/cms-core.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

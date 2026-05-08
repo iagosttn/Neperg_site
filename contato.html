@@ -1,10 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contato do NEPERG e informacoes para visita, parceria e uso de infraestrutura.">
+    <meta name="description" content="Contato do NEPERG e informações para visita, parceria e uso de infraestrutura.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; script-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src https://www.google.com https://www.google.com.br https://maps.google.com">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Contato | NEPERG</title>
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
@@ -14,16 +17,16 @@
 <body>
     <header class="site-header">
         <div class="container header-shell">
-            <a class="brand" href="index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Nucleo de Pesquisa e Extensao em Ergonomia</span></span></a>
-            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegacao"><span></span></button>
+            <a class="brand" href="index.html"><span class="brand-mark">NP</span><span class="brand-copy"><strong>NEPERG</strong><span>Núcleo de Pesquisa e Extensão em Ergonomia</span></span></a>
+            <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Abrir navegação"><span></span></button>
             <nav class="site-nav" id="site-nav" data-menu>
-                <a href="index.html">Inicio</a>
+                <a href="index.html">Início</a>
                 <a href="sobre.html">Sobre</a>
                 <a href="equipe.html">Equipe</a>
-                <a href="rede-tematica.html">Rede tematica</a>
+                <a href="rede-tematica.html">Rede temática</a>
                 <a href="equipamentos.html">Equipamentos</a>
-                <a href="publicacoes/index.html">Publicacoes</a>
-                <a href="noticias.html">Noticias</a>
+                <a href="publicacoes/index.html">Publicações</a>
+                <a href="noticias.html">Notícias</a>
                 <a href="eventos/index.html">Eventos</a>
                 <a class="nav-cta active" href="contato.html">Contato</a>
             </nav>
@@ -34,9 +37,9 @@
         <section class="page-hero">
             <div class="container">
                 <div class="page-hero-shell">
-                    <span class="eyebrow">Fale com o nucleo</span>
+                    <span class="eyebrow">Fale com o núcleo</span>
                     <h1>Contato organizado para visitas, parceria e uso da infraestrutura.</h1>
-                    <p>A pagina agora concentra os canais mais uteis para quem quer se aproximar do NEPERG sem depender de formulrios quebrados ou informacoes genricas.</p>
+                    <p>A página agora concentra os canais mais úteis para quem quer se aproximar do NEPERG, com formulário conectado ao backend do site e acompanhamento pelo painel administrativo.</p>
                 </div>
             </div>
         </section>
@@ -46,11 +49,11 @@
                 <div class="contact-panel">
                     <span class="eyebrow">Canais principais</span>
                     <div class="contact-methods">
-                        <div class="contact-method"><span class="icon-badge"><i class="fa-solid fa-location-dot"></i></span><div><strong>Endereco</strong><p>Rua Roberto Simonsen, 305<br>FCT/UNESP - Presidente Prudente/SP<br>CEP 19060-900</p></div></div>
+                        <div class="contact-method"><span class="icon-badge"><i class="fa-solid fa-location-dot"></i></span><div><strong>Endereço</strong><p>Rua Roberto Simonsen, 305<br>FCT/UNESP - Presidente Prudente/SP<br>CEP 19060-900</p></div></div>
                         <div class="contact-method"><span class="icon-badge"><i class="fa-solid fa-envelope"></i></span><div><strong>E-mails</strong><p><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a><br><a href="mailto:nikele.milani@unesp.br">nikele.milani@unesp.br</a></p></div></div>
-                        <div class="contact-method"><span class="icon-badge"><i class="fa-solid fa-phone"></i></span><div><strong>Atendimento</strong><p>(18) 3229-5692<br>Referencia institucional de uso do EMU: 8h s 17h</p></div></div>
+                        <div class="contact-method"><span class="icon-badge"><i class="fa-solid fa-phone"></i></span><div><strong>Atendimento</strong><p>(18) 3229-5692<br>Referência institucional de uso do EMU: 8h às 17h</p></div></div>
                     </div>
-                    <p class="form-note">Para uso do equipamento multiusuario, a solicitao deve partir de pesquisador responsvel com proposta de pesquisa.</p>
+                    <p class="form-note">Para uso do equipamento multiusuário, a solicitação deve partir de pesquisador responsável com proposta de pesquisa.</p>
                 </div>
                 <div class="contact-panel">
                     <span class="eyebrow">Mensagem</span>
@@ -60,6 +63,7 @@
                             <input class="field" type="email" name="email" placeholder="E-mail" required>
                         </div>
                         <input class="field" type="text" name="assunto" placeholder="Assunto">
+                        <input class="hidden" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <textarea class="field" name="mensagem" placeholder="Escreva sua mensagem" required></textarea>
                         <button class="btn btn-primary" type="submit">Enviar mensagem</button>
                         <div class="form-message hidden" data-form-message></div>
@@ -71,15 +75,15 @@
         <section class="section compact section-muted">
             <div class="container">
                 <div class="faq-list" data-faq-list>
-                    <article class="faq-item" data-faq-item><button class="faq-trigger" type="button" data-faq-trigger>Como solicitar uso do laboratrio?<i class="fa-solid fa-chevron-down"></i></button><div class="faq-content">A solicitao deve ser encaminhada por pesquisador responsvel, com proposta de pesquisa e dados de contato, conforme o plano de gestao do equipamento multiusuario.</div></article>
-                    <article class="faq-item" data-faq-item><button class="faq-trigger" type="button" data-faq-trigger>Posso pedir visita tecnica?<i class="fa-solid fa-chevron-down"></i></button><div class="faq-content">Sim. A pagina de contato foi estruturada para receber pedidos de visita, parceria, oficina ou apresentacao institucional.</div></article>
+                    <article class="faq-item" data-faq-item><button class="faq-trigger" type="button" data-faq-trigger>Como solicitar uso do laboratório?<i class="fa-solid fa-chevron-down"></i></button><div class="faq-content">A solicitação deve ser encaminhada por pesquisador responsável, com proposta de pesquisa e dados de contato, conforme o plano de gestão do equipamento multiusuário.</div></article>
+                    <article class="faq-item" data-faq-item><button class="faq-trigger" type="button" data-faq-trigger>Posso pedir visita técnica?<i class="fa-solid fa-chevron-down"></i></button><div class="faq-content">Sim. A página de contato foi estruturada para receber pedidos de visita, parceria, oficina ou apresentação institucional.</div></article>
                 </div>
             </div>
         </section>
 
         <section class="section compact">
             <div class="container">
-                <iframe class="map-frame" loading="lazy" src="https://www.google.com/maps?q=Rua+Roberto+Simonsen,+305,+Presidente+Prudente,+SP&output=embed" title="Mapa de localizacao da FCT/UNESP"></iframe>
+                <iframe class="map-frame" loading="lazy" src="https://www.google.com/maps?q=Rua+Roberto+Simonsen,+305,+Presidente+Prudente,+SP&output=embed" title="Mapa de localização da FCT/UNESP"></iframe>
             </div>
         </section>
     </main>
@@ -87,8 +91,8 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <section><h3>Contato</h3><p>Pagina refeita com dados institucionais, formulrio funcional de demonstrao e mapa incorporado.</p></section>
-                <section><h3>Relacionados</h3><ul class="footer-links"><li><a href="equipamentos.html">Equipamentos</a></li><li><a href="equipe.html">Equipe</a></li><li><a href="https://www.fct.unesp.br/#!/neperg" target="_blank" rel="noopener noreferrer">Pagina institucional</a></li></ul></section>
+                <section><h3>Contato</h3><p>Página refeita com dados institucionais, formulário conectado ao backend e mapa incorporado.</p></section>
+                <section><h3>Relacionados</h3><ul class="footer-links"><li><a href="equipamentos.html">Equipamentos</a></li><li><a href="equipe.html">Equipe</a></li><li><a href="https://www.fct.unesp.br/#!/neperg" target="_blank" rel="noopener noreferrer">Página institucional</a></li></ul></section>
                 <section><h3>E-mails</h3><ul class="footer-links"><li><a href="mailto:iracimara.messias@unesp.br">iracimara.messias@unesp.br</a></li><li><a href="mailto:nikele.milani@unesp.br">nikele.milani@unesp.br</a></li></ul></section>
             </div>
             <div class="footer-bottom"><p>&copy; <span data-current-year></span> NEPERG. Contato organizado para celular e desktop.</p></div>
@@ -96,6 +100,7 @@
     </footer>
 
     <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+    <script src="js/cms-core.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
