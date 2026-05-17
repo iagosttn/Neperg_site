@@ -4,8 +4,14 @@
   "private": true,
   "description": "Site institucional do NEPERG com CMS server-side em Node.js.",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node src/server.js",
+    "dev": "node src/server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.22.1",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.34.5"
   },
   "engines": {
     "node": ">=18"

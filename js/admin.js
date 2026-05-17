@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const imageManualInput = document.querySelector("[data-image-manual]");
     const imagePreview = document.querySelector("[data-image-preview]");
     const imageStatus = document.querySelector("[data-image-status]");
+    const livePreviewTarget = document.querySelector("#live-preview-target");
 
     const typeInput = contentForm?.querySelector('[name="type"]');
     const statusInput = contentForm?.querySelector('[name="status"]');
@@ -317,6 +318,58 @@ document.addEventListener("DOMContentLoaded", async () => {
             </article>
         `;
     }
+
+    function updateLivePreview() {
+        if (!livePreviewTarget || !contentForm) return;
+
+        const formData = new FormData(contentForm);
+        const type = formData.get("type") || "news";
+        const title = formData.get("title") || "Título Exemplo";
+        const summary = formData.get("summary") || "Resumo exemplo do conteúdo que aparecerá no site.";
+        const date = formData.get("date") || "";
+        const image = formData.get("image") || "";
+        const category = formData.get("category") || "Geral";
+
+        let cardHtml = "";
+        if (type === "news") {
+            cardHtml = `
+                <article class="news-card">
+                    <div class="news-top">
+                        <span class="icon-badge"><i class="fa-solid fa-newspaper"></i></span>
+                        <span class="data-line">${formatDateTime(date) || "Data não informada"}</span>
+                    </div>
+                    <span class="person-role">${escapeHtml(category)}</span>
+                    <h3 style="margin-top: 0.5rem;">${escapeHtml(title)}</h3>
+                    <p>${escapeHtml(summary)}</p>
+                </article>
+            `;
+        } else if (type === "event") {
+            cardHtml = `
+                <article class="event-card">
+                    <div class="event-top">
+                        <span class="icon-badge"><i class="fa-solid fa-calendar-days"></i></span>
+                        <span class="data-line">${formatDateTime(date) || "Data não informada"}</span>
+                    </div>
+                    <span class="person-role">${escapeHtml(category)}</span>
+                    <h3 style="margin-top: 0.5rem;">${escapeHtml(title)}</h3>
+                    <p>${escapeHtml(summary)}</p>
+                </article>
+            `;
+        } else {
+            cardHtml = `
+                <article class="content-card">
+                    <span class="eyebrow">${escapeHtml(category)}</span>
+                    <h3 style="margin-top: 1rem;">${escapeHtml(title)}</h3>
+                    <p>${escapeHtml(summary)}</p>
+                </article>
+            `;
+        }
+
+        livePreviewTarget.innerHTML = cardHtml;
+    }
+
+    contentForm?.addEventListener("input", updateLivePreview);
+    updateLivePreview();
 
     function renderCategoryFilter() {
         if (!filterCategory) {
@@ -981,6 +1034,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             resetForm();
             await refreshDashboard();
         });
+    });
+
+    const themeToggle = document.querySelector("[data-theme-toggle]");
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    if (currentTheme === "dark" && themeToggle) {
+        themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    }
+
+    themeToggle?.addEventListener("click", () => {
+        const theme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+        themeToggle.innerHTML = theme === "dark" ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     });
 
     resetForm();
